@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+  <properties>
+    <author email="ehsavoie73@gmail.com">Emmanuel Hugonnet</author>
+    <title>Introduction</title>
+  </properties>
+  <head>
+    <meta/>
+  </head>
+  <body>
+    <!-- The body of the document contains a number of sections -->
+    <section name="Intoduction">
+
+      <subsection name="Overview">
+      <!-- Within sections, any XHTML can be used -->
+      <p>This plugin uses Subversion logs to create a changelog for each tagged version of a project.</p>
+      </subsection>
+      
+      <!-- in addition to XHTML, any number of subsections can be within a section -->
+      <subsection name="Pre-requisite">
+        <p>
+          There are some requisite for using this plugin :
+          <ul>
+            <li>
+              As this plugin uses Subversion commands, it is necessary to have the svn command line executable in your path
+            </li>
+            <li>
+              This plugins needs Java 1.4 or more to run correctly.
+            </li>
+          </ul>
+        </p>
+      </subsection>     
+      
+      <subsection name="Example">
+        <p><!--Necessary because of a bug removing p tags--></p>
+          <!-- Within sections, any XHTML can be used -->
+          <p>
+            This is an example of a report by the Svn Changelog Report :
+          </p>
+          <br/>
+          <img src="images/changelog_sample.png" />
+      </subsection>      
+      
+    </section>
+  </body>
+</document>
