@@ -28,10 +28,10 @@
 		</license>
 	</licenses>
 
-  <issueManagement>
-    <system>JIRA</system>
-    <url>http://jira.codehaus.org/browse/MFINDBUGS</url>
-  </issueManagement>
+    <issueManagement>
+      <system>JIRA</system>
+      <url>http://jira.codehaus.org/browse/MOJO</url>
+    </issueManagement>
 
 	<developers>
 		<developer>
@@ -190,18 +190,8 @@
 					<excludes>
 						<exclude>**/package-info*</exclude>
 					</excludes>
-					<compilerArguments>
-						<verbose />
-						<!-- <bootclasspath>${settings.localRepository}/com/sun/rt/1.4.2_13/rt-1.4.2_13.jar</bootclasspath>-->
-					</compilerArguments>
 				</configuration>
-				<!-- <dependencies>
-					<dependency>
-					<groupId>com.sun</groupId>
-					<artifactId>rt</artifactId>
-					<version>1.4.2_13</version>
-					</dependency>
-					</dependencies>-->
+
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -259,57 +249,4 @@
 	<properties>
 		<maven.scm.version>1.1-SNAPSHOT</maven.scm.version>
 	</properties>
-
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.3</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>
-					maven-project-info-reports-plugin
-				</artifactId>
-				<version>2.0.1</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-plugin-plugin</artifactId>
-				<version>2.3</version>
-				<configuration>
-					<outputDirectory>
-						${project.build.directory}/generated-site/xdoc/description
-					</outputDirectory>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<version>2.1</version>
-				<configuration>
-					<configLocation>
-						${basedir}/src/main/resources/config/maven_checks.xml
-					</configLocation>
-					<headerLocation>
-						${basedir}/src/main/resources/config/header.txt
-					</headerLocation>
-				</configuration>
-			</plugin>
-			<!-- to produce the report while waiting for codehaus urls : remove it to build the plugin-->
-			<!-- 
-				<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>scmchangelog-maven-plugin</artifactId>
-				<configuration>         
-				<grammar>MANU</grammar>
-				<connectionUrl>scm:svn:https://yourdev.rd.francetelecom.fr/svnroot/mspcible/msp/trunk</connectionUrl>
-				<tagBase>https://yourdev.rd.francetelecom.fr/svnroot/mspcible/msp/tags/livraison</tagBase>
-				<trackerType>sourceforge</trackerType>
-				<trackerUrlPattern>#</trackerUrlPattern>
-				</configuration>
-				</plugin> -->
-		</plugins>
-	</reporting>
 </project>
