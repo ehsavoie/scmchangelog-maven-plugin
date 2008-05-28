@@ -47,8 +47,8 @@
             <li>grammar : this allows you to specify the grammar used to parse the svn logs. <br/>
               Currently it supports two grammars : <br/>
               <ul>
-                <li>"MANU" which uses <code>@operation:issue;</code></li>
-                <li>"REMY" with <code>[operation:issue]</code></li>
+                <li>"MANU" which uses <code>@operation:issue;comments</code></li>
+                <li>"REMY" with <code>[operation:issue]comments</code></li>
               </ul>
             </li>
             <li>trackerType : this allows you to specify the issue tracker used. <br/>
