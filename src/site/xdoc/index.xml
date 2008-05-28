@@ -13,7 +13,7 @@
 
       <subsection name="Overview">
       <!-- Within sections, any XHTML can be used -->
-      <p>This plugin uses Subversion logs to create a changelog for each tagged version of a project.</p>
+      <p>This plugin uses the SCM logs (currently Subversion or mercurial) to create a changelog for each tagged version of a project.</p>
       </subsection>
       
       <!-- in addition to XHTML, any number of subsections can be within a section -->
@@ -35,12 +35,11 @@
         <p><!--Necessary because of a bug removing p tags--></p>
           <!-- Within sections, any XHTML can be used -->
           <p>
-            This is an example of a report by the Svn Changelog Report :
+            This is an example of a report by the Scm Changelog Report :
           </p>
           <br/>
           <img src="images/changelog_sample.png" />
-      </subsection>      
-      
+      </subsection>
     </section>
   </body>
 </document>

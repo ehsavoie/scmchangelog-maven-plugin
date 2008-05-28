@@ -31,7 +31,7 @@
               &lt;plugins&gt;
                 &lt;plugin&gt;
                   &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
-                  &lt;artifactId&gt;svnchangelog-maven-plugin&lt;/artifactId&gt;
+                  &lt;artifactId&gt;scmchangelog-maven-plugin&lt;/artifactId&gt;
                 &lt;/plugin&gt;
                 ...
               &lt;/plugins&gt;
