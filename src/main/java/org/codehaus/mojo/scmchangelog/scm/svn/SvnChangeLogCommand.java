@@ -28,6 +28,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.maven.scm.ScmBranch;
 import org.apache.maven.scm.ScmException;
 import org.apache.maven.scm.ScmFileSet;
@@ -113,9 +115,9 @@ public class SvnChangeLogCommand
         fileSet.getBasedir(), branch, startVersion, endVersion );
     SvnChangeLogConsumer consumer = new SvnChangeLogConsumer( grammar );
     CommandLineUtils.StringStreamConsumer stderr = new CommandLineUtils.StringStreamConsumer();
-    getLogger().info( "Executing: "
+    Logger.getLogger( SvnChangeLogCommand.class.getName() ).log( Level.INFO,  "Executing: "
         + SvnCommandLineUtils.cryptPassword( cl ) );
-    getLogger().info( "Working directory: "
+     Logger.getLogger( SvnChangeLogCommand.class.getName() ).log( Level.INFO, "Working directory: "
         + cl.getWorkingDirectory().getAbsolutePath() );
 
     int exitCode;
@@ -125,11 +127,14 @@ public class SvnChangeLogCommand
     }
     catch ( CommandLineException ex )
     {
+      Logger.getLogger( SvnChangeLogCommand.class.getName() ).log( Level.SEVERE, 
+          "Error while executing command.", ex );
       throw new ScmException( "Error while executing svn command.", ex );
     }
 
     if ( exitCode != 0 )
     {
+      Logger.getLogger( SvnChangeLogCommand.class.getName() ).log( Level.SEVERE, "The svn command failed." + stderr.getOutput());
       return new ChangeLogScmResult( cl.toString(), "The svn command failed.", stderr.getOutput(), false );
     }
 

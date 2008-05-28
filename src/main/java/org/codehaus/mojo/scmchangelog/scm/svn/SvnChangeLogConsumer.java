@@ -85,7 +85,10 @@ public class SvnChangeLogConsumer
       for ( int i = 0; i < doc.getLog().getLogentryArray().length; i++ )
       {
         Logentry logEntry = doc.getLog().getLogentryArray()[i];
-
+        Logger.getLogger( SvnChangeLogConsumer.class.getName() ).log( Level.INFO,  "Log entry: "
+            + logEntry.getMsg() );
+        Logger.getLogger( SvnChangeLogConsumer.class.getName() ).log( Level.INFO,  "has message: "
+            + grammar.hasMessage( logEntry.getMsg() ) );
         if ( grammar.hasMessage( logEntry.getMsg() ) )
         {
           SvnLogEntry entry = new SvnLogEntry();

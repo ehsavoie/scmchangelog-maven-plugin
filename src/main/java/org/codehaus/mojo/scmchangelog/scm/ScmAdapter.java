@@ -132,8 +132,11 @@ public class ScmAdapter
           logs.getChangeLog().getChangeSets() );
       releases.add( release );
     }
-
-    String endRevision = ( ( Tag ) tags.get( tags.size() - 1 ) ).getEndRevision();
+    String endRevision = "0";
+    if( !tags.isEmpty() ) 
+    {
+      endRevision = ( ( Tag ) tags.get( tags.size() - 1 ) ).getEndRevision(); 
+    }
     Logger.getLogger( ScmAdapter.class.getName() ).log( Level.INFO, "End revision : "
         + endRevision );
     final Tag trunk = new Tag( "trunk" );
@@ -143,11 +146,12 @@ public class ScmAdapter
 
     final ChangeLogScmResult logs = this.manager.changeLog( repository,
         fileSet, getScmVersion( SvnTargetEnum.TRUNK, endRevision ), null, "" );
-    final Release release = new Release( trunk,
-        logs.getChangeLog().getChangeSets() );
-    releases.add( release );
+    if( logs.getChangeLog() != null )
+    {    
+      final Release release = new Release( trunk,  logs.getChangeLog().getChangeSets() );
+      releases.add( release );
+    }
     Collections.reverse( releases );
-
     return releases;
   }
 

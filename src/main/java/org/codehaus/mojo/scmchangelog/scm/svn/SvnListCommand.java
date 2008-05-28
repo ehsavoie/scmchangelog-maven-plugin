@@ -77,20 +77,21 @@ public class SvnListCommand
     consumer.setLogger( getLogger() );
 
     CommandLineUtils.StringStreamConsumer stderr = new CommandLineUtils.StringStreamConsumer();
-    getLogger().info( "Executing: "
+    Logger.getLogger( SvnListCommand.class.getName() ).log( Level.INFO,  "Executing: "
         + SvnCommandLineUtils.cryptPassword( cl ) );
-    getLogger().info( "Working directory: " 
+    Logger.getLogger( SvnListCommand.class.getName() ).log( Level.INFO, "Working directory: " 
         + cl.getWorkingDirectory().getAbsolutePath() );
     int exitCode;
     Logger.getLogger( SvnListCommand.class.getName() ).log( Level.SEVERE, "Executing this command " 
         + cl.toString() );
-
     try
     {
       exitCode = SvnCommandLineUtils.execute( cl, consumer, stderr, getLogger() );
     }
     catch ( CommandLineException ex )
     {
+      Logger.getLogger( SvnListCommand.class.getName() ).log( Level.SEVERE, 
+          "Error while executing command.", ex );
       throw new ScmException( "Error while executing command.", ex );
     }
 
