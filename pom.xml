@@ -56,7 +56,7 @@
   </issueManagement>
   <developers>
     <developer>
-      <name>Rémy Sanlaville</name>
+      <name>Remy Sanlaville</name>
       <id>sanlavre</id>
       <email>remy.sanlaville@orange-ftgroup.com</email>
       <organization>Orange - France Télécom</organization>
@@ -68,8 +68,9 @@
     </developer>
     <developer>
       <name>Emmanuel Hugonnet</name>
-      <id>ehugonnet</id>
-      <email>ehsavoie73@gmail.com</email>
+      <id>ehsavoie</id>
+      <url>http://www.ehsavoie.com</url>
+      <email>emmanuel.hugonnet@ehsavoie.com</email>
       <organizationUrl>http://www.silverpeas.com</organizationUrl>
       <organization>Silverpeas</organization>
       <roles>
@@ -259,13 +260,21 @@
   <reporting>
     <plugins>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>2.1</version>
+        <configuration>
+          <configLocation>http://svn.apache.org/repos/asf/maven/plugins/trunk/maven-checkstyle-plugin/src/main/resources/config/maven_checks.xml</configLocation>
+          <headerLocation>${basedir}/src/main/resources/config/license.txt</headerLocation>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>scmchangelog-maven-plugin</artifactId>
         <version>1.0-SNAPSHOT</version>
         <configuration>
           <trackerType>jira</trackerType>
           <grammar>MANU</grammar>
-          <trackerUrlPattern>http://jira.codehaus.org/browse/</trackerUrlPattern>
           <connectionUrl>scm:svn:http://svn.codehaus.org/mojo/trunk/sandbox/scmchangelog-maven-plugin</connectionUrl>
           <tagBase>http://svn.codehaus.org/mojo/tags/sandbox/scmchangelog-maven-plugin</tagBase>
         </configuration>

@@ -23,8 +23,8 @@
       </question>
       <answer>
         <p>
-            Well, we only support Subervion and Mercurial (alpha) currently. We need a BetterChangeSet for Maven scm.
-            To support another scm should be quite easy, it involves modifying the maven scm command ans maven scm consumer 
+            Well, we only support Subervion and Mercurial (alpha) currently. We need a BetterChangeSet for each SCM that is not provided by Maven SCM.<br/>
+            To support another scm should be quite easy, it involves modifying the maven scm command and maven scm consumer 
             to get a list of BetterChangeSet instead of a list of ChangeSet.
         </p>
       </answer>
