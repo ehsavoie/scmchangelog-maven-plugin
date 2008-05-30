@@ -20,7 +20,7 @@
     </menu>
     <menu name="Examples">
       <item name="Example" href="examples/example.html"/>
-      <item name="Dog eat your own Shit" href="changelog.html"/>
+      <item name="Eat your own dog shit" href="changelog.html#"/>
     </menu>
     <menu ref="reports" />    
   </body>
