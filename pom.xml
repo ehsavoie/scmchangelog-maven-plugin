@@ -58,9 +58,9 @@
     <developer>
       <name>Remy Sanlaville</name>
       <id>sanlavre</id>
-      <email>remy.sanlaville@orange-ftgroup.com</email>
+      <email>remy.sanlaville(at)orange-ftgroup.com</email>
       <organization>Orange - France Télécom</organization>
-      <organizationUrl>http://netrd.rd.francetelecom.fr/</organizationUrl>
+      <organizationUrl>http://www.francetelecom.com</organizationUrl>
       <roles>
         <role>Build Engineer - Java Developer</role>
       </roles>
@@ -70,7 +70,7 @@
       <name>Emmanuel Hugonnet</name>
       <id>ehsavoie</id>
       <url>http://www.ehsavoie.com</url>
-      <email>emmanuel.hugonnet@ehsavoie.com</email>
+      <email>emmanuel.hugonnet(at)ehsavoie.com</email>
       <organizationUrl>http://www.silverpeas.com</organizationUrl>
       <organization>Silverpeas</organization>
       <roles>
