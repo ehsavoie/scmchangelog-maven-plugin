@@ -1,7 +1,7 @@
 /*
 The MIT License
 
-Copyright (c) 2004, The Codehaus
+Copyright (c) 2004, The Codehaus.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
@@ -26,13 +26,13 @@ package org.codehaus.mojo.scmchangelog.scm.hg;
 import org.apache.maven.scm.CommandParameters;
 import org.apache.maven.scm.ScmException;
 import org.apache.maven.scm.ScmFileSet;
+import org.apache.maven.scm.command.Command;
 import org.apache.maven.scm.command.changelog.ChangeLogScmResult;
 import org.apache.maven.scm.command.list.ListScmResult;
 import org.apache.maven.scm.provider.ScmProviderRepository;
-import org.apache.maven.scm.provider.hg.command.HgCommand;
 import org.codehaus.mojo.scmchangelog.changelog.log.GrammarEnum;
-import org.codehaus.mojo.scmchangelog.scm.hg.changelog.HgChangeLogCommand;
-import org.codehaus.mojo.scmchangelog.scm.hg.list.HgListCommand;
+import org.codehaus.mojo.scmchangelog.scm.hg.command.changelog.HgChangeLogCommand;
+import org.codehaus.mojo.scmchangelog.scm.hg.command.list.HgListCommand;
 
 /**
  * Wrapper over SvnExeScmProvider to use xml output from Subversion.
@@ -82,7 +82,7 @@ public class HgScmProvider
       ScmFileSet fileSet, CommandParameters parameters )
       throws ScmException
   {
-    HgCommand command = getListCommand();
+    Command command = getListCommand();
     command.setLogger( getLogger() );
     return ( ListScmResult ) command.execute( repository, fileSet, parameters );
   }

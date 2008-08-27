@@ -21,7 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
-package org.codehaus.mojo.scmchangelog.scm.hg.changelog;
+package org.codehaus.mojo.scmchangelog.scm.hg.command.changelog;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -41,7 +41,7 @@ import org.apache.maven.scm.command.changelog.ChangeLogSet;
 import org.apache.maven.scm.log.ScmLogger;
 import org.apache.maven.scm.provider.ScmProviderRepository;
 import org.apache.maven.scm.provider.hg.HgUtils;
-import org.apache.maven.scm.provider.hg.command.HgCommand;
+import org.apache.maven.scm.provider.hg.command.HgCommandConstants;
 import org.codehaus.mojo.scmchangelog.JavaScmLogger;
 
 
@@ -54,8 +54,7 @@ import org.codehaus.mojo.scmchangelog.JavaScmLogger;
  * @see org.codehaus.mojo.scmchangelog.scm.hg.changelog.HgChangeLogConsumer
  */
 public class HgChangeLogCommand
-    extends AbstractChangeLogCommand
-    implements HgCommand
+    extends AbstractChangeLogCommand    
 {
   /**
    * Execute the command <code>hg log --verbose -rx:y</code>.
@@ -78,7 +77,7 @@ public class HgChangeLogCommand
         + endVersion.getName();
     String[] cmd = new String[]
     {
-      LOG_CMD, VERBOSE_OPTION, revisions
+      HgCommandConstants.LOG_CMD, HgCommandConstants.VERBOSE_OPTION, revisions
     };
     ScmLogger logger = new JavaScmLogger( Level.FINER );
     HgChangeLogConsumer consumer = new HgChangeLogConsumer( logger,
@@ -129,7 +128,7 @@ public class HgChangeLogCommand
         + branch.getName();
     String[] cmd = new String[]
     {
-      LOG_CMD, VERBOSE_OPTION, revisions
+      HgCommandConstants.LOG_CMD, HgCommandConstants.VERBOSE_OPTION, revisions
     };
     HgChangeLogConsumer consumer = new HgChangeLogConsumer( getLogger(),
         datePattern );

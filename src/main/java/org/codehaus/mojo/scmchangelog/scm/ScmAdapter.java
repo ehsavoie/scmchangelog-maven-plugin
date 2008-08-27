@@ -1,7 +1,7 @@
 /*
 The MIT License
 
-Copyright (c) 2004, The Codehaus
+Copyright (c) 2004, The Codehaus.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
@@ -46,7 +46,7 @@ import org.codehaus.mojo.scmchangelog.SvnTargetEnum;
 import org.codehaus.mojo.scmchangelog.changelog.Release;
 import org.codehaus.mojo.scmchangelog.changelog.log.GrammarEnum;
 import org.codehaus.mojo.scmchangelog.changelog.log.SvnLogEntry;
-import org.codehaus.mojo.scmchangelog.scm.hg.changelog.BetterChangeSet;
+import org.codehaus.mojo.scmchangelog.scm.hg.command.changelog.BetterChangeSet;
 import org.codehaus.mojo.scmchangelog.tags.Tag;
 
 
@@ -82,8 +82,8 @@ public class ScmAdapter
    * @param repository the SCM repository.
    * @param fileSet the base fileset.
    * @return the list of releases defined in the SCM. <code>List&lt;Release&gt;</code>
-   * @throws org.apache.maven.scm.ScmException
-   * @throws org.apache.maven.plugin.MojoExecutionException
+   * @throws ScmException
+   * @throws MojoExecutionException
    */
   public List getListOfReleases( ScmRepository repository, ScmFileSet fileSet )
       throws ScmException, MojoExecutionException
@@ -106,8 +106,8 @@ public class ScmAdapter
    * @param repository the SCM repository.
    * @param fileSet the base fileset.
    * @return the list of releases defined in the SCM. <code>List&lt;Release&gt;</code>
-   * @throws org.apache.maven.scm.ScmException
-   * @throws org.apache.maven.plugin.MojoExecutionException
+   * @throws ScmException
+   * @throws MojoExecutionException
    */
   protected List getSvnListOfReleases( ScmRepository repository,
       ScmFileSet fileSet )
@@ -133,7 +133,7 @@ public class ScmAdapter
       releases.add( release );
     }
     String endRevision = "0";
-    if( !tags.isEmpty() ) 
+    if ( !tags.isEmpty() ) 
     {
       endRevision = ( ( Tag ) tags.get( tags.size() - 1 ) ).getEndRevision(); 
     }
@@ -146,7 +146,7 @@ public class ScmAdapter
 
     final ChangeLogScmResult logs = this.manager.changeLog( repository,
         fileSet, getScmVersion( SvnTargetEnum.TRUNK, endRevision ), null, "" );
-    if( logs.getChangeLog() != null )
+    if ( logs.getChangeLog() != null )
     {    
       final Release release = new Release( trunk,  logs.getChangeLog().getChangeSets() );
       releases.add( release );
@@ -160,8 +160,8 @@ public class ScmAdapter
    * @param repository the SCM repository.
    * @param fileSet the base fileset.
    * @return the list of releases defined in the SCM. <code>List&lt;Release&gt;</code>
-   * @throws org.apache.maven.scm.ScmException
-   * @throws org.apache.maven.plugin.MojoExecutionException
+   * @throws ScmException
+   * @throws MojoExecutionException
    */
   protected List getScmListOfReleases( ScmRepository repository,
       ScmFileSet fileSet )
@@ -175,8 +175,8 @@ public class ScmAdapter
    * @param repository the SCM repository.
    * @param fileSet the base fileset.
    * @return the list of releases defined in the SCM. <code>List&lt;Release&gt;</code>
-   * @throws org.apache.maven.scm.ScmException
-   * @throws org.apache.maven.plugin.MojoExecutionException
+   * @throws ScmException
+   * @throws MojoExecutionException
    */
   protected List getHgListOfReleases( ScmRepository repository,
       ScmFileSet fileSet )
@@ -238,7 +238,7 @@ public class ScmAdapter
    * @param versionType the type of version (tag, trunk, branch).
    * @param version the revision.
    * @return a ScmVersion
-   * @throws org.apache.maven.plugin.MojoExecutionException
+   * @throws MojoExecutionException
    */
   public ScmVersion getScmVersion( SvnTargetEnum versionType, String version )
       throws MojoExecutionException

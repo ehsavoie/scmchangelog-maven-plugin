@@ -21,7 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
-package org.codehaus.mojo.scmchangelog.scm.hg.list;
+package org.codehaus.mojo.scmchangelog.scm.hg.command.list;
 
 import java.io.File;
 
@@ -33,7 +33,6 @@ import org.apache.maven.scm.command.list.AbstractListCommand;
 import org.apache.maven.scm.command.list.ListScmResult;
 import org.apache.maven.scm.provider.ScmProviderRepository;
 import org.apache.maven.scm.provider.hg.HgUtils;
-import org.apache.maven.scm.provider.hg.command.HgCommand;
 
 /**
  * List command for Mercurial : the command used is: <code>hg tags --verbose path</code.>
@@ -42,7 +41,6 @@ import org.apache.maven.scm.provider.hg.command.HgCommand;
  */
 public class HgListCommand
     extends AbstractListCommand
-    implements HgCommand
 {
 
   public static final String TAGS_CMD = "tags";
