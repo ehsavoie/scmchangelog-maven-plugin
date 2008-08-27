@@ -282,7 +282,7 @@
     </plugins>
   </reporting>
   <properties>
-    <maven.scm.version>1.1-SNAPSHOT</maven.scm.version>
+    <maven.scm.version>1.1</maven.scm.version>
     <netbeans.hint.useExternalMaven>false</netbeans.hint.useExternalMaven>
   </properties>
 </project>
