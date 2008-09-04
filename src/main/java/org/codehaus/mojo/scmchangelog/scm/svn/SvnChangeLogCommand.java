@@ -134,7 +134,8 @@ public class SvnChangeLogCommand
 
     if ( exitCode != 0 )
     {
-      Logger.getLogger( SvnChangeLogCommand.class.getName() ).log( Level.SEVERE, "The svn command failed." + stderr.getOutput());
+      Logger.getLogger( SvnChangeLogCommand.class.getName() ).log( Level.SEVERE, 
+              "The svn command failed." + stderr.getOutput() );
       return new ChangeLogScmResult( cl.toString(), "The svn command failed.", stderr.getOutput(), false );
     }
 
