@@ -46,7 +46,7 @@
   <licenses>
     <license>
       <name>MIT License</name>
-      <url>http://hausmates.codehaus.org/</url>
+      <url>license.txt</url>
     </license>
   </licenses>
   <issueManagement>
@@ -82,7 +82,7 @@
     <dependency>
       <groupId>org.codehaus.plexus</groupId>
       <artifactId>plexus-utils</artifactId>
-      <version>1.4.9</version>
+      <version>1.5.6</version>
     </dependency>
     <dependency>
       <groupId>org.apache.maven.scm</groupId>
@@ -112,17 +112,17 @@
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-project</artifactId>
-      <version>2.0.8</version>
+      <version>2.0.9</version>
     </dependency>
     <dependency>
       <groupId>org.apache.maven.reporting</groupId>
       <artifactId>maven-reporting-api</artifactId>
-      <version>2.0.8</version>
+      <version>2.0.9</version>
     </dependency>
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-plugin-api</artifactId>
-      <version>2.0.8</version>
+      <version>2.0.9</version>
     </dependency>
     <dependency>
       <groupId>org.apache.maven.reporting</groupId>
@@ -142,7 +142,7 @@
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-settings</artifactId>
-      <version>2.0.8</version>
+      <version>2.0.9</version>
     </dependency>
     <dependency>
       <groupId>stax</groupId>
@@ -163,7 +163,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.2</version>
+      <version>4.4</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -210,7 +210,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-plugin-plugin</artifactId>
-        <version>2.3</version>
+        <version>2.4.3</version>
         <configuration>
           <outputDirectory>${project.build.outputDirectory}/META-INF/maven</outputDirectory>
         </configuration>
@@ -218,12 +218,12 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
-        <version>2.0-beta-5</version>
+        <version>2.0-beta-7</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
-        <version>2.0-beta-6</version>
+        <version>2.0-beta-7</version>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
