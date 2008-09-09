@@ -41,7 +41,7 @@ public class ReportHelper
    * Copies images from the plugin jar to the site directory.
    * @param resourcePath the name of the resource (path relative to the classpath).
    * @param outputDir the site target directory.
-   * @throws java.io.IOException
+   * @throws IOException
    */
   public static void copyImage( String resourcePath, String outputDir )
       throws IOException

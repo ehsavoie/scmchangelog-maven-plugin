@@ -23,7 +23,6 @@ SOFTWARE.
  */
 package org.codehaus.mojo.scmchangelog.scm.hg.command.list;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -44,12 +43,10 @@ class HgTagsConsumer
 {
 
   private final List repositoryStatus = new ArrayList();
-  private final File workingDir;
 
-  HgTagsConsumer( ScmLogger logger, File workingDir )
+  HgTagsConsumer( ScmLogger logger )
   {
     super( logger );
-    this.workingDir = workingDir;
   }
 
   /**

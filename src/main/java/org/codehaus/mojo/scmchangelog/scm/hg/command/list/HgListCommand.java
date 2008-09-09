@@ -65,7 +65,7 @@ public class HgListCommand
       TAGS_CMD
     };
     File workingDir = fileSet.getBasedir();
-    HgTagsConsumer consumer = new HgTagsConsumer( getLogger(), workingDir );
+    HgTagsConsumer consumer = new HgTagsConsumer( getLogger() );
     ScmResult result = HgUtils.execute( consumer, getLogger(), workingDir,
         tagsCmd );
 

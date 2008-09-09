@@ -41,6 +41,9 @@ public abstract class AbstractBufferedConsumer
    * A buffer of the output.
    */
   private StringWriter buffer = new StringWriter();
+  /**
+   * The logger.
+   */
   private ScmLogger logger;
 
   /**
@@ -54,7 +57,7 @@ public abstract class AbstractBufferedConsumer
 
   /**
    * Setter for the logger.
-   * @param scmLogger
+   * @param scmLogger the logger.
    * @see org.apache.maven.scm.command.Command#setLogger(org.apache.maven.scm.log.ScmLogger)
    */
   public final void setLogger( ScmLogger scmLogger )
@@ -65,6 +68,10 @@ public abstract class AbstractBufferedConsumer
   // ----------------------------------------------------------------------
   // StreamConsumer Implementation
   // ----------------------------------------------------------------------
+  /**
+   * Consume the output of a process and store it in a buffer.
+   * @param line the line to be consumed and stored in the buffer.
+   */
   public void consumeLine( String line )
   {
     this.buffer.write( line );

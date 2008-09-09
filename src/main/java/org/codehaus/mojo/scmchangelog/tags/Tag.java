@@ -34,10 +34,25 @@ public class Tag
     implements Comparable
 {
 
+  /**
+   * The author of the tag.
+   */
   private String author;
+  /**
+   * The creation date of the tag.
+   */
   private Date date;
+  /**
+   * The message of the tag.
+   */
   private String title;
+  /**
+   * The starting revision of the tag.
+   */
   private String startRevision;
+  /**
+   * The last revision of the tag.
+   */
   private String endRevision;
 
   /**
@@ -130,6 +145,12 @@ public class Tag
     this.author = author;
   }
 
+  /**
+   * Compare method, to order tags.
+   * @param object the object to be compred with this.
+   * @return a positive integer if this is after object -
+   * a negative integer if this is before object and 0 if they are equal.
+   */
   public int compareTo( Object object )
   {
     if ( object != null )

@@ -38,19 +38,38 @@ public class JavaScmLogger
     implements ScmLogger
 {
 
+  /**
+   * The inner logger implementation using java.util.logging API.
+   */
   private Logger logger = Logger.getLogger( JavaScmLogger.class.getName() );
+
+  /**
+   * The current log level.
+   */
   private Level currentLevel;
 
+  /**
+   * Instantiate a new logger.
+   * @param level the log level.
+   */
   public JavaScmLogger( Level level )
   {
     this.currentLevel = level;
   }
 
+  /**
+   * Indicates if we are at a FINE or more verbose level.
+   * @return true if debug is enabled - false otherwise.
+   */
   public boolean isDebugEnabled()
   {
     return this.currentLevel.intValue() <= Level.FINE.intValue();
   }
 
+ /**
+  * Trace a message with a FINE level.
+  * @param content the message to be traced.
+  */
   public void debug( String content )
   {
     if ( isDebugEnabled() )
@@ -59,6 +78,11 @@ public class JavaScmLogger
     }
   }
 
+  /**
+   * Trace, at the FINE level, a message  associated with an exception.
+   * @param content the message to be traced.
+   * @param error the exception to be traced.
+   */
   public void debug( String content, Throwable error )
   {
     if ( isDebugEnabled() )
@@ -67,6 +91,10 @@ public class JavaScmLogger
     }
   }
 
+  /**
+   * Trace, at the FINE level, an exception.
+   * @param error the exception to be traced.
+   */
   public void debug( Throwable error )
   {
     if ( isDebugEnabled() )
@@ -75,11 +103,19 @@ public class JavaScmLogger
     }
   }
 
+  /**
+   * Indicates if we are at a INFO or more verbose level.
+   * @return true if info is enabled - false otherwise.
+   */
   public boolean isInfoEnabled()
   {
     return this.currentLevel.intValue() <= Level.INFO.intValue();
   }
 
+ /**
+  * Trace a message with a INFO level.
+  * @param content the message to be traced.
+  */
   public void info( String content )
   {
     if ( isInfoEnabled() )
@@ -104,6 +140,10 @@ public class JavaScmLogger
     }
   }
 
+  /**
+   * Indicates if we are at a WARNING or more verbose level.
+   * @return true if warning is enabled - false otherwise.
+   */
   public boolean isWarnEnabled()
   {
     return this.currentLevel.intValue() <= Level.WARNING.intValue();
@@ -133,11 +173,19 @@ public class JavaScmLogger
     }
   }
 
+  /**
+   * Indicates if we are at a SEVERE or more verbose level.
+   * @return true if error is enabled - false otherwise.
+   */
   public boolean isErrorEnabled()
   {
     return this.currentLevel.intValue() <= Level.SEVERE.intValue();
   }
 
+ /**
+  * Trace a message with a ERROR level.
+  * @param content the message to be traced.
+  */
   public void error( String content )
   {
     if ( isErrorEnabled() )

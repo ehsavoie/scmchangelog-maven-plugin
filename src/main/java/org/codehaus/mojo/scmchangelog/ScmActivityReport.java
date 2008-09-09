@@ -284,6 +284,7 @@ public class ScmActivityReport
   }
 
   /**
+   * @return the name of the report.
    * @see org.apache.maven.reporting.MavenReport#getOutputName()
    */
   public String getOutputName()
@@ -306,7 +307,7 @@ public class ScmActivityReport
   /**
    * Build the report.
    * @param locale the current locale
-   * @throws org.apache.maven.reporting.MavenReportException
+   * @throws MavenReportException
    */
   protected void executeReport( Locale locale )
       throws MavenReportException
@@ -395,8 +396,8 @@ public class ScmActivityReport
   /**
    * Generates the summary report for a release.
    *
-   * @param release the release to generate the report from
-   * @param sink the report formatting tool
+   * @param releases the releases to generate the report from.
+   * @param sink the report formatting tool.
    */
   private void doSummarySection( List releases, Sink sink )
   {
@@ -605,6 +606,11 @@ public class ScmActivityReport
     sink.paragraph_();
   }
 
+  /**
+   * Format a java.util.Date using the specified date format.
+   * @param date the date to be formatted.
+   * @return the formatted date as a String.
+   */
   protected String formatDate( Date date )
   {
     if ( simpleDateFormat == null )
@@ -615,6 +621,11 @@ public class ScmActivityReport
     return simpleDateFormat.format( date );
   }
 
+  /**
+   * Format a java.util.Date using the specified timestamp format.
+   * @param date the date to be formatted.
+   * @return the formatted date as a String.
+   */
   protected String formatTimestamp( Date date )
   {
     if ( simpleTimestampFormat == null )
@@ -625,6 +636,10 @@ public class ScmActivityReport
     return simpleTimestampFormat.format( date );
   }
 
+  /**
+   *
+   * @return the implementation of the BugTrackLinker.
+   */
   protected BugTrackLinker getBugTrackLinker()
   {
     if ( bugLinker == null )
