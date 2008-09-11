@@ -31,13 +31,19 @@ package org.codehaus.mojo.scmchangelog.changelog.log;
 public class Issue
 {
 
+  /**
+   * The id of the issue.
+   */
   private String issue;
+  /**
+   * The operation (FIX/ADD/UPDATE/REMOVE).
+   */
   private OperationTypeEnum type;
 
   /**
-   * Creates a new instance of Issue
+   * Creates a new instance of Issue.
    * @param issue tracker's id.
-   * @param type fix/add/remove/update
+   * @param type fix/add/remove/update.
    */
   public Issue( String issue, OperationTypeEnum type )
   {
@@ -45,11 +51,19 @@ public class Issue
     this.type = type;
   }
 
+  /**
+   * Getter for the issue id.
+   * @return the issue id.
+   */
   public String getIssue()
   {
     return issue;
   }
 
+  /**
+   * Getter for the issue operation.
+   * @return the issue operation.
+   */
   public OperationTypeEnum getType()
   {
     return type;

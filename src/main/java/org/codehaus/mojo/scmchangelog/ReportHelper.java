@@ -35,13 +35,16 @@ import java.io.InputStream;
  */
 public class ReportHelper
 {
-  
+  /**
+   * Size for the buffer when reading/writing binary stream.
+   */
   public static final int BUFFER_LENGTH = 8;
+  
   /**
    * Copies images from the plugin jar to the site directory.
    * @param resourcePath the name of the resource (path relative to the classpath).
    * @param outputDir the site target directory.
-   * @throws IOException
+   * @throws IOException in case of an I/O error.
    */
   public static void copyImage( String resourcePath, String outputDir )
       throws IOException

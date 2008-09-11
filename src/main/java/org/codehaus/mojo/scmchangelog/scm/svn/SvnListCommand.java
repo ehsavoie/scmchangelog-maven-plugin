@@ -64,7 +64,7 @@ public class SvnListCommand
    * @param recursive true if we want a recursive list command - false otherwise.
    * @param version the version target (branch, tags, trunk).
    * @return a ListScmResult containing a List&gt;Tag&lt;.
-   * @throws org.apache.maven.scm.ScmException
+   * @throws org.apache.maven.scm.ScmException in case of an error with the SCM.
    */
   protected ListScmResult executeListCommand( ScmProviderRepository repository, ScmFileSet fileSet,
       boolean recursive, ScmVersion version )
@@ -104,6 +104,14 @@ public class SvnListCommand
     return new ListScmResult( cl.toString(), consumer.analyse() );
   }
 
+  /**
+   * Create the command line for svn list.
+   * @param repository the URL to the repository.
+   * @param fileSet the fileset.
+   * @param recursive true if we want the --recursive option - false otherwise.
+   * @param version the beginning and end revisions.
+   * @return the command line to be executed against the SCM.
+   */
   static Commandline createCommandLine( SvnScmProviderRepository repository,
       ScmFileSet fileSet, boolean recursive, ScmVersion version )
   {

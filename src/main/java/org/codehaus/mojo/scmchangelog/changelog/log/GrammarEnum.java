@@ -33,25 +33,52 @@ import org.codehaus.mojo.scmchangelog.changelog.log.grammar.RemySvnGrammar;
  */
 public class GrammarEnum
 {
-
+  /**
+   * The MANU grammar @operatio:issue#;comment
+   */
   public static final GrammarEnum MANU = new GrammarEnum( new ManuSvnGrammar(),
       "MANU" );
+  /**
+   * The REMY grammar.
+   */
   public static final GrammarEnum REMY = new GrammarEnum( new RemySvnGrammar(),
       "REMY" );
+  /**
+   * The grammar of the enum element.
+   */
   private SvnGrammar grammar;
+  /**
+   * The name of the enum element.
+   */
   private String name;
 
+  /**
+   * Instatiate a new enum element.
+   * @param grammar the grammar of the element.
+   * @param name the name of the grammar element.
+   */
   private GrammarEnum( SvnGrammar grammar, String name )
   {
     this.grammar = grammar;
     this.name = name;
   }
 
+  /**
+   * Extract a Message from the specified String content.
+   * @param content the String to be parsed.
+   * @return the corresponding Message.
+   * @see org.codehaus.mojo.scmchangelog.changelog.log.Message
+   */
   public Message extractMessage( final String content )
   {
     return this.grammar.extractMessage( content );
   }
 
+  /**
+   * Indicates if the content String matches the grammar.
+   * @param content the String to be tested against the grammar.
+   * @return true if the content matches the grammar - false otherwise.
+   */
   public boolean hasMessage( final String content )
   {
     return this.grammar.hasMessage( content );
@@ -67,6 +94,11 @@ public class GrammarEnum
     return this.grammar.getIssueSeparator();
   }
 
+  /**
+   * Return the enum element matching the specified name. MANU if no match is found.
+   * @param name the name of the required enum element.
+   * @return the enum element matching the specified name. MANU if no match is found.
+   */
   public static GrammarEnum valueOf( String name )
   {
     if ( REMY.name.equalsIgnoreCase( name ) )

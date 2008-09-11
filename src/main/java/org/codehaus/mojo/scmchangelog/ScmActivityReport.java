@@ -296,7 +296,7 @@ public class ScmActivityReport
    *
    * @see org.apache.maven.reporting.MavenReport#getOutputName()
    * @param locale the current locale
-   * @return the rsource bundle.
+   * @return the resource bundle.
    */
   protected ResourceBundle getBundle( Locale locale )
   {
@@ -306,8 +306,9 @@ public class ScmActivityReport
 
   /**
    * Build the report.
-   * @param locale the current locale
-   * @throws MavenReportException
+   * @param locale the current locale.
+   * @throws org.apache.maven.reporting.MavenReportException in case of an error
+   * generating the report.
    */
   protected void executeReport( Locale locale )
       throws MavenReportException
@@ -667,16 +668,29 @@ public class ScmActivityReport
     return this.bugLinker;
   }
 
+  /**
+   * Computes the URL to the issue in the bug tracker.
+   * @param issue ghe id of the issue.
+   * @return the URL to the issue in the bug tracker.
+   */
   protected String doLinkIssue( String issue )
   {
     return getBugTrackLinker().getLinkUrlForBug( issue );
   }
 
+  /**
+   * Getter for the bug tracker type.
+   * @return the bug tracker type.
+   */
   protected String getTrackerType()
   {
     return this.trackerType.toLowerCase();
   }
 
+  /**
+   * Getter for the connection URL to the SCM.
+   * @return the connection URL to the SCM.
+   */
   public String getConnectionUrl()
   {
     boolean requireDeveloperConnection = !"connection".equals( connectionType.toLowerCase() );
@@ -703,11 +717,19 @@ public class ScmActivityReport
     }
   }
 
+  /**
+   * Setter for the connection URL to the SCM.
+   * @param connectionUrl the connection URL to the SCM.
+   */
   public void setConnectionUrl( String connectionUrl )
   {
     this.connectionUrl = connectionUrl;
   }
 
+  /**
+   * Getter for the SCM Manager with our own SCM providers.
+   * @return a SCM Manager with our own SCM providers.
+   */
   public ScmManager getScmManager()
   {
     SvnXmlExeScmProvider svnProvider = new SvnXmlExeScmProvider( GrammarEnum.valueOf( grammar ) );
@@ -717,12 +739,25 @@ public class ScmActivityReport
     return manager;
   }
 
+  /**
+   * Build a SCM file set for a file in the SCM.
+   * @param fileName the file/dir in the SCM.
+   * @return the corresponding fileset.
+   * @throws java.io.IOException in case of an I/O error.
+   */
   public ScmFileSet getFileSet( String fileName )
       throws IOException
   {
     return new ScmFileSet( basedir, new File( fileName ) );
   }
 
+  /**
+   * Build a SCM file set for a file in the SCM.
+   * @param includes include filters.
+   * @param excludes exclude filters.
+   * @return the corresponding fileset.
+   * @throws java.io.IOException in case of an I/O error.
+   */
   public ScmFileSet getFileSet( String includes, String excludes )
       throws IOException
   {
@@ -736,6 +771,11 @@ public class ScmActivityReport
     }
   }
 
+  /**
+   * Getter for the ScmRepository.
+   * @return the ScmRepository.
+   * @throws org.apache.maven.scm.ScmException in case of an error in creating the ScmRepository.
+   */
   public ScmRepository getScmRepository()
       throws ScmException
   {
@@ -812,9 +852,8 @@ public class ScmActivityReport
   }
 
   /**
-   * Load username password from settings if user has not set them in JVM properties
-   *
-   * @param repo
+   * Load username password from settings if user has not set them in JVM properties.
+   * @param repo the Scm repository provider.
    */
   private void loadInfosFromSettings( ScmProviderRepositoryWithHost repo )
   {
@@ -855,6 +894,11 @@ public class ScmActivityReport
     }
   }
 
+  /**
+   * Manages the result of the SCM command.
+   * @param result the result of the SCM command.
+   * @throws org.apache.maven.plugin.MojoExecutionException in case of an error executing the Mojo.
+   */
   public void checkResult( ScmResult result )
       throws MojoExecutionException
   {
@@ -869,6 +913,13 @@ public class ScmActivityReport
     }
   }
 
+  /**
+   * Return the corresponding SCM version
+   * @param versionType type of version.
+   * @param version the revision number or tag/branchname.
+   * @return the SCM version.
+   * @throws org.apache.maven.plugin.MojoExecutionException in case of error executing the Mojo.
+   */
   public ScmVersion getScmVersion( SvnTargetEnum versionType, String version )
       throws MojoExecutionException
   {

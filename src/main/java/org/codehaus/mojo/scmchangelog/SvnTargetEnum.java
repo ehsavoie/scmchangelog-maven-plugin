@@ -31,21 +31,46 @@ package org.codehaus.mojo.scmchangelog;
 public class SvnTargetEnum
 {
 
+ /**
+  * The TRUNK/HEAD tag for the SCM.
+  */
   public static final SvnTargetEnum TRUNK = new SvnTargetEnum( "TRUNK" );
+  /**
+   * The TAG branch of the SCM.
+   */
   public static final SvnTargetEnum TAG = new SvnTargetEnum( "TAG" );
+  /**
+   * The BRANCH branch of the SCM.
+   */
   public static final SvnTargetEnum BRANCH = new SvnTargetEnum( "BRANCH" );
+  /**
+   * The name of the selcted target.
+   */
   private String name;
 
+  /**
+   * Instatiate a new target element.
+   * @param name the name of the target element.
+   */
   private SvnTargetEnum( String name )
   {
     this.name = name;
   }
 
+  /**
+   * Compute the hashcode.
+   * @return the hashcode.
+   */
   public int hashCode()
   {
     return this.name.hashCode();
   }
 
+  /**
+   * Equality with another object.
+   * @param object the object to be checked for equality against.
+   * @return true if object equals this - false otherwise.
+   */
   public boolean equals( Object object )
   {
     if ( object instanceof SvnTargetEnum )

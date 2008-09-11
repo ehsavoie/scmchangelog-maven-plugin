@@ -39,6 +39,9 @@ public class BetterChangeSet
     extends ChangeSet
 {
 
+  /**
+   * The SCM revision id for this changeset.
+   */
   private String revision;
 
   /**
@@ -81,11 +84,19 @@ public class BetterChangeSet
     super();
   }
 
+  /**
+   * Getter for the SCM revision id of this changeset.
+   * @return the SCM revision id of this changeset.
+   */
   public String getRevision()
   {
     return this.revision;
   }
 
+  /**
+   * Setter for the SCM revision id of this changeset.
+   * @param revision the SCM revision id of this changeset.
+   */
   public void setRevision( String revision )
   {
     this.revision = revision;

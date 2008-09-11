@@ -40,7 +40,7 @@ public class Release
 {
 
   /**
-   * Tagfor this release.
+   * Tag for this release.
    */
   private Tag tag;
   /**

@@ -30,21 +30,42 @@ package org.codehaus.mojo.scmchangelog.tracker;
  */
 public class BugTrackers
 {
-
+  /**
+   * Gforge bug tracker.
+   */
   public static final BugTrackers CODEX = new BugTrackers( "sourceforge" );
+  /**
+   * Jira bug tracker.
+   */
   public static final BugTrackers JIRA = new BugTrackers( "jira" );
+  /**
+   * Name of the bug tracker.
+   */
   private String name;
 
+  /**
+   * Instatiate a new BugTracker with the specified name.
+   * @param name the name of the bug tracker.
+   */
   private BugTrackers( String name )
   {
     this.name = name;
   }
 
+  /**
+   * Compute the hashcode.
+   * @return the hashcode.
+   */
   public int hashCode()
   {
     return this.name.hashCode();
   }
 
+  /**
+   * Equality with another object.
+   * @param object the object to be checked for equality against.
+   * @return true if object equals this - false otherwise.
+   */
   public boolean equals( Object object )
   {
     if ( object instanceof BugTrackers )
@@ -57,6 +78,11 @@ public class BugTrackers
     return false;
   }
 
+  /**
+   * Return the bugtracker element matching the specified name. CODEX if no match is found.
+   * @param name the name of the required bugtracker element.
+   * @return the bugtracker element matching the specified name. CODEX if no match is found.
+   */
   public static BugTrackers valueOf( String name )
   {
     if ( JIRA.name.equals( name ) )

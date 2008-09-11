@@ -32,25 +32,52 @@ package org.codehaus.mojo.scmchangelog.changelog.log;
  */
 public class OperationTypeEnum
 {
-
+  /**
+   * The ADD operation.
+   */
   public static final OperationTypeEnum ADD = new OperationTypeEnum( "ADD" );
+  /**
+   * The UPDATE operation.
+   */
   public static final OperationTypeEnum UPDATE = new OperationTypeEnum(
       "UPDATE" );
+  /**
+   * The FIX operation.
+   */
   public static final OperationTypeEnum FIX = new OperationTypeEnum( "FIX" );
+  /**
+   * The REMOVE operation.
+   */
   public static final OperationTypeEnum REMOVE = new OperationTypeEnum(
       "REMOVE" );
+  /**
+   * The name of the operation element.
+   */
   private String name;
 
+  /**
+   * Insttiates a new operation element.
+   * @param name the name of the operation.
+   */
   private OperationTypeEnum( String name )
   {
     this.name = name;
   }
 
+  /**
+   * Return the hashcode for this operation element.
+   * @return the hashcode for this operation element.
+   */
   public int hashCode()
   {
     return this.name.hashCode();
   }
 
+  /**
+   * Equality with another object.
+   * @param object the object to be checked for equality against.
+   * @return true if object equals this - false otherwise.
+   */
   public boolean equals( Object object )
   {
     if ( object instanceof OperationTypeEnum )

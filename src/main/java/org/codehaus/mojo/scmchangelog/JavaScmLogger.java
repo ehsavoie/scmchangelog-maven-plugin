@@ -124,6 +124,11 @@ public class JavaScmLogger
     }
   }
 
+  /**
+   * Trace, at the INFO level, a message  associated with an exception.
+   * @param content the message to be traced.
+   * @param error the exception to be traced.
+   */
   public void info( String content, Throwable error )
   {
     if ( isInfoEnabled() )
@@ -132,6 +137,10 @@ public class JavaScmLogger
     }
   }
 
+  /**
+   * Trace, at the INFO level, an exception.
+   * @param error the exception to be traced.
+   */
   public void info( Throwable error )
   {
     if ( isInfoEnabled() )
@@ -149,6 +158,10 @@ public class JavaScmLogger
     return this.currentLevel.intValue() <= Level.WARNING.intValue();
   }
 
+  /**
+  * Trace a message with a WARNING level.
+  * @param content the message to be traced.
+  */
   public void warn( String content )
   {
     if ( isWarnEnabled() )
@@ -157,6 +170,11 @@ public class JavaScmLogger
     }
   }
 
+  /**
+   * Trace, at the WARNING level, a message  associated with an exception.
+   * @param content the message to be traced.
+   * @param error the exception to be traced.
+   */
   public void warn( String content, Throwable error )
   {
     if ( isWarnEnabled() )
@@ -165,6 +183,10 @@ public class JavaScmLogger
     }
   }
 
+  /**
+   * Trace, at the WARNING level, an exception.
+   * @param error the exception to be traced.
+   */
   public void warn( Throwable error )
   {
     if ( isWarnEnabled() )
@@ -194,6 +216,11 @@ public class JavaScmLogger
     }
   }
 
+  /**
+   * Trace, at the SEVERE level, a message  associated with an exception.
+   * @param content the message to be traced.
+   * @param error the exception to be traced.
+   */
   public void error( String content, Throwable error )
   {
     if ( isErrorEnabled() )
@@ -202,6 +229,10 @@ public class JavaScmLogger
     }
   }
 
+  /**
+   * Trace, at the SEVERE level, an exception.
+   * @param error the exception to be traced.
+   */
   public void error( Throwable error )
   {
     if ( isErrorEnabled() )

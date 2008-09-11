@@ -68,7 +68,7 @@ public class Message
 
   /**
    * Return the issues extracted from the comment.
-   * @return a List of Issue
+   * @return a List of Issue.
    * @see org.codehaus.mojo.scmchangelog.changelog.log.Issue
    */
   public List getIssues()

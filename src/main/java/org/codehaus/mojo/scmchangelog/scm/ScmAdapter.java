@@ -82,8 +82,8 @@ public class ScmAdapter
    * @param repository the SCM repository.
    * @param fileSet the base fileset.
    * @return the list of releases defined in the SCM. <code>List&lt;Release&gt;</code>
-   * @throws ScmException
-   * @throws MojoExecutionException
+   * @throws org.apache.maven.scm.ScmException in case of an error with the SCM.
+   * @throws org.apache.maven.plugin.MojoExecutionException in case of an error in executing the Mojo.
    */
   public List getListOfReleases( ScmRepository repository, ScmFileSet fileSet )
       throws ScmException, MojoExecutionException
@@ -106,8 +106,8 @@ public class ScmAdapter
    * @param repository the SCM repository.
    * @param fileSet the base fileset.
    * @return the list of releases defined in the SCM. <code>List&lt;Release&gt;</code>
-   * @throws ScmException
-   * @throws MojoExecutionException
+   * @throws org.apache.maven.scm.ScmException in case of an error with the SCM.
+   * @throws org.apache.maven.plugin.MojoExecutionException in case of an error in executing the Mojo.
    */
   protected List getSvnListOfReleases( ScmRepository repository,
       ScmFileSet fileSet )
@@ -160,8 +160,8 @@ public class ScmAdapter
    * @param repository the SCM repository.
    * @param fileSet the base fileset.
    * @return the list of releases defined in the SCM. <code>List&lt;Release&gt;</code>
-   * @throws ScmException
-   * @throws MojoExecutionException
+   * @throws org.apache.maven.scm.ScmException in case of an error with the SCM.
+   * @throws org.apache.maven.plugin.MojoExecutionException in case of an error in executing the Mojo.
    */
   protected List getScmListOfReleases( ScmRepository repository,
       ScmFileSet fileSet )
@@ -175,8 +175,8 @@ public class ScmAdapter
    * @param repository the SCM repository.
    * @param fileSet the base fileset.
    * @return the list of releases defined in the SCM. <code>List&lt;Release&gt;</code>
-   * @throws ScmException
-   * @throws MojoExecutionException
+   * @throws org.apache.maven.scm.ScmException in case of an error with the SCM.
+   * @throws org.apache.maven.plugin.MojoExecutionException in case of an error in executing the Mojo.
    */
   protected List getHgListOfReleases( ScmRepository repository,
       ScmFileSet fileSet )
@@ -237,8 +237,8 @@ public class ScmAdapter
    * Returns the Scm version
    * @param versionType the type of version (tag, trunk, branch).
    * @param version the revision.
-   * @return a ScmVersion
-   * @throws MojoExecutionException
+   * @throws org.apache.maven.scm.ScmException in case of an error with the SCM.
+   * @throws org.apache.maven.plugin.MojoExecutionException in case of an error in executing the Mojo.
    */
   public ScmVersion getScmVersion( SvnTargetEnum versionType, String version )
       throws MojoExecutionException
