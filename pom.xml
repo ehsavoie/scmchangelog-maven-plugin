@@ -3,8 +3,8 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.codehaus.mojo</groupId>
-        <artifactId>mojo-sandbox</artifactId>
-        <version>4</version>
+        <artifactId>mojo-sandbox-parent</artifactId>
+        <version>5-SNAPSHOT</version>
     </parent>
     <groupId>org.codehaus.mojo</groupId>
     <artifactId>scmchangelog-maven-plugin</artifactId>
@@ -25,9 +25,9 @@
     </description>
     <repositories>
         <repository>
-            <id>apache.org</id>
-            <name>Maven Snapshots</name>
-            <url>http://people.apache.org/repo/m2-snapshot-repository</url>
+            <id>codehaus.org</id>
+            <name>Codehaus Snapshots</name>
+            <url>http://snapshots.repository.codehaus.org/</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
@@ -37,9 +37,9 @@
     </repositories>
     <pluginRepositories>
         <pluginRepository>
-            <id>apache.org</id>
-            <name>Maven Plugin Snapshots</name>
-            <url>http://people.apache.org/repo/m2-snapshot-repository</url>
+            <id>codehaus.org</id>
+            <name>Codehaus Plugin Snapshots</name>
+            <url>http://snapshots.repository.codehaus.org/</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
