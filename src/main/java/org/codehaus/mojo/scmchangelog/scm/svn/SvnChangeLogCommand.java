@@ -88,7 +88,7 @@ public class SvnChangeLogCommand
    * @param endVersion end revision for the comand.
    * @param datePattern datePattern for formatting dates.
    * @return the result of the command.
-   * @throws org.apache.maven.scm.ScmException
+   * @throws org.apache.maven.scm.ScmException in case of an error with the scm command.
    */
   protected ChangeLogScmResult executeChangeLogCommand(
       ScmProviderRepository repo, ScmFileSet fileSet,
@@ -98,6 +98,17 @@ public class SvnChangeLogCommand
     return executeChangeLogCommand( repo, fileSet, null, datePattern, startVersion, endVersion );
   }
 
+  /**
+   * Execute the command.
+   * @param repo the repository.
+   * @param fileSet the list of files.
+   * @param startDate starting date of the revision for the command.
+   * @param endDate end date of the revision for the comand.
+   * @param branch the selected branch/tag.
+   * @param datePattern datePattern for formatting dates.
+   * @return the result of the command.
+   * @throws org.apache.maven.scm.ScmException in case of an error with the scm command.
+   */
   protected ChangeLogScmResult executeChangeLogCommand(
       ScmProviderRepository repo, ScmFileSet fileSet, Date startDate,
       Date endDate, ScmBranch branch, String datePattern )
@@ -106,6 +117,17 @@ public class SvnChangeLogCommand
     return executeChangeLogCommand( repo, fileSet, branch, datePattern, null, null );
   }
 
+  /**
+   * Execute the command.
+   * @param repo the repository.
+   * @param fileSet the list of files.
+   * @param branch the selected branch/tag.
+   * @param datePattern datePattern for formatting dates.
+   * @param startVersion starting revision for the command.
+   * @param endVersion end revision for the comand.
+   * @return the result of the command.
+   * @throws org.apache.maven.scm.ScmException in case of an error with the scm command.
+   */
   protected ChangeLogScmResult executeChangeLogCommand(
       ScmProviderRepository repo, ScmFileSet fileSet, ScmBranch branch,
       String datePattern, ScmVersion startVersion, ScmVersion endVersion )
@@ -151,9 +173,9 @@ public class SvnChangeLogCommand
    * @param repository the subversion repository.
    * @param workingDirectory the working directory.
    * @param branch the branch to be used.
-   * @param startVersion
-   * @param endVersion
-   * @return
+   * @param startVersion starting revision for the command.
+   * @param endVersion end revision for the comand.
+   * @return the result of the command.
    */
   public static Commandline createCommandLine(
       SvnScmProviderRepository repository, File workingDirectory,

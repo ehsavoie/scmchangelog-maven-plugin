@@ -42,8 +42,15 @@ class HgTagsConsumer
     extends HgConsumer
 {
 
+  /**
+   * List of tags found in the Mercurial repository.
+   */
   private final List repositoryStatus = new ArrayList();
 
+  /**
+   * Instantiate a new HgTagsConsumer.
+   * @param logger the logger.
+   */
   HgTagsConsumer( ScmLogger logger )
   {
     super( logger );

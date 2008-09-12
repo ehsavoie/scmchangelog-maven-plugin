@@ -74,8 +74,8 @@ public class HgScmProvider
    * @param repository the repository.
    * @param fileSet the files.
    * @param parameters the command parameters.
-   * @return a list of Tag 
-   * @throws org.apache.maven.scm.ScmException
+   * @return a list of Tag.
+   * @throws org.apache.maven.scm.ScmException in case of an error with the scm command.
    * @see org.codehaus.mojo.scmchangelog.tags.Tag
    */
   protected ListScmResult list( ScmProviderRepository repository,
@@ -92,8 +92,8 @@ public class HgScmProvider
    * @param repository the repository
    * @param fileSet the files.
    * @param parameters the command parameters.
-   * @return a list of BetterChangeSet
-   * @throws org.apache.maven.scm.ScmException
+   * @return a list of BetterChangeSet.
+   * @throws org.apache.maven.scm.ScmException  in case of an error with the scm command.
    * @see org.apache.maven.scm.provider.AbstractScmProvider#changelog(org.apache.maven.scm.provider.ScmProviderRepository,org.apache.maven.scm.ScmFileSet,org.apache.maven.scm.CommandParameters)
    * @see org.codehaus.mojo.scmchangelog.scm.hg.changelog.BetterChangeSet
    */

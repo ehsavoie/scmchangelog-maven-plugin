@@ -43,8 +43,14 @@ public class HgListCommand
     extends AbstractListCommand
 {
 
+  /**
+   * The name of the Tag tag in Mercurial.
+   */
   public static final String TAGS_CMD = "tags";
-  
+
+  /**
+   * The name of the Trunk/HEAD tag in Mercurial.
+   */
   public static final String TRUNK_TAG = "tip";
 
   /**
@@ -54,7 +60,7 @@ public class HgListCommand
    * @param recursive true if we want a recursive list command - false otherwise.
    * @param version the version target (branch, tags, trunk).
    * @return a ListScmResult containing a List&gt;Tag&lt;.
-   * @throws org.apache.maven.scm.ScmException
+   * @throws org.apache.maven.scm.ScmException in case of an error with the scm command.
    */
   protected ListScmResult executeListCommand( ScmProviderRepository repository,
       ScmFileSet fileSet, boolean recursive, ScmVersion version )

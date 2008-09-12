@@ -54,7 +54,9 @@ public class SvnListCommand
     extends AbstractListCommand
     implements SvnCommand
 {
-
+  /**
+   * Temporary dir, where the command is executed.
+   */
   private static final File TMP_DIR = new File( System.getProperty( "java.io.tmpdir" ) );
 
   /**

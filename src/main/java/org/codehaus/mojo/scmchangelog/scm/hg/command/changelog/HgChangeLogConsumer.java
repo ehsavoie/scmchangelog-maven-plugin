@@ -47,24 +47,81 @@ public class HgChangeLogConsumer
     extends HgConsumer
 {
 
+  /**
+   * The time stamp format.
+   */
   private static final String TIME_PATTERN = "EEE MMM dd HH:mm:ss yyyy Z";
+  /**
+   * The changeset element in the changelog.
+   */
   private static final String REVNO_TAG = "changeset: ";
+  /**
+   * The tag element in the changelog.
+   */
   private static final String TAG_TAG = "tag:         ";
+  /**
+   * The author element in the changelog.
+   */
   private static final String AUTHOR_TAG = "user: ";
+  /**
+   * The timestamp element in the changelog.
+   */
   private static final String TIME_STAMP_TOKEN = "date: ";
+  /**
+   * The message element in the changelog.
+   */
   private static final String MESSAGE_TOKEN = "description:";
+  /**
+   * The merged element in the changelog.
+   */
   private static final String MERGED_TOKEN = "merged: ";
+  /**
+   * The files element in the changelog.
+   */
   private static final String FILES_TOKEN = "files: ";
+  /**
+   * The previous line to the current parsed line.
+   */
   private String prevLine = "";
+  /**
+   * The previous previous line to the current parsed line.
+   */
   private String prevPrevLine = "";
+  /**
+   * The entries resulting from parsing this changelog output.
+   */
   private ArrayList logEntries = new ArrayList();
+  /**
+   * The current entry.
+   */
   private BetterChangeSet currentChange;
+  /**
+   * Last entry in the current changes.
+   */
   private BetterChangeSet lastChange;
+  /**
+   * Indicates if it is a merge entry.
+   */
   private boolean isMergeEntry;
+  /**
+   * The current revision of the entry.
+   */
   private String currentRevision;
-  private String currentTag; // don't know what to do with this 
+  /**
+   * Not used.
+   */
+  private String currentTag; // don't know what to do with this
+  /**
+   * To specified another date pattern.
+   */
   private String userDatePattern;
+  /**
+   * Used for multiline comments.
+   */
   private boolean spoolingComments;
+  /**
+   * List of comments for the current entry.
+   */
   private List currentComment = null;
 
   /**

@@ -64,7 +64,7 @@ public class HgChangeLogCommand
    * @param endVersion the last revision (y).
    * @param datePattern the pattern for parsing dates.
    * @return the changelog results.
-   * @throws org.apache.maven.scm.ScmException
+   * @throws org.apache.maven.scm.ScmException  in case of an error with the scm command.
    */
   protected ChangeLogScmResult executeChangeLogCommand(
       ScmProviderRepository repository, ScmFileSet fileSet,
@@ -117,7 +117,7 @@ public class HgChangeLogCommand
    * @param branch used to get the revisions.
    * @param datePattern the pattern for parsing dates.
    * @return the changelog results.
-   * @throws org.apache.maven.scm.ScmException
+   * @throws org.apache.maven.scm.ScmException  in case of an error with the scm command.
    */
   protected ChangeLogScmResult executeChangeLogCommand(
       ScmProviderRepository repository, ScmFileSet fileSet, Date startDate,

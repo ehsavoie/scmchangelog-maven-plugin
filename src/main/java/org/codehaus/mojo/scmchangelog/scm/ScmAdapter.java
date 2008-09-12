@@ -234,10 +234,10 @@ public class ScmAdapter
 
   
   /**
-   * Returns the Scm version
+   * Returns the Scm version.
    * @param versionType the type of version (tag, trunk, branch).
-   * @param version the revision.
-   * @throws org.apache.maven.scm.ScmException in case of an error with the SCM.
+   * @param version the tag/branche name.
+   * @return the corresponding ScmVersion.
    * @throws org.apache.maven.plugin.MojoExecutionException in case of an error in executing the Mojo.
    */
   public ScmVersion getScmVersion( SvnTargetEnum versionType, String version )
