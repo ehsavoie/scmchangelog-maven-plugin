@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="${project.name}">
+<project>
   <publishDate position="bottom" format="MM-dd-yy HH:mm:ss"/>
   <version position="left"/>
   <!-- Powered By -->
@@ -8,20 +8,16 @@
     <logo name="Maven2.0" href="http://maven.apache.org/" img="images/logos/maven-feather.png" />
   </poweredBy>
   <body>
-    <links>
-      <item name="Maven 2" href="http://maven.apache.org/"/>
-    </links>    
-     <menu name="Overview">
+    <menu name="Overview">
       <item name="Introduction" href="index.html"/>
       <item name="Goals" href="plugin-info.html"/>
       <item name="Usage" href="usage.html"/>
-      <item name="For developpers" href="extensions.html"/>
       <item name="FAQ" href="faq.html"/>
+       <item name="For developpers" href="extensions.html"/>
     </menu>
     <menu name="Examples">
       <item name="Example" href="examples/example.html"/>
       <item name="Eat your own dog shit" href="changelog.html#"/>
     </menu>
-    <menu ref="reports" />    
   </body>
 </project>
