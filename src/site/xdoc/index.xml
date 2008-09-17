@@ -16,8 +16,8 @@
       <p>This plugin uses the SCM logs to create a changelog for each tagged version of a project.</p>
       <p>Supported SCM tools :
         <ul>
-          <li><img src="http://www.selenic.com/hg-logo/logo-droplets-50.png" /></li>
-          <li><img src="http://subversion.tigris.org/images/subversion_logo_hor-468x64.png" /></li>
+          <li><a href="http://www.selenic.com/mercurial/wiki/"><img src="http://www.selenic.com/hg-logo/logo-droplets-50.png" alt="Mercurial" /></a></li>
+          <li><a href="http://subversion.tigris.org/"><img src="http://svn.collab.net/repos/svn/branches/scheme-bindings/notes/logo/256-colour/subversion_logo_hor-237x32.png" alt="Subversion" /></a></li>
         </ul>
       </p>
       </subsection>
