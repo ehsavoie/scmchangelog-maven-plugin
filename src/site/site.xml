@@ -4,7 +4,7 @@
   <version position="left"/>
   <!-- Powered By -->
   <poweredBy>
-    <logo name="Netbeans 6.0" href="http://www.netbeans.org/downloads/index.html" img="http://www.netbeans.org/images/banners/60/110_empowereddownload2_fade.gif" />
+    <logo name="Netbeans 6.0" href="http://download.netbeans.org/netbeans/6.1/final/" img="http://www.netbeans.org/images/banners/60/110_white_fade.gif" />
     <logo name="Maven2.0" href="http://maven.apache.org/" img="images/logos/maven-feather.png" />
   </poweredBy>
   <body>
