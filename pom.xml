@@ -3,18 +3,18 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.codehaus.mojo</groupId>
-        <artifactId>mojo-sandbox-parent</artifactId>
-        <version>5-SNAPSHOT</version>
+        <artifactId>mojo-parent</artifactId>
+        <version>18</version>
     </parent>
     <groupId>org.codehaus.mojo</groupId>
     <artifactId>scmchangelog-maven-plugin</artifactId>
     <packaging>maven-plugin</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <name>Maven SCM Changelog Reporter</name>
     <scm>
-        <connection>scm:svn:http://svn.codehaus.org/mojo/trunk/sandbox/scmchangelog-maven-plugin/</connection>
-        <developerConnection>scm:svn:https://svn.codehaus.org/mojo/trunk/sandbox/scmchangelog-maven-plugin/</developerConnection>
-        <url>http://svn.codehaus.org/mojo/trunk/sandbox/scmchangelog-maven-plugin/</url>
+        <connection>scm:svn:http://svn.codehaus.org/mojo/tags/scmchangelog-maven-plugin-1.0</connection>
+        <developerConnection>scm:svn:https://svn.codehaus.org/mojo/tags/scmchangelog-maven-plugin-1.0</developerConnection>
+        <url>http://svn.codehaus.org/mojo/tags/scmchangelog-maven-plugin-1.0</url>
     </scm>
     <prerequisites>
         <maven>2.0.9</maven>
@@ -273,12 +273,12 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>scmchangelog-maven-plugin</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>1.0</version>
                 <configuration>
                     <trackerType>jira</trackerType>
                     <grammar>MANU</grammar>
-                    <connectionUrl>scm:svn:http://svn.codehaus.org/mojo/trunk/sandbox/scmchangelog-maven-plugin</connectionUrl>
-                    <tagBase>http://svn.codehaus.org/mojo/tags/sandbox/scmchangelog-maven-plugin</tagBase>
+                    <connectionUrl>scm:svn:http://svn.codehaus.org/mojo/trunk/mojo/scmchangelog-maven-plugin</connectionUrl>
+                    <tagBase>http://svn.codehaus.org/mojo/tags/mojo/scmchangelog-maven-plugin</tagBase>
                 </configuration>
             </plugin>
         </plugins>
