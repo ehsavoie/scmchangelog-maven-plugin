@@ -97,6 +97,7 @@
             <groupId>org.apache.maven.scm</groupId>
             <artifactId>maven-scm-manager-plexus</artifactId>
             <version>${maven.scm.version}</version>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.scm</groupId>
@@ -273,7 +274,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>scmchangelog-maven-plugin</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>${pom.version}</version>
                 <configuration>
                     <trackerType>jira</trackerType>
                     <grammar>MANU</grammar>
