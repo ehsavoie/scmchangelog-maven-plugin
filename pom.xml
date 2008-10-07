@@ -22,31 +22,7 @@
     <inceptionYear>2008</inceptionYear>
     <description>Simple Reporter that creates a changelog report using comments
 		and tags from the SCM.
-    </description>
-    <repositories>
-        <repository>
-            <id>codehaus.org</id>
-            <name>Codehaus Snapshots</name>
-            <url>http://snapshots.repository.codehaus.org/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-            </snapshots>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>codehaus.org</id>
-            <name>Codehaus Plugin Snapshots</name>
-            <url>http://snapshots.repository.codehaus.org/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
+    </description>    
     <licenses>
         <license>
             <name>MIT License</name>
@@ -286,6 +262,7 @@
     </reporting>
     <properties>
         <maven.scm.version>1.1</maven.scm.version>
+        <currentVersion>${pom.version}</currentVersion>
         <netbeans.hint.useExternalMaven>true</netbeans.hint.useExternalMaven>
     </properties>
 </project>
