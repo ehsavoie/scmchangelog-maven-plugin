@@ -22,31 +22,7 @@
     <inceptionYear>2008</inceptionYear>
     <description>Simple Reporter that creates a changelog report using comments
 		and tags from the SCM.
-    </description>
-    <repositories>
-        <repository>
-            <id>codehaus.org</id>
-            <name>Codehaus Snapshots</name>
-            <url>http://snapshots.repository.codehaus.org/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-            </snapshots>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>codehaus.org</id>
-            <name>Codehaus Plugin Snapshots</name>
-            <url>http://snapshots.repository.codehaus.org/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
+    </description>    
     <licenses>
         <license>
             <name>MIT License</name>
@@ -97,6 +73,7 @@
             <groupId>org.apache.maven.scm</groupId>
             <artifactId>maven-scm-manager-plexus</artifactId>
             <version>${maven.scm.version}</version>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.scm</groupId>
@@ -273,7 +250,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>scmchangelog-maven-plugin</artifactId>
-                <version>1.0</version>
+                <version>${pom.version}</version>
                 <configuration>
                     <trackerType>jira</trackerType>
                     <grammar>MANU</grammar>
@@ -285,6 +262,7 @@
     </reporting>
     <properties>
         <maven.scm.version>1.1</maven.scm.version>
+        <currentVersion>${pom.version}</currentVersion>
         <netbeans.hint.useExternalMaven>true</netbeans.hint.useExternalMaven>
     </properties>
 </project>

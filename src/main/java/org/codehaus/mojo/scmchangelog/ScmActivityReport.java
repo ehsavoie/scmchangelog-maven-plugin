@@ -27,6 +27,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -495,13 +496,15 @@ public class ScmActivityReport
     sink.tableHeaderCell( this.bundle.getString( "report.svn.changelog.revision_cell.width" ) );
     sink.text( bundle.getString( "report.svn.changelog.revision" ) );
     sink.tableHeaderCell_();
-    sink.tableRow_();
+    sink.tableRow_();    
+    List entries = release.getEntries();
+    Collections.sort( entries );
+    Collections.reverse( entries );
     getLog().info( "We have "
-        + release.getEntries().size() 
+        + entries.size() 
         + " entries for "
         + release.getTag().getTitle() );
-
-    Iterator iterEntry = release.getEntries().iterator();
+    Iterator iterEntry = entries.iterator();
     while ( iterEntry.hasNext() )
     {
       SvnLogEntry entry = ( SvnLogEntry ) iterEntry.next();

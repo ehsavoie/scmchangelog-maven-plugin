@@ -31,6 +31,7 @@ import java.util.Date;
  * @version $Id$
  */
 public class SvnLogEntry
+    implements Comparable
 {
 
   /**
@@ -125,5 +126,22 @@ public class SvnLogEntry
   public void setAuthor( String author )
   {
     this.author = author;
+  }
+
+  /**
+   * Compare method, to order log entries.
+   * @param object the object to be compred with this.
+   * @return a positive integer if this is after object -
+   * a negative integer if this is before object and 0 if they are equal.
+   */
+  public int compareTo( Object object )
+  {
+    if ( object != null )
+    {
+      SvnLogEntry entry = (SvnLogEntry) object;
+
+      return this.revision.compareTo( entry.getRevision() );
+    }
+    return -1;
   }
 }
