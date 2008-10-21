@@ -348,10 +348,10 @@ public class ScmActivityReport
 
     try
     {
-      ReportHelper.copyImage( this.bundle.getString( "report.svn.changelog.img.update" ), getOutputDirectory() );
-      ReportHelper.copyImage( this.bundle.getString( "report.svn.changelog.img.fix" ), getOutputDirectory() );
-      ReportHelper.copyImage( this.bundle.getString( "report.svn.changelog.img.remove" ), getOutputDirectory() );
-      ReportHelper.copyImage( this.bundle.getString( "report.svn.changelog.img.add" ), getOutputDirectory() );
+      ReportHelper.copyImage( this.bundle.getString( "report.svn.changelog.img.update" ), getReportOutputDirectory().getAbsolutePath() );
+      ReportHelper.copyImage( this.bundle.getString( "report.svn.changelog.img.fix" ), getReportOutputDirectory().getAbsolutePath() );
+      ReportHelper.copyImage( this.bundle.getString( "report.svn.changelog.img.remove" ), getReportOutputDirectory().getAbsolutePath() );
+      ReportHelper.copyImage( this.bundle.getString( "report.svn.changelog.img.add" ), getReportOutputDirectory().getAbsolutePath() );
     }
     catch ( IOException ioex )
     {
