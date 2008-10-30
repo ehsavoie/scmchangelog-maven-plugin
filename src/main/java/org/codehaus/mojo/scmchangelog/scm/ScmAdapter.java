@@ -28,10 +28,9 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.scm.ScmBranch;
 import org.apache.maven.scm.ScmException;
 import org.apache.maven.scm.ScmFileSet;
@@ -65,6 +64,10 @@ public class ScmAdapter
    * The grammar used to extract elements from the comments.
    */
   private GrammarEnum grammar;
+  /**
+   * The maven logger.
+   */
+  private Log logger;
 
   /**
    * Constructor of ScmAdapter.
@@ -116,8 +119,7 @@ public class ScmAdapter
     ListScmResult result = this.manager.list( repository, fileSet, false,
         getScmVersion( SvnTargetEnum.TAG, "" ) );
     final List tags = result.getFiles();
-    Logger.getLogger( ScmAdapter.class.getName() ).log( Level.INFO, tags.toString() );
-
+    getLogger().info( tags.toString() );
     final List releases = new ArrayList( 10 );
     Iterator iter = tags.iterator();
 
@@ -137,8 +139,7 @@ public class ScmAdapter
     {
       endRevision = ( ( Tag ) tags.get( tags.size() - 1 ) ).getEndRevision(); 
     }
-    Logger.getLogger( ScmAdapter.class.getName() ).log( Level.INFO, "End revision : "
-        + endRevision );
+    getLogger().info( "End revision : " + endRevision );
     final Tag trunk = new Tag( "trunk" );
     trunk.setStartRevision( endRevision );
     trunk.setDate( new Date() );
@@ -147,7 +148,7 @@ public class ScmAdapter
     final ChangeLogScmResult logs = this.manager.changeLog( repository,
         fileSet, getScmVersion( SvnTargetEnum.TRUNK, endRevision ), null, "" );
     if ( logs.getChangeLog() != null )
-    {    
+    {
       final Release release = new Release( trunk,  logs.getChangeLog().getChangeSets() );
       releases.add( release );
     }
@@ -192,13 +193,13 @@ public class ScmAdapter
     while ( iter.hasNext() )
     {
       Tag tag = ( Tag ) iter.next();
-      Logger.getLogger( ScmAdapter.class.getName() ).log( Level.INFO, tag.toString() );
+      getLogger().info( tag.toString() );
 
       final ChangeLogScmResult logs = this.manager.changeLog( repository,
           fileSet, getScmVersion( SvnTargetEnum.TRUNK, startRevision ),
           getScmVersion( SvnTargetEnum.TRUNK, tag.getEndRevision() ), "" );
       startRevision = tag.getEndRevision();
-      Logger.getLogger( ScmAdapter.class.getName() ).log( Level.INFO, logs.getChangeLog().toString() );
+      getLogger().info( logs.getChangeLog().toString() );
       tag.setDate( logs.getChangeLog().getEndDate() );
 
       Release release = new Release( tag,
@@ -224,7 +225,7 @@ public class ScmAdapter
       SvnLogEntry entry = new SvnLogEntry();
       entry.setAuthor( changeSet.getAuthor() );
       entry.setDate( changeSet.getDate() );
-      Logger.getLogger( ScmAdapter.class.getName() ).log( Level.INFO, changeSet.getComment() );
+      getLogger().info( changeSet.getComment() );
       entry.setMessage( grammar.extractMessage( changeSet.getComment() ) );
       entry.setRevision( changeSet.getRevision() );
       elements.add( entry );
@@ -257,5 +258,21 @@ public class ScmAdapter
     }
     throw new MojoExecutionException( "Unknown version type : " 
         + versionType );
+  }
+
+  /**
+   * The currentlogger.
+   * @return the logger
+   */
+  public Log getLogger() {
+    return logger;
+  }
+
+  /**
+   * The current logger to be used.
+   * @param logger the logger to set
+   */
+  public void setLogger(Log logger) {
+    this.logger = logger;
   }
 }

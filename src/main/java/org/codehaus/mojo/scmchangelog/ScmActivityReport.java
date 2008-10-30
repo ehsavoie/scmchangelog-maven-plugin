@@ -323,10 +323,9 @@ public class ScmActivityReport
       this.commentSeparator = realGrammar.getIssueSeparator();
 
       ScmFileSet fileSet = getFileSet( "" );
-      Logger.getLogger( ScmActivityReport.class.getName() ).log( Level.INFO, "FileSet : " 
-          + fileSet );
-
+      getLog().debug( "FileSet : "  + fileSet );
       ScmAdapter adapter = new ScmAdapter( getScmManager(), realGrammar );
+      adapter.setLogger( getLog() );
       List releases = adapter.getListOfReleases( repository, fileSet );
       doGenerateReport( releases, getSink() );
     }
@@ -736,6 +735,7 @@ public class ScmActivityReport
   public ScmManager getScmManager()
   {
     SvnXmlExeScmProvider svnProvider = new SvnXmlExeScmProvider( GrammarEnum.valueOf( grammar ) );
+    svnProvider.setLogger( getLog() );
     HgScmProvider hgProvider = new HgScmProvider( GrammarEnum.valueOf( grammar ) );
     manager.setScmProvider( "svn", svnProvider );
     manager.setScmProvider( "hg", hgProvider );

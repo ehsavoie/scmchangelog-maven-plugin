@@ -63,7 +63,7 @@ class HgTagsConsumer
    */
   public void doConsume( ScmFileStatus status, String trimmedLine )
   {
-    Logger.getLogger( HgTagsConsumer.class.getName() ).log( Level.INFO, trimmedLine );
+    getLogger().debug( trimmedLine );
 
     int startRevisionIndex = trimmedLine.lastIndexOf( ' ' );
     int endRevisionIndex = trimmedLine.lastIndexOf( ':' );

@@ -65,8 +65,7 @@ public class SvnListConsumer
    */
   public java.util.List analyse()
   {
-    Logger.getLogger( SvnListConsumer.class.getName() ).log( Level.SEVERE, "Receiving this line " 
-        + getOutput() );
+    getLogger().debug( "Receiving this line " + getOutput() );
 
     try
     {
@@ -79,11 +78,11 @@ public class SvnListConsumer
         for ( int j = 0; j < list.getEntryArray().length; j++ )
         {
           Entry entry = list.getEntryArray()[j];
-          getLogger().info( entry.getName() );
+          getLogger().debug( entry.getName() );
 
           if ( !"tags".equalsIgnoreCase( entry.getName() ) )
           {
-            getLogger().info( "Creating new Tag" );
+            getLogger().debug( "Creating new Tag" );
 
             Tag tag = new Tag( entry.getName() );
             Commit commit = entry.getCommit();

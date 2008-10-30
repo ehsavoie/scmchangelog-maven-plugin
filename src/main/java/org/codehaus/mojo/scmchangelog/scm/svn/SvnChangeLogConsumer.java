@@ -81,14 +81,11 @@ public class SvnChangeLogConsumer
     try
     {
       LogDocument doc = Factory.parse( new StringReader( getOutput() ) );
-
       for ( int i = 0; i < doc.getLog().getLogentryArray().length; i++ )
       {
         Logentry logEntry = doc.getLog().getLogentryArray()[i];
-        Logger.getLogger( SvnChangeLogConsumer.class.getName() ).log( Level.INFO,  "Log entry: "
-            + logEntry.getMsg() );
-        Logger.getLogger( SvnChangeLogConsumer.class.getName() ).log( Level.INFO,  "has message: "
-            + grammar.hasMessage( logEntry.getMsg() ) );
+        getLogger().debug( "Log entry: " + logEntry.getMsg() );
+        getLogger().debug( "has message: " + grammar.hasMessage( logEntry.getMsg() ) );
         if ( grammar.hasMessage( logEntry.getMsg() ) )
         {
           SvnLogEntry entry = new SvnLogEntry();
@@ -99,17 +96,16 @@ public class SvnChangeLogConsumer
           this.elements.add( entry );
         }
       }
-
       return this.elements;
     }
     catch ( XmlException ex )
     {
-      Logger.getLogger( SvnChangeLogConsumer.class.getName() ).log( Level.SEVERE, null, ex );
+      getLogger().error( ex );
       throw new RuntimeException( ex );
     }
     catch ( IOException ex )
     {
-      Logger.getLogger( SvnChangeLogConsumer.class.getName() ).log( Level.SEVERE, null, ex );
+      getLogger().error( ex );
       throw new RuntimeException( ex );
     }
   }

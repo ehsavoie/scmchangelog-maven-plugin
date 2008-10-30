@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Level;
 
 import org.apache.maven.scm.ChangeSet;
 import org.apache.maven.scm.ScmBranch;
@@ -42,7 +41,6 @@ import org.apache.maven.scm.log.ScmLogger;
 import org.apache.maven.scm.provider.ScmProviderRepository;
 import org.apache.maven.scm.provider.hg.HgUtils;
 import org.apache.maven.scm.provider.hg.command.HgCommandConstants;
-import org.codehaus.mojo.scmchangelog.JavaScmLogger;
 
 
 /**
@@ -79,12 +77,12 @@ public class HgChangeLogCommand
     {
       HgCommandConstants.LOG_CMD, HgCommandConstants.VERBOSE_OPTION, revisions
     };
-    ScmLogger logger = new JavaScmLogger( Level.FINER );
+    ScmLogger logger = getLogger();
     HgChangeLogConsumer consumer = new HgChangeLogConsumer( logger,
         datePattern );
     ScmResult result = HgUtils.execute( consumer, logger,
         fileSet.getBasedir(), cmd );
-    logger.info( result.toString() );
+    logger.debug( result.toString() );
 
     List logEntries = consumer.getModifications();
     List inRangeAndValid = new ArrayList();

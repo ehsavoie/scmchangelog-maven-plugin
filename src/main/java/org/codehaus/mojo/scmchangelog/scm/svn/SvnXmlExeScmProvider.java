@@ -23,6 +23,9 @@ SOFTWARE.
  */
 package org.codehaus.mojo.scmchangelog.scm.svn;
 
+import org.apache.maven.plugin.logging.Log;
+import org.apache.maven.scm.log.ScmLogger;
+import org.codehaus.mojo.scmchangelog.MavenScmLogger;
 import org.apache.maven.scm.provider.svn.command.SvnCommand;
 import org.apache.maven.scm.provider.svn.svnexe.SvnExeScmProvider;
 import org.codehaus.mojo.scmchangelog.changelog.log.GrammarEnum;
@@ -37,6 +40,26 @@ import org.codehaus.mojo.scmchangelog.changelog.log.GrammarEnum;
 public class SvnXmlExeScmProvider
     extends SvnExeScmProvider
 {
+  /**
+   * The scm logger.
+   */
+  private ScmLogger logger;
+
+  /**
+   * The currentlogger.
+   * @return the logger
+   */
+  public ScmLogger getLogger() {
+    return logger;
+  }
+
+  /**
+   * The current logger to be used.
+   * @param logger the logger to set
+   */
+  public void setLogger(Log log) {
+    this.logger = new MavenScmLogger( log );
+  }
 
   /**
    * The comment grammar to be used.
@@ -59,7 +82,9 @@ public class SvnXmlExeScmProvider
    */
   protected SvnCommand getListCommand()
   {
-    return new SvnListCommand();
+    SvnListCommand command = new SvnListCommand();
+    command.setLogger( getLogger() );
+    return command;
   }
 
   /**
@@ -69,7 +94,9 @@ public class SvnXmlExeScmProvider
    */
   protected SvnCommand getChangeLogCommand()
   {
-    return new SvnChangeLogCommand( grammar );
+    SvnCommand command = new SvnChangeLogCommand( grammar );
+    command.setLogger( getLogger() );
+    return command;
   }
 
   /**

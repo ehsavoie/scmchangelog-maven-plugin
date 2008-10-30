@@ -25,8 +25,6 @@ package org.codehaus.mojo.scmchangelog.scm.svn;
 
 import java.io.File;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.apache.maven.scm.ScmBranch;
 import org.apache.maven.scm.ScmException;
@@ -72,28 +70,23 @@ public class SvnListCommand
       boolean recursive, ScmVersion version )
       throws ScmException
   {
-    Logger.getLogger( SvnListCommand.class.getName() ).log( Level.SEVERE, "Executing our command " 
-        + version );
+    getLogger().info( "Executing our command " + version );
     Commandline cl = createCommandLine( ( SvnScmProviderRepository ) repository, fileSet, recursive, version );
     SvnListConsumer consumer = new SvnListConsumer();
     consumer.setLogger( getLogger() );
 
     CommandLineUtils.StringStreamConsumer stderr = new CommandLineUtils.StringStreamConsumer();
-    Logger.getLogger( SvnListCommand.class.getName() ).log( Level.INFO,  "Executing: "
-        + SvnCommandLineUtils.cryptPassword( cl ) );
-    Logger.getLogger( SvnListCommand.class.getName() ).log( Level.INFO, "Working directory: " 
-        + cl.getWorkingDirectory().getAbsolutePath() );
+    getLogger().info( "Executing: " + SvnCommandLineUtils.cryptPassword( cl ) );
+    getLogger().info( "Working directory: "  + cl.getWorkingDirectory().getAbsolutePath() );
     int exitCode;
-    Logger.getLogger( SvnListCommand.class.getName() ).log( Level.SEVERE, "Executing this command " 
-        + cl.toString() );
+    getLogger().info( "Executing this command " + cl.toString() );
     try
     {
       exitCode = SvnCommandLineUtils.execute( cl, consumer, stderr, getLogger() );
     }
     catch ( CommandLineException ex )
     {
-      Logger.getLogger( SvnListCommand.class.getName() ).log( Level.SEVERE, 
-          "Error while executing command.", ex );
+      getLogger().error( "Error while executing command.", ex );
       throw new ScmException( "Error while executing command.", ex );
     }
 

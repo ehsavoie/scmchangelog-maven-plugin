@@ -23,13 +23,16 @@ SOFTWARE.
  */
 package org.codehaus.mojo.scmchangelog.scm.hg;
 
+import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.scm.CommandParameters;
 import org.apache.maven.scm.ScmException;
 import org.apache.maven.scm.ScmFileSet;
 import org.apache.maven.scm.command.Command;
 import org.apache.maven.scm.command.changelog.ChangeLogScmResult;
 import org.apache.maven.scm.command.list.ListScmResult;
+import org.apache.maven.scm.log.ScmLogger;
 import org.apache.maven.scm.provider.ScmProviderRepository;
+import org.codehaus.mojo.scmchangelog.MavenScmLogger;
 import org.codehaus.mojo.scmchangelog.changelog.log.GrammarEnum;
 import org.codehaus.mojo.scmchangelog.scm.hg.command.changelog.HgChangeLogCommand;
 import org.codehaus.mojo.scmchangelog.scm.hg.command.list.HgListCommand;
@@ -44,6 +47,27 @@ import org.codehaus.mojo.scmchangelog.scm.hg.command.list.HgListCommand;
 public class HgScmProvider
     extends org.apache.maven.scm.provider.hg.HgScmProvider
 {
+  /**
+   * The scm logger.
+   */
+  private ScmLogger logger;
+
+  /**
+   * The currentlogger.
+   * @return the logger
+   */
+  public ScmLogger getLogger() {
+    return logger;
+  }
+
+  /**
+   * The current logger to be used.
+   * @param logger the logger to set
+   */
+  public void setLogger(Log log) {
+    this.logger = new MavenScmLogger( log );
+  }
+
 
   /**
    * The comment grammar to be used.
@@ -66,7 +90,9 @@ public class HgScmProvider
    */
   public HgListCommand getListCommand()
   {
-    return new HgListCommand();
+    HgListCommand command = new HgListCommand();
+    command.setLogger( getLogger() );
+    return command;
   }
 
   /**
@@ -103,7 +129,6 @@ public class HgScmProvider
   {
     HgChangeLogCommand command = new HgChangeLogCommand();
     command.setLogger( getLogger() );
-
     return ( ChangeLogScmResult ) command.execute( repository, fileSet,
         parameters );
   }

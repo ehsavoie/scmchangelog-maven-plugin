@@ -136,12 +136,10 @@ public class SvnChangeLogCommand
     Commandline cl = createCommandLine( ( SvnScmProviderRepository ) repo,
         fileSet.getBasedir(), branch, startVersion, endVersion );
     SvnChangeLogConsumer consumer = new SvnChangeLogConsumer( grammar );
+    consumer.setLogger( this.getLogger() );
     CommandLineUtils.StringStreamConsumer stderr = new CommandLineUtils.StringStreamConsumer();
-    Logger.getLogger( SvnChangeLogCommand.class.getName() ).log( Level.INFO,  "Executing: "
-        + SvnCommandLineUtils.cryptPassword( cl ) );
-     Logger.getLogger( SvnChangeLogCommand.class.getName() ).log( Level.INFO, "Working directory: "
-        + cl.getWorkingDirectory().getAbsolutePath() );
-
+    getLogger().info( "Executing: " + SvnCommandLineUtils.cryptPassword( cl ) );
+    getLogger().info( "Working directory: " + cl.getWorkingDirectory().getAbsolutePath() );
     int exitCode;
     try
     {
@@ -149,15 +147,13 @@ public class SvnChangeLogCommand
     }
     catch ( CommandLineException ex )
     {
-      Logger.getLogger( SvnChangeLogCommand.class.getName() ).log( Level.SEVERE, 
-          "Error while executing command.", ex );
+      getLogger().error( "Error while executing command.", ex );
       throw new ScmException( "Error while executing svn command.", ex );
     }
 
     if ( exitCode != 0 )
     {
-      Logger.getLogger( SvnChangeLogCommand.class.getName() ).log( Level.SEVERE, 
-              "The svn command failed." + stderr.getOutput() );
+      getLogger().error( "The svn command failed." + stderr.getOutput() );
       return new ChangeLogScmResult( cl.toString(), "The svn command failed.", stderr.getOutput(), false );
     }
 
