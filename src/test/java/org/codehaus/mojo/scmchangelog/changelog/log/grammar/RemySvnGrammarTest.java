@@ -68,34 +68,51 @@ public class RemySvnGrammarTest extends TestCase {
         assertNotNull(issue);
         assertEquals(OperationTypeEnum.FIX, issue.getType());
         assertEquals("MVN-512", issue.getIssue());
+        
         content = "[fix :MVN-512]Hello World";
         result = grammar.extractMessage(content);
         assertNotNull(result);
         assertNotNull(result.getIssues());
         assertEquals("Hello World", result.getComment());
         assertEquals(1, result.getIssues().size());
+        
         issue = (Issue) result.getIssues().get(0);
         assertNotNull(issue);
         assertEquals(OperationTypeEnum.FIX, issue.getType());
         assertEquals("MVN-512", issue.getIssue());
+        
         content = "fix:MVN-512]Hello World";
         result = grammar.extractMessage(content);
         assertNotNull(result);
         assertNotNull(result.getIssues());
         assertEquals("fix:MVN-512]Hello World", result.getComment());
         assertEquals(0, result.getIssues().size());
+        
         content = "[fix MVN-512]Hello World";
         result = grammar.extractMessage(content);
         assertNotNull(result);
         assertNotNull(result.getIssues());
         assertEquals("[fix MVN-512]Hello World", result.getComment());
         assertEquals(0, result.getIssues().size());
+        
         content = "[fix:MVN-512 Hello World";
         result = grammar.extractMessage(content);
         assertNotNull(result);
         assertNotNull(result.getIssues());
         assertEquals("[fix:MVN-512 Hello World", result.getComment());
         assertEquals(0, result.getIssues().size());
+        
+        content = "[fix:] Hello World";
+		result = grammar.extractMessage(content);
+		assertNotNull(result);
+		assertNotNull(result.getIssues());
+		assertEquals("Hello World", result.getComment());
+		assertEquals(1, result.getIssues().size());
+
+		issue = (Issue) result.getIssues().get(0);
+		assertNotNull(issue);
+		assertEquals(OperationTypeEnum.FIX, issue.getType());
+		assertEquals("", issue.getIssue());
     }
 
     public void testExtractRemoveMessage() {
@@ -110,34 +127,51 @@ public class RemySvnGrammarTest extends TestCase {
         assertNotNull(issue);
         assertEquals(OperationTypeEnum.REMOVE, issue.getType());
         assertEquals("MVN-512", issue.getIssue());
+        
         content = "[remove  :MVN-512]Hello World";
         result = grammar.extractMessage(content);
         assertNotNull(result);
         assertNotNull(result.getIssues());
         assertEquals("Hello World", result.getComment());
         assertEquals(1, result.getIssues().size());
+        
         issue = (Issue) result.getIssues().get(0);
         assertNotNull(issue);
         assertEquals(OperationTypeEnum.REMOVE, issue.getType());
         assertEquals("MVN-512", issue.getIssue());
+        
         content = "remove:MVN-512]Hello World";
         result = grammar.extractMessage(content);
         assertNotNull(result);
         assertNotNull(result.getIssues());
         assertEquals("remove:MVN-512]Hello World", result.getComment());
         assertEquals(0, result.getIssues().size());
+        
         content = "[remove MVN-512]Hello World";
         result = grammar.extractMessage(content);
         assertNotNull(result);
         assertNotNull(result.getIssues());
         assertEquals("[remove MVN-512]Hello World", result.getComment());
         assertEquals(0, result.getIssues().size());
+        
         content = "[remove:MVN-512 Hello World";
         result = grammar.extractMessage(content);
         assertNotNull(result);
         assertNotNull(result.getIssues());
         assertEquals("[remove:MVN-512 Hello World", result.getComment());
         assertEquals(0, result.getIssues().size());
+        
+        content = "[remove:] Hello World";
+		result = grammar.extractMessage(content);
+		assertNotNull(result);
+		assertNotNull(result.getIssues());
+		assertEquals("Hello World", result.getComment());
+		assertEquals(1, result.getIssues().size());
+
+		issue = (Issue) result.getIssues().get(0);
+		assertNotNull(issue);
+		assertEquals(OperationTypeEnum.REMOVE, issue.getType());
+		assertEquals("", issue.getIssue());
     }
 
     public void testExtractAddMessage() {
@@ -152,34 +186,51 @@ public class RemySvnGrammarTest extends TestCase {
         assertNotNull(issue);
         assertEquals(OperationTypeEnum.ADD, issue.getType());
         assertEquals("MVN-512", issue.getIssue());
+        
         content = "[add   :MVN-512]Hello World";
         result = grammar.extractMessage(content);
         assertNotNull(result);
         assertNotNull(result.getIssues());
         assertEquals("Hello World", result.getComment());
         assertEquals(1, result.getIssues().size());
+        
         issue = (Issue) result.getIssues().get(0);
         assertNotNull(issue);
         assertEquals(OperationTypeEnum.ADD, issue.getType());
         assertEquals("MVN-512", issue.getIssue());
+        
         content = "add:MVN-512]Hello World";
         result = grammar.extractMessage(content);
         assertNotNull(result);
         assertNotNull(result.getIssues());
         assertEquals("add:MVN-512]Hello World", result.getComment());
         assertEquals(0, result.getIssues().size());
+        
         content = "[add MVN-512]Hello World";
         result = grammar.extractMessage(content);
         assertNotNull(result);
         assertNotNull(result.getIssues());
         assertEquals("[add MVN-512]Hello World", result.getComment());
         assertEquals(0, result.getIssues().size());
+        
         content = "[add:MVN-512 Hello World";
         result = grammar.extractMessage(content);
         assertNotNull(result);
         assertNotNull(result.getIssues());
         assertEquals("[add:MVN-512 Hello World", result.getComment());
         assertEquals(0, result.getIssues().size());
+        
+        content = "[add:] Hello World";
+		result = grammar.extractMessage(content);
+		assertNotNull(result);
+		assertNotNull(result.getIssues());
+		assertEquals("Hello World", result.getComment());
+		assertEquals(1, result.getIssues().size());
+
+		issue = (Issue) result.getIssues().get(0);
+		assertNotNull(issue);
+		assertEquals(OperationTypeEnum.ADD, issue.getType());
+		assertEquals("", issue.getIssue());
     }
 
     public void testExtractUpdateMessage() {
@@ -194,34 +245,51 @@ public class RemySvnGrammarTest extends TestCase {
         assertNotNull(issue);
         assertEquals(OperationTypeEnum.UPDATE, issue.getType());
         assertEquals("MVN-512", issue.getIssue());
+        
         content = "[update\n\r\t:MVN-512]Hello World";
         result = grammar.extractMessage(content);
         assertNotNull(result);
         assertNotNull(result.getIssues());
         assertEquals("Hello World", result.getComment());
         assertEquals(1, result.getIssues().size());
+        
         issue = (Issue) result.getIssues().get(0);
         assertNotNull(issue);
         assertEquals(OperationTypeEnum.UPDATE, issue.getType());
         assertEquals("MVN-512", issue.getIssue());
+        
         content = "update:MVN-512]Hello World";
         result = grammar.extractMessage(content);
         assertNotNull(result);
         assertNotNull(result.getIssues());
         assertEquals("update:MVN-512]Hello World", result.getComment());
         assertEquals(0, result.getIssues().size());
+        
         content = "[update:MVN-512 Hello World";
         result = grammar.extractMessage(content);
         assertNotNull(result);
         assertNotNull(result.getIssues());
         assertEquals("[update:MVN-512 Hello World", result.getComment());
         assertEquals(0, result.getIssues().size());
+        
         content = "[update MVN-512]Hello World";
         result = grammar.extractMessage(content);
         assertNotNull(result);
         assertNotNull(result.getIssues());
         assertEquals("[update MVN-512]Hello World", result.getComment());
         assertEquals(0, result.getIssues().size());
+        
+        content = "[update:] Hello World";
+		result = grammar.extractMessage(content);
+		assertNotNull(result);
+		assertNotNull(result.getIssues());
+		assertEquals("Hello World", result.getComment());
+		assertEquals(1, result.getIssues().size());
+
+		issue = (Issue) result.getIssues().get(0);
+		assertNotNull(issue);
+		assertEquals(OperationTypeEnum.UPDATE, issue.getType());
+		assertEquals("", issue.getIssue());
     }
 
     public void testExtractComplexMessage() {
