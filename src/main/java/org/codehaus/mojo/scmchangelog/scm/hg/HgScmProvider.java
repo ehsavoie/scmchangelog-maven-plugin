@@ -56,15 +56,17 @@ public class HgScmProvider
    * The currentlogger.
    * @return the logger
    */
-  public ScmLogger getLogger() {
+  public ScmLogger getLogger()
+  {
     return logger;
   }
 
   /**
    * The current logger to be used.
-   * @param logger the logger to set
+   * @param log the maven logger to be wrapped as an ScmLogger.
    */
-  public void setLogger(Log log) {
+  public void setLogger( Log log )
+  {
     this.logger = new MavenScmLogger( log );
   }
 

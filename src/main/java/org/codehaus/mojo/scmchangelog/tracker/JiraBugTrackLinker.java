@@ -46,7 +46,7 @@ public class JiraBugTrackLinker
   public JiraBugTrackLinker( String jiraUrl )
   {
     String url = jiraUrl;
-    if( jiraUrl.endsWith( "/" ) )
+    if ( jiraUrl.endsWith( "/" ) )
     {
       url = jiraUrl.substring( 0, jiraUrl.lastIndexOf( '/' ) );
     }

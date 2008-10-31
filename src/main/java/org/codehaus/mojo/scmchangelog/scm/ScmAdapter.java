@@ -264,7 +264,8 @@ public class ScmAdapter
    * The currentlogger.
    * @return the logger
    */
-  public Log getLogger() {
+  public Log getLogger()
+  {
     return logger;
   }
 
@@ -272,7 +273,8 @@ public class ScmAdapter
    * The current logger to be used.
    * @param logger the logger to set
    */
-  public void setLogger(Log logger) {
+  public void setLogger( Log logger )
+  {
     this.logger = logger;
   }
 }

@@ -25,8 +25,6 @@ package org.codehaus.mojo.scmchangelog.scm.hg.command.list;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.apache.maven.scm.ScmFileStatus;
 import org.apache.maven.scm.log.ScmLogger;
