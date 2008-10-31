@@ -85,7 +85,7 @@ public class BugTrackers
    */
   public static BugTrackers valueOf( String name )
   {
-    if ( JIRA.name.equals( name ) )
+    if ( JIRA.name.equalsIgnoreCase( name ) )
     {
       return JIRA;
     }
