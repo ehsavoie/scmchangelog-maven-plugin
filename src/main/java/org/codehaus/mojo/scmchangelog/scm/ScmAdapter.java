@@ -130,9 +130,12 @@ public class ScmAdapter
           fileSet,
           getScmVersion( SvnTargetEnum.TRUNK, tag.getStartRevision() ),
           getScmVersion( SvnTargetEnum.TRUNK, tag.getEndRevision() ), "" );
-      Release release = new Release( tag,
-          logs.getChangeLog().getChangeSets() );
-      releases.add( release );
+      if ( logs.getChangeLog() != null )
+      {
+        Release release = new Release( tag,
+            logs.getChangeLog().getChangeSets() );
+        releases.add( release );
+      }
     }
     String endRevision = "0";
     if ( !tags.isEmpty() ) 
