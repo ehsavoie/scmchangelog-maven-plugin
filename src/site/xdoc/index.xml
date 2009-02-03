@@ -9,42 +9,35 @@
   </head>
   <body>
     <!-- The body of the document contains a number of sections -->
-    <section name="Intoduction">
-
-      <subsection name="Overview">
+    <section name="SCM Changelog Maven plugin">
       <!-- Within sections, any XHTML can be used -->
       <p>This plugin uses the SCM logs to create a changelog for each tagged version of a project.</p>
-      <p>Supported SCM tools :
+      <p>Supported SCM tools:
         <ul>
           <li><a href="http://www.selenic.com/mercurial/wiki/"><img src="http://www.selenic.com/hg-logo/logo-droplets-50.png" alt="Mercurial" /></a></li>
           <li><a href="http://subversion.tigris.org/"><img src="http://svn.collab.net/repos/svn/branches/scheme-bindings/notes/logo/256-colour/subversion_logo_hor-237x32.png" alt="Subversion" /></a></li>
         </ul>
       </p>
-      </subsection>
+
       
       <!-- in addition to XHTML, any number of subsections can be within a section -->
-      <subsection name="Pre-requisite">
+      <subsection name="Goals Overview">
         <p>
-          There are some requisite for using this plugin :
+          General Information about the goals.
           <ul>
             <li>
-              As this plugin uses the SCM commands, <b>it is necessary to have the svn or hg command line executable in your path</b>.
-            </li>
-            <li>
-              This plugins needs Java 1.4 or more to run correctly.
+              <a href="report-mojo.html">scmchangelog:report</a>: Goal which produces a changelog report based on the Subversion logs.
             </li>
           </ul>
         </p>
       </subsection>     
       
-      <subsection name="Example">
+      <subsection name="Usage">
         <p><!--Necessary because of a bug removing p tags--></p>
           <!-- Within sections, any XHTML can be used -->
           <p>
-            This is an example of a report by the Scm Changelog Report :
+            Instructions on how to use the SCM Changelog Maven plugin can be found on the <a href="usage.html">usage page</a>.
           </p>
-          <br/>
-          <img src="images/changelog_sample.png" />
       </subsection>
     </section>
   </body>
