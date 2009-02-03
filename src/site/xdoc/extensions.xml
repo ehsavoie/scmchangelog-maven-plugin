@@ -22,7 +22,7 @@
       </subsection>
       <subsection name="How does it work?">
         <p>
-          Well it is quite simple :
+          Well it is quite simple:
           <ol>
             <li>we build the scm connection in the same way as the maven-scm-plugin. So, in theory, it should be possibleo use others SCM, provided you override the two commands we use to produce our expected elements.</li>
             <li>we do a <code>list</code> command on the tags repository. This gives us a list of tags (that we are considering as releases).</li>
@@ -38,19 +38,19 @@
         <p>
           The bug trackers are defined in the class <code>org.codehaus.mojo.scmchangelog.tracker.BugTrackers</code>.
           They implement the interface <code>org.codehaus.mojo.scmchangelog.tracker.BugTrackLinker</code> whose only method is here to provide a link to the bug description for this bug tracker with the bug id as parameter.<br/>
-          We provide two examples of bug tracker : Sourceforge and Jira. Our bug trackers use the issue management url from the pom, but you can also define your own through the plugin's configuration.          
+          We provide two examples of bug tracker: Sourceforge and Jira. Our bug trackers use the issue management url from the pom, but you can also define your own through the plugin's configuration.          
         </p>
       </subsection>
       <subsection name="Grammar">
         <p>
           The grammars are defined in the class <code>org.codehaus.mojo.scmchangelog.changelog.log.GrammarEnum</code>.
-          They implement the interface <code>org.codehaus.mojo.scmchangelog.changelog.log.SvnGrammar</code> with three methods :
+          They implement the interface <code>org.codehaus.mojo.scmchangelog.changelog.log.SvnGrammar</code> with three methods:
           <ul>
-            <li><code>Message extractMessage( String content )</code> : where we extract the issues from the comment.</li>
-            <li><code> boolean hasMessage( String content )</code> : where we test for issues from the comment. If none is found the comment will ignored.</li>
-            <li><code>String getIssueSeparator()</code> : which returns the separator of issue comment, if the comment is about several issues.</li>
+            <li><code>Message extractMessage( String content )</code>: where we extract the issues from the comment.</li>
+            <li><code> boolean hasMessage( String content )</code>: where we test for issues from the comment. If none is found the comment will ignored.</li>
+            <li><code>String getIssueSeparator()</code>: which returns the separator of issue comment, if the comment is about several issues.</li>
           </ul>
-          We provide two examples of grammar : <code>org.codehaus.mojo.scmchangelog.changelog.log.grammar.ManuSvnGrammar</code> and <code>org.codehaus.mojo.scmchangelog.changelog.log.grammar.RemySvnGrammar</code>.
+          We provide two examples of grammar: <code>org.codehaus.mojo.scmchangelog.changelog.log.grammar.ManuSvnGrammar</code> and <code>org.codehaus.mojo.scmchangelog.changelog.log.grammar.RemySvnGrammar</code>.
           They are extensions of <code>org.codehaus.mojo.scmchangelog.changelog.log.grammar.common.AbstractSvnGrammar</code>, a helper class for regexp based grammars.
         </p>
       </subsection>
