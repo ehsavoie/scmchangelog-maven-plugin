@@ -25,6 +25,7 @@ package org.codehaus.mojo.scmchangelog.scm.hg.command.list;
 
 import java.io.File;
 
+import java.util.regex.Pattern;
 import org.apache.maven.scm.ScmException;
 import org.apache.maven.scm.ScmFileSet;
 import org.apache.maven.scm.ScmResult;
@@ -54,6 +55,20 @@ public class HgListCommand
   public static final String TRUNK_TAG = "tip";
 
   /**
+   * The filter on the tag names to be used.
+   */
+  private Pattern filter;
+
+  /**
+   * Creates a new instance of HgListCommand.
+   * @param filter the filter on the tag names to be used.
+   */
+  public HgListCommand( Pattern filter )
+  {
+    this.filter = filter;
+  }
+  
+  /**
    * Executes a <code>hg tags --verbose path</code> command.
    * @param repository the mercurial repository.
    * @param fileSet the list of files.
@@ -71,7 +86,7 @@ public class HgListCommand
       TAGS_CMD
     };
     File workingDir = fileSet.getBasedir();
-    HgTagsConsumer consumer = new HgTagsConsumer( getLogger() );
+    HgTagsConsumer consumer = new HgTagsConsumer( getLogger() , filter );
     ScmResult result = HgUtils.execute( consumer, getLogger(), workingDir,
         tagsCmd );
 

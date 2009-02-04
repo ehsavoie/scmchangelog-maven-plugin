@@ -23,6 +23,7 @@ SOFTWARE.
  */
 package org.codehaus.mojo.scmchangelog.scm.svn;
 
+import java.util.regex.Pattern;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.scm.log.ScmLogger;
 import org.codehaus.mojo.scmchangelog.MavenScmLogger;
@@ -69,12 +70,19 @@ public class SvnXmlExeScmProvider
   private GrammarEnum grammar;
 
   /**
+   * The filter on the tag names to be used.
+   */
+  private Pattern filter;
+
+  /**
    * Creates a new instance of SvnXmlExeScmProvider.
    * @param commentGrammar the grammar tobe used.
+   * @param filter the filter on the tag names to be used.
    */
-  public SvnXmlExeScmProvider( GrammarEnum commentGrammar )
+  public SvnXmlExeScmProvider( GrammarEnum commentGrammar , Pattern filter )
   {
     this.grammar = commentGrammar;
+    this.filter = filter;
   }
 
   /**
@@ -84,7 +92,7 @@ public class SvnXmlExeScmProvider
    */
   protected SvnCommand getListCommand()
   {
-    SvnListCommand command = new SvnListCommand();
+    SvnListCommand command = new SvnListCommand( this.filter );
     command.setLogger( getLogger() );
     return command;
   }

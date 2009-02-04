@@ -37,6 +37,7 @@ import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import java.util.regex.Pattern;
 import org.apache.maven.doxia.sink.Sink;
 import org.apache.maven.doxia.siterenderer.Renderer;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -165,6 +166,12 @@ public class ScmActivityReport
    * @parameter expression="${tagBase}"
    */
   private String tagBase;
+
+  /**
+   * The regexp used to filter tags and branches names to produce the report.
+   * @parameter expression="${filter}"
+   */
+  private String filter;
   /**
    * The Maven Project Object
    *
@@ -738,12 +745,23 @@ public class ScmActivityReport
    */
   public ScmManager getScmManager()
   {
-    SvnXmlExeScmProvider svnProvider = new SvnXmlExeScmProvider( GrammarEnum.valueOf( grammar ) );
+    SvnXmlExeScmProvider svnProvider = new SvnXmlExeScmProvider( GrammarEnum.valueOf( grammar ),
+            getPattern() );
     svnProvider.setLogger( getLog() );
-    HgScmProvider hgProvider = new HgScmProvider( GrammarEnum.valueOf( grammar ) );
+    HgScmProvider hgProvider = new HgScmProvider( GrammarEnum.valueOf( grammar ) , getPattern() );
     manager.setScmProvider( "svn", svnProvider );
     manager.setScmProvider( "hg", hgProvider );
     return manager;
+  }
+
+
+  protected Pattern getPattern()
+  {
+    if( this.filter != null && ! "".equals( this.filter ))
+    {
+      return Pattern.compile( this.filter );
+    }
+    return  null;
   }
 
   /**

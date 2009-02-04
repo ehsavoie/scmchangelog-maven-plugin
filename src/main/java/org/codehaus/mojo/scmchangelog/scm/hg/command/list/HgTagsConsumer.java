@@ -26,6 +26,8 @@ package org.codehaus.mojo.scmchangelog.scm.hg.command.list;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.apache.maven.scm.ScmFileStatus;
 import org.apache.maven.scm.log.ScmLogger;
 import org.apache.maven.scm.provider.hg.command.HgConsumer;
@@ -46,12 +48,19 @@ class HgTagsConsumer
   private final List repositoryStatus = new ArrayList();
 
   /**
+   * The filter on the tag names to be used.
+   */
+  private Pattern filter;
+
+  /**
    * Instantiate a new HgTagsConsumer.
    * @param logger the logger.
+   * @param filter the filter on the tag names to be used.
    */
-  HgTagsConsumer( ScmLogger logger )
+  HgTagsConsumer( ScmLogger logger , Pattern filter )
   {
     super( logger );
+    this.filter = filter;
   }
 
   /**
@@ -68,10 +77,13 @@ class HgTagsConsumer
     String title = trimmedLine.substring( 0, startRevisionIndex );
     String revisionId = trimmedLine.substring( startRevisionIndex + 1,
         endRevisionIndex );
-    Tag tag = new Tag( title );
-    tag.setStartRevision( "0" );
-    tag.setEndRevision( revisionId );
-    repositoryStatus.add( tag );
+    if( isTagAccepted( title ) )
+    {
+      Tag tag = new Tag( title );
+      tag.setStartRevision( "0" );
+      tag.setEndRevision( revisionId );
+      repositoryStatus.add( tag );
+    }
   }
 
   /**
@@ -82,5 +94,22 @@ class HgTagsConsumer
   List getStatus()
   {
     return repositoryStatus;
+  }
+
+  /**
+   * Checks if the tag name matches the filter.
+   * @param title the name of the tag to be checked.
+   * @return true if the tag matches - false otherwise.
+   */
+  protected boolean isTagAccepted( String title)
+  {
+    if( filter != null )
+    {
+      Matcher matcher = filter.matcher( title );
+      getLogger().info( "Filtering " + title + " against " + filter.pattern()
+              + " : " +  matcher.matches() );
+      return matcher.matches();
+    }
+    return true;
   }
 }

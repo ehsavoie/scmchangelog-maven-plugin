@@ -26,6 +26,7 @@ package org.codehaus.mojo.scmchangelog.scm.svn;
 import java.io.File;
 import java.util.Iterator;
 
+import java.util.regex.Pattern;
 import org.apache.maven.scm.ScmBranch;
 import org.apache.maven.scm.ScmException;
 import org.apache.maven.scm.ScmFileSet;
@@ -57,6 +58,20 @@ public class SvnListCommand
    */
   private static final File TMP_DIR = new File( System.getProperty( "java.io.tmpdir" ) );
 
+ /**
+   * The filter on the tag names to be used.
+   */
+  private Pattern filter;
+
+  /**
+   * Creates a new instance of SvnListCommand.
+   * @param filter the filter on the tag names to be used.
+   */
+  public SvnListCommand( Pattern filter )
+  {
+    this.filter = filter;
+  }
+
   /**
    * Executes a <code>svn list --xml repository_url</code> command.
    * @param repository the Subversion repository.
@@ -72,7 +87,7 @@ public class SvnListCommand
   {
     getLogger().info( "Executing our command " + version );
     Commandline cl = createCommandLine( ( SvnScmProviderRepository ) repository, fileSet, recursive, version );
-    SvnListConsumer consumer = new SvnListConsumer();
+    SvnListConsumer consumer = new SvnListConsumer( this.filter);
     consumer.setLogger( getLogger() );
 
     CommandLineUtils.StringStreamConsumer stderr = new CommandLineUtils.StringStreamConsumer();

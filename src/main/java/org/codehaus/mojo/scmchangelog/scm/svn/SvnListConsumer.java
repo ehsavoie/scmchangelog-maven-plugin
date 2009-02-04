@@ -40,6 +40,8 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 /**
@@ -52,9 +54,24 @@ public class SvnListConsumer
 {
 
   /**
-   * The elemnts result of the parsing.
+   * The elements result of the parsing.
    */
   private java.util.List elements = new ArrayList();
+
+
+  /**
+   * The filter on the tag names to be used.
+   */
+  private Pattern filter;
+
+  /**
+   * Create new instance of the SvnListConsumer.
+   * @param filter the filter on the tag names to be used.
+   */
+  public SvnListConsumer (Pattern filter )
+  {
+    this.filter = filter;
+  }
 
   /**
    * Parses the output of the command and returns a list of elements.
@@ -77,11 +94,9 @@ public class SvnListConsumer
         {
           Entry entry = list.getEntryArray()[j];
           getLogger().debug( entry.getName() );
-
-          if ( !"tags".equalsIgnoreCase( entry.getName() ) )
+          if ( isTagAccepted( entry.getName() ) )
           {
             getLogger().debug( "Creating new Tag" );
-
             Tag tag = new Tag( entry.getName() );
             Commit commit = entry.getCommit();
             tag.setDate( commit.getDate().getTime() );
@@ -93,6 +108,7 @@ public class SvnListConsumer
       }
       Collections.sort( elements );
       Tag oldTag = new Tag( "" );
+      oldTag.setEndRevision( "0" );
       Iterator iter = elements.iterator();
       while ( iter.hasNext() )
       {
@@ -112,5 +128,26 @@ public class SvnListConsumer
       getLogger().error( getOutput(), ioe );
       throw new RuntimeException( ioe );
     }
+  }
+
+  /**
+   * Checks if the tag name matches the filter.
+   * @param title the name of the tag to be checked.
+   * @return true if the tag matches - false otherwise.
+   */
+  protected boolean isTagAccepted( String title)
+  {
+    if( "tags".equalsIgnoreCase( title ) )
+    {
+      return false;
+    }
+    if( filter != null )
+    {
+      Matcher matcher = filter.matcher( title );
+      getLogger().info( "Filtering " + title + " against " + filter.pattern()
+              + " : " +  matcher.matches() );
+      return matcher.matches();
+    }
+    return true;
   }
 }

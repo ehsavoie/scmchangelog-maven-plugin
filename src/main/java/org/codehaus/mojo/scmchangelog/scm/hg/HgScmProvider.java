@@ -23,6 +23,7 @@ SOFTWARE.
  */
 package org.codehaus.mojo.scmchangelog.scm.hg;
 
+import java.util.regex.Pattern;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.scm.CommandParameters;
 import org.apache.maven.scm.ScmException;
@@ -77,12 +78,18 @@ public class HgScmProvider
   private GrammarEnum grammar;
 
   /**
+   * The filter on the tag names to be used.
+   */
+  private Pattern filter;
+
+  /**
    * Creates a new instance of SvnXmlExeScmProvider.
    * @param commentGrammar the grammar tobe used.
    */
-  public HgScmProvider( GrammarEnum commentGrammar )
+  public HgScmProvider( GrammarEnum commentGrammar , Pattern filter )
   {
     this.grammar = commentGrammar;
+    this.filter = filter;
   }
 
   /**
@@ -92,7 +99,7 @@ public class HgScmProvider
    */
   public HgListCommand getListCommand()
   {
-    HgListCommand command = new HgListCommand();
+    HgListCommand command = new HgListCommand( filter );
     command.setLogger( getLogger() );
     return command;
   }

@@ -255,7 +255,8 @@
                     <trackerType>jira</trackerType>
                     <grammar>MANU</grammar>
                     <connectionUrl>scm:svn:http://svn.codehaus.org/mojo/trunk/mojo/scmchangelog-maven-plugin</connectionUrl>
-                    <tagBase>http://svn.codehaus.org/mojo/tags/mojo/scmchangelog-maven-plugin</tagBase>
+                    <tagBase>http://svn.codehaus.org/mojo/tags</tagBase>
+                    <filter>scmchangelog-maven-plugin-.*</filter>
                 </configuration>
             </plugin>
         </plugins>
