@@ -70,7 +70,7 @@
               </ul>
             </li>
             <li>grammar: this allows you to specify the grammar used to parse the svn logs. <br/>
-              Currently it supports <a href="grammars.html">two grammars</a>: <br/>
+              Currently it supports <a href="examples/grammars.html">two grammars</a>: <br/>
               <ul>
                 <li>"MANU" which uses <code>@operation:issue;comments</code></li>
                 <li>"REMY" with <code>[operation:issue]comments</code></li>
