@@ -78,6 +78,7 @@
             </li>
             <li>connectionUrl: the same as the &lt;connectionUrl&gt; element in the&lt;scm&gt; element.</li>
             <li>tagBase: the url to the tags directory.</li>
+            <li>filter: a regexp used to filter tags by their name.</li>
         </ul>
       </p>
       <p>
@@ -94,6 +95,7 @@
          &lt;grammar&gt;REMY&lt;/grammar&gt;
          &lt;connectionUrl&gt;scm:svn:https://retroweaver.svn.sourceforge.net/svnroot/retroweaver/trunk&lt;/connectionUrl&gt;
          &lt;tagBase&gt;https://retroweaver.svn.sourceforge.net/svnroot/retroweaver/tags/&lt;/tagBase&gt;
+         &lt;filter&gt;.*&lt;/filter&gt;
        &lt;/configuration&gt;
      &lt;/plugin&gt;
    &lt;/plugins&gt;
