@@ -106,7 +106,7 @@ class HgTagsConsumer
     if ( filter != null )
     {
       Matcher matcher = filter.matcher( title );
-      getLogger().info( "Filtering " + title + " against " + filter.pattern()
+      getLogger().debug( "Filtering " + title + " against " + filter.pattern()
               + " : " +  matcher.matches() );
       return matcher.matches();
     }
