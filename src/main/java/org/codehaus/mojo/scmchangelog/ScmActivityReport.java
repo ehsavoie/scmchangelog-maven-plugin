@@ -574,7 +574,7 @@ public class ScmActivityReport
         {
           Issue issue = ( Issue ) iterIssue.next();
 
-          if ( issue.getIssue() != null )
+          if ( issue.getIssue() != null && ! "".equals( issue.getIssue() ) )
           {
             sink.link( doLinkIssue( issue.getIssue() ) );
             sink.text( issue.getIssue() );
@@ -582,7 +582,7 @@ public class ScmActivityReport
           }
           else
           {
-            sink.text( issue.getIssue() );
+            sink.text( "" );
           }
           sink.lineBreak();
         }
@@ -754,10 +754,13 @@ public class ScmActivityReport
     return manager;
   }
 
-
+  /**
+   * Compile the filter into a pattern. If the filter is null or empty returns null.
+   * @return thefilter compiled as a pattern. If the filter is null or empty returns null.
+   */
   protected Pattern getPattern()
   {
-    if( this.filter != null && ! "".equals( this.filter ))
+    if ( this.filter != null && ! "".equals( this.filter ) )
     {
       return Pattern.compile( this.filter );
     }

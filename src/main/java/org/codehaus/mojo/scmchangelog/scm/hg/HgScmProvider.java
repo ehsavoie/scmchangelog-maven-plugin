@@ -85,6 +85,7 @@ public class HgScmProvider
   /**
    * Creates a new instance of SvnXmlExeScmProvider.
    * @param commentGrammar the grammar tobe used.
+   * @param filter the filter on the tag names to be used.
    */
   public HgScmProvider( GrammarEnum commentGrammar , Pattern filter )
   {

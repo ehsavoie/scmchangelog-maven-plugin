@@ -77,7 +77,7 @@ class HgTagsConsumer
     String title = trimmedLine.substring( 0, startRevisionIndex );
     String revisionId = trimmedLine.substring( startRevisionIndex + 1,
         endRevisionIndex );
-    if( isTagAccepted( title ) )
+    if ( isTagAccepted( title ) )
     {
       Tag tag = new Tag( title );
       tag.setStartRevision( "0" );
@@ -101,9 +101,9 @@ class HgTagsConsumer
    * @param title the name of the tag to be checked.
    * @return true if the tag matches - false otherwise.
    */
-  protected boolean isTagAccepted( String title)
+  protected boolean isTagAccepted( String title )
   {
-    if( filter != null )
+    if ( filter != null )
     {
       Matcher matcher = filter.matcher( title );
       getLogger().info( "Filtering " + title + " against " + filter.pattern()

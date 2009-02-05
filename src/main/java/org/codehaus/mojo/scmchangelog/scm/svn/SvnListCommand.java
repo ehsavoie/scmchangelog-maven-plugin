@@ -87,7 +87,7 @@ public class SvnListCommand
   {
     getLogger().info( "Executing our command " + version );
     Commandline cl = createCommandLine( ( SvnScmProviderRepository ) repository, fileSet, recursive, version );
-    SvnListConsumer consumer = new SvnListConsumer( this.filter);
+    SvnListConsumer consumer = new SvnListConsumer( this.filter );
     consumer.setLogger( getLogger() );
 
     CommandLineUtils.StringStreamConsumer stderr = new CommandLineUtils.StringStreamConsumer();

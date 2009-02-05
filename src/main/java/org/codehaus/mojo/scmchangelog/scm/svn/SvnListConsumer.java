@@ -68,7 +68,7 @@ public class SvnListConsumer
    * Create new instance of the SvnListConsumer.
    * @param filter the filter on the tag names to be used.
    */
-  public SvnListConsumer (Pattern filter )
+  public SvnListConsumer ( Pattern filter )
   {
     this.filter = filter;
   }
@@ -135,13 +135,13 @@ public class SvnListConsumer
    * @param title the name of the tag to be checked.
    * @return true if the tag matches - false otherwise.
    */
-  protected boolean isTagAccepted( String title)
+  protected boolean isTagAccepted( String title )
   {
-    if( "tags".equalsIgnoreCase( title ) )
+    if ( "tags".equalsIgnoreCase( title ) )
     {
       return false;
     }
-    if( filter != null )
+    if ( filter != null )
     {
       Matcher matcher = filter.matcher( title );
       getLogger().info( "Filtering " + title + " against " + filter.pattern()
