@@ -33,7 +33,7 @@ public class BugTrackers
   /**
    * Gforge bug tracker.
    */
-  public static final BugTrackers CODEX = new BugTrackers( "sourceforge" );
+  public static final BugTrackers SOURCEFORGE = new BugTrackers( "sourceforge" );
   /**
    * Jira bug tracker.
    */
@@ -98,6 +98,6 @@ public class BugTrackers
       return BUGZILLA;
     }
 
-    return CODEX;
+    return SOURCEFORGE;
   }
 }
