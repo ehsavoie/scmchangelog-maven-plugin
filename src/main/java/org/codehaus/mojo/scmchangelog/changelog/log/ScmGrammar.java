@@ -28,7 +28,7 @@ package org.codehaus.mojo.scmchangelog.changelog.log;
  * @author ehsavoie
  * @version $Id$
  */
-public interface SvnGrammar
+public interface ScmGrammar
 {
 
   /**

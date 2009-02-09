@@ -23,8 +23,8 @@ SOFTWARE.
  */
 package org.codehaus.mojo.scmchangelog.changelog.log;
 
-import org.codehaus.mojo.scmchangelog.changelog.log.grammar.ManuSvnGrammar;
-import org.codehaus.mojo.scmchangelog.changelog.log.grammar.RemySvnGrammar;
+import org.codehaus.mojo.scmchangelog.changelog.log.grammar.ManuScmGrammar;
+import org.codehaus.mojo.scmchangelog.changelog.log.grammar.RemyScmGrammar;
 
 /**
  * The currently supported grammars.
@@ -36,17 +36,17 @@ public class GrammarEnum
   /**
    * The MANU grammar @operatio:issue#;comment
    */
-  public static final GrammarEnum MANU = new GrammarEnum( new ManuSvnGrammar(),
+  public static final GrammarEnum MANU = new GrammarEnum( new ManuScmGrammar(),
       "MANU" );
   /**
    * The REMY grammar.
    */
-  public static final GrammarEnum REMY = new GrammarEnum( new RemySvnGrammar(),
+  public static final GrammarEnum REMY = new GrammarEnum( new RemyScmGrammar(),
       "REMY" );
   /**
    * The grammar of the enum element.
    */
-  private SvnGrammar grammar;
+  private ScmGrammar grammar;
   /**
    * The name of the enum element.
    */
@@ -57,7 +57,7 @@ public class GrammarEnum
    * @param grammar the grammar of the element.
    * @param name the name of the grammar element.
    */
-  private GrammarEnum( SvnGrammar grammar, String name )
+  private GrammarEnum( ScmGrammar grammar, String name )
   {
     this.grammar = grammar;
     this.name = name;

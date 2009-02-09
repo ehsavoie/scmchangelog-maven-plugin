@@ -30,15 +30,15 @@ import java.util.regex.Matcher;
 import org.codehaus.mojo.scmchangelog.changelog.log.Issue;
 import org.codehaus.mojo.scmchangelog.changelog.log.Message;
 import org.codehaus.mojo.scmchangelog.changelog.log.OperationTypeEnum;
-import org.codehaus.mojo.scmchangelog.changelog.log.SvnGrammar;
+import org.codehaus.mojo.scmchangelog.changelog.log.ScmGrammar;
 
 /**
  * Abstract grammar to be used as an helper class.
  * @author ehsavoie
  * @version $Id$
  */
-public abstract class AbstractSvnGrammar
-    implements SvnGrammar
+public abstract class AbstractScmGrammar
+    implements ScmGrammar
 {
 
   /**

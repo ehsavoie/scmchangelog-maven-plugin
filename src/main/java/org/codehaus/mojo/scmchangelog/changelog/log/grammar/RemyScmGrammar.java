@@ -26,26 +26,26 @@ package org.codehaus.mojo.scmchangelog.changelog.log.grammar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.codehaus.mojo.scmchangelog.changelog.log.grammar.common.AbstractSvnGrammar;
+import org.codehaus.mojo.scmchangelog.changelog.log.grammar.common.AbstractScmGrammar;
 
 /**
- * Simple grammar which uses a <code>@type:id;comment</code> structure.
+ * Simple grammar which uses a <code>[type:id]comment</code> structure.
  * @author ehsavoie
  * @version $Id$
  */
-public class ManuSvnGrammar
-    extends AbstractSvnGrammar
+public class RemyScmGrammar
+    extends AbstractScmGrammar
 {
 
   public static final String NEW_LINE = "\r\n";
-  protected static final Pattern FIX_PATTERN = Pattern.compile( "@[fF][iI][xX][\\s]*:[^;]*[;]" );
-  protected static final Pattern REMOVE_PATTERN = Pattern.compile( "@[rR][eE][mM][oO][vV][eE][\\s]*:[^;]*[;]" );
-  protected static final Pattern ADD_PATTERN = Pattern.compile( "@[aA][dD][dD][\\s]*:[^;]*[;]" );
-  protected static final Pattern UPDATE_PATTERN = Pattern.compile( "@[uU][pP][dD][aA][tT][eE][\\s]*:[^;]*[;]" );
-  protected static final Pattern FIX_CLEANER_PATTERN = Pattern.compile( "@[fF][iI][xX][\\s]*:" );
-  protected static final Pattern REMOVE_CLEANER_PATTERN = Pattern.compile( "@[rR][eE][mM][oO][vV][eE][\\s]*:" );
-  protected static final Pattern ADD_CLEANER_PATTERN = Pattern.compile( "@[aA][dD][dD][\\s]*:" );
-  protected static final Pattern UPDATE_CLEANER_PATTERN = Pattern.compile( "@[uU][pP][dD][aA][tT][eE][\\s]*:" );
+  protected static final Pattern FIX_PATTERN = Pattern.compile( "[\\[][fF][iI][xX][\\s]*:[^\\]]*[\\]]" );
+  protected static final Pattern REMOVE_PATTERN = Pattern.compile( "[\\[][rR][eE][mM][oO][vV][eE][\\s]*:[^\\]]*[\\]]" );
+  protected static final Pattern ADD_PATTERN = Pattern.compile( "[\\[][aA][dD][dD][\\s]*:[^\\]]*[\\]]" );
+  protected static final Pattern UPDATE_PATTERN = Pattern.compile( "[\\[][uU][pP][dD][aA][tT][eE][\\s]*:[^\\]]*[\\]]" );
+  protected static final Pattern FIX_CLEANER_PATTERN = Pattern.compile( "[\\[][fF][iI][xX][\\s]*:" );
+  protected static final Pattern REMOVE_CLEANER_PATTERN = Pattern.compile( "[\\[][rR][eE][mM][oO][vV][eE][\\s]*:" );
+  protected static final Pattern ADD_CLEANER_PATTERN = Pattern.compile( "[\\[][aA][dD][dD][\\s]*:" );
+  protected static final Pattern UPDATE_CLEANER_PATTERN = Pattern.compile( "[\\[][uU][pP][dD][aA][tT][eE][\\s]*:" );
 
   public Matcher getFixCleaner( String expression )
   {
