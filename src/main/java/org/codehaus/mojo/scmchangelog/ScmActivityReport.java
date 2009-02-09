@@ -36,8 +36,8 @@ import java.util.ResourceBundle;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import java.util.regex.Pattern;
+
 import org.apache.maven.doxia.sink.Sink;
 import org.apache.maven.doxia.siterenderer.Renderer;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -69,6 +69,7 @@ import org.codehaus.mojo.scmchangelog.scm.hg.HgScmProvider;
 import org.codehaus.mojo.scmchangelog.scm.svn.SvnXmlExeScmProvider;
 import org.codehaus.mojo.scmchangelog.tracker.BugTrackLinker;
 import org.codehaus.mojo.scmchangelog.tracker.BugTrackers;
+import org.codehaus.mojo.scmchangelog.tracker.BugzillaBugTrackLinker;
 import org.codehaus.mojo.scmchangelog.tracker.JiraBugTrackLinker;
 import org.codehaus.mojo.scmchangelog.tracker.SourceforgeBugTrackLinker;
 import org.codehaus.plexus.util.StringUtils;
@@ -667,10 +668,9 @@ public class ScmActivityReport
       {
         this.bugLinker = new JiraBugTrackLinker( this.trackerUrlPattern );
       } 
-      else if ( BugTrackers.JIRA.equals( BugTrackers.valueOf(
-          getTrackerType() ) ) )
+      else if ( BugTrackers.BUGZILLA.equals( BugTrackers.valueOf( getTrackerType() ) ) )
       {
-        this.bugLinker = new SourceforgeBugTrackLinker( this.trackerUrlPattern );
+        this.bugLinker = new BugzillaBugTrackLinker( this.trackerUrlPattern );
       }
       else
       {

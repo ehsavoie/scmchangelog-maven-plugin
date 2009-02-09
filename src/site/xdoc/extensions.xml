@@ -38,7 +38,7 @@
         <p>
           The bug trackers are defined in the class <code>org.codehaus.mojo.scmchangelog.tracker.BugTrackers</code>.
           They implement the interface <code>org.codehaus.mojo.scmchangelog.tracker.BugTrackLinker</code> whose only method is here to provide a link to the bug description for this bug tracker with the bug id as parameter.<br/>
-          We provide two examples of bug tracker: Sourceforge and Jira. Our bug trackers use the issue management url from the pom, but you can also define your own through the plugin's configuration.          
+          We provide three examples of bug trackers: SourceForge, JIRA, and Bugzilla. Our bug trackers use the issue management url from the pom, but you can also define your own through the plugin's configuration.          
         </p>
       </subsection>
       <subsection name="Grammar">

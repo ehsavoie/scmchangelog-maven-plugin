@@ -39,6 +39,10 @@ public class BugTrackers
    */
   public static final BugTrackers JIRA = new BugTrackers( "jira" );
   /**
+   * Bugzilla bug tracker.
+   */
+  public static final BugTrackers BUGZILLA = new BugTrackers( "bugzilla" );
+  /**
    * Name of the bug tracker.
    */
   private String name;
@@ -88,6 +92,10 @@ public class BugTrackers
     if ( JIRA.name.equalsIgnoreCase( name ) )
     {
       return JIRA;
+    }
+    else if ( BUGZILLA.name.equalsIgnoreCase( name ) )
+    {
+      return BUGZILLA;
     }
 
     return CODEX;

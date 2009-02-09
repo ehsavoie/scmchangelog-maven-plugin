@@ -1,0 +1,155 @@
+Index: src/main/java/org/codehaus/mojo/scmchangelog/tracker/BugzillaBugTrackLinker.java
+===================================================================
+--- src/main/java/org/codehaus/mojo/scmchangelog/tracker/BugzillaBugTrackLinker.java	(revision 0)
++++ src/main/java/org/codehaus/mojo/scmchangelog/tracker/BugzillaBugTrackLinker.java	(revision 0)
+@@ -0,0 +1,35 @@
++package org.codehaus.mojo.scmchangelog.tracker;
++
++import java.text.MessageFormat;
++
++/**
++ * An implementation for the Bugzilla bug tracker.
++ * 
++ * @author Matthew Beermann <matthew.beermann@cerner.com>
++ */
++public class BugzillaBugTrackLinker
++    implements BugTrackLinker
++{
++
++    /**
++     * The url as a pattern for the links.
++     */
++    private String pattern;
++
++    /**
++     * Creates a new instance of BugzillaBugTrackLinker
++     */
++    public BugzillaBugTrackLinker( String bugzillaUrl )
++    {
++        String url = bugzillaUrl;
++        this.pattern = url.substring( 0, url.lastIndexOf( '/' ) ) + "/show_bug.cgi?id={0}";
++    }
++
++    /**
++     * Computes the link to the description of the specified bug for Bugzilla.
++     */
++    public String getLinkUrlForBug( String bugNumber )
++    {
++        return MessageFormat.format( pattern, new Object[] { bugNumber } );
++    }
++}
+Index: src/main/java/org/codehaus/mojo/scmchangelog/tracker/BugTrackers.java
+===================================================================
+--- src/main/java/org/codehaus/mojo/scmchangelog/tracker/BugTrackers.java	(revision 9002)
++++ src/main/java/org/codehaus/mojo/scmchangelog/tracker/BugTrackers.java	(working copy)
+@@ -39,6 +39,10 @@
+    */
+   public static final BugTrackers JIRA = new BugTrackers( "jira" );
+   /**
++   * Bugzilla bug tracker.
++   */
++  public static final BugTrackers BUGZILLA = new BugTrackers( "bugzilla" );
++  /**
+    * Name of the bug tracker.
+    */
+   private String name;
+@@ -89,6 +93,10 @@
+     {
+       return JIRA;
+     }
++    else if ( BUGZILLA.name.equalsIgnoreCase( name ) )
++    {
++      return BUGZILLA;
++    }
+ 
+     return CODEX;
+   }
+Index: src/main/java/org/codehaus/mojo/scmchangelog/ScmActivityReport.java
+===================================================================
+--- src/main/java/org/codehaus/mojo/scmchangelog/ScmActivityReport.java	(revision 9002)
++++ src/main/java/org/codehaus/mojo/scmchangelog/ScmActivityReport.java	(working copy)
+@@ -36,8 +36,8 @@
+ import java.util.StringTokenizer;
+ import java.util.logging.Level;
+ import java.util.logging.Logger;
++import java.util.regex.Pattern;
+ 
+-import java.util.regex.Pattern;
+ import org.apache.maven.doxia.sink.Sink;
+ import org.apache.maven.doxia.siterenderer.Renderer;
+ import org.apache.maven.plugin.MojoExecutionException;
+@@ -69,6 +69,7 @@
+ import org.codehaus.mojo.scmchangelog.scm.svn.SvnXmlExeScmProvider;
+ import org.codehaus.mojo.scmchangelog.tracker.BugTrackLinker;
+ import org.codehaus.mojo.scmchangelog.tracker.BugTrackers;
++import org.codehaus.mojo.scmchangelog.tracker.BugzillaBugTrackLinker;
+ import org.codehaus.mojo.scmchangelog.tracker.JiraBugTrackLinker;
+ import org.codehaus.mojo.scmchangelog.tracker.SourceforgeBugTrackLinker;
+ import org.codehaus.plexus.util.StringUtils;
+@@ -667,10 +668,9 @@
+       {
+         this.bugLinker = new JiraBugTrackLinker( this.trackerUrlPattern );
+       } 
+-      else if ( BugTrackers.JIRA.equals( BugTrackers.valueOf(
+-          getTrackerType() ) ) )
++      else if ( BugTrackers.BUGZILLA.equals( BugTrackers.valueOf( getTrackerType() ) ) )
+       {
+-        this.bugLinker = new SourceforgeBugTrackLinker( this.trackerUrlPattern );
++        this.bugLinker = new BugzillaBugTrackLinker( this.trackerUrlPattern );
+       }
+       else
+       {
+Index: src/site/xdoc/usage.xml.vm
+===================================================================
+--- src/site/xdoc/usage.xml.vm	(revision 9002)
++++ src/site/xdoc/usage.xml.vm	(working copy)
+@@ -63,10 +63,11 @@
+         <ul>
+             <li>trackerUrlPattern: this allows you to specify a pattern to link an issue to any tracker.</li>
+             <li>trackerType: this allows you to specify the issue tracker used. <br/>
+-             Currently it supports two trackers: <br/>
++             Currently it supports three trackers: <br/>
+               <ul>
+                 <li>sourceforge</li>
+                 <li>jira</li>
++                <li>bugzilla</li>
+               </ul>
+             </li>
+             <li>grammar: this allows you to specify the grammar used to parse the svn logs. <br/>
+Index: src/site/xdoc/extensions.xml
+===================================================================
+--- src/site/xdoc/extensions.xml	(revision 9002)
++++ src/site/xdoc/extensions.xml	(working copy)
+@@ -38,7 +38,7 @@
+         <p>
+           The bug trackers are defined in the class <code>org.codehaus.mojo.scmchangelog.tracker.BugTrackers</code>.
+           They implement the interface <code>org.codehaus.mojo.scmchangelog.tracker.BugTrackLinker</code> whose only method is here to provide a link to the bug description for this bug tracker with the bug id as parameter.<br/>
+-          We provide two examples of bug tracker: Sourceforge and Jira. Our bug trackers use the issue management url from the pom, but you can also define your own through the plugin's configuration.          
++          We provide three examples of bug trackers: SourceForge, JIRA, and Bugzilla. Our bug trackers use the issue management url from the pom, but you can also define your own through the plugin's configuration.          
+         </p>
+       </subsection>
+       <subsection name="Grammar">
+Index: src/site/fml/faq.fml
+===================================================================
+--- src/site/fml/faq.fml	(revision 9002)
++++ src/site/fml/faq.fml	(working copy)
+@@ -33,7 +33,7 @@
+         What SCM are supported?
+       </question>
+       <answer>
+-        <p>Well, we only support Subervion and Mercurial (alpha) currently. We need a BetterChangeSet for each SCM that is not provided by Maven SCM.</p>
++        <p>Well, we only support Subversion and Mercurial (alpha) currently. We need a BetterChangeSet for each SCM that is not provided by Maven SCM.</p>
+         <p>To support another scm should be quite easy, it involves modifying the maven scm command and maven scm consumer to get a list of BetterChangeSet instead of a list of ChangeSet.</p>
+       </answer>
+     </faq>
+@@ -43,8 +43,8 @@
+       </question>
+       <answer>
+         <p>
+-            We support Jira and Sourceforge trackers. But since we use a trackerUrlPattern you could well set another tracker with its url
+-            writting :
++            We support JIRA, Bugzilla, and SourceForge trackers. But since we use a trackerUrlPattern you could well set another tracker with its url
++            writing :
+             <source><trackerUrlPattern>my_tracker_url?bugIdParam={0}</trackerUrlPattern></source>
+             Also if you don't have a tracker you can use :
+             <source><trackerUrlPattern>#</trackerUrlPattern></source>

@@ -63,10 +63,11 @@
         <ul>
             <li>trackerUrlPattern: this allows you to specify a pattern to link an issue to any tracker.</li>
             <li>trackerType: this allows you to specify the issue tracker used. <br/>
-             Currently it supports two trackers: <br/>
+             Currently it supports three trackers: <br/>
               <ul>
                 <li>sourceforge</li>
                 <li>jira</li>
+                <li>bugzilla</li>
               </ul>
             </li>
             <li>grammar: this allows you to specify the grammar used to parse the svn logs. <br/>
