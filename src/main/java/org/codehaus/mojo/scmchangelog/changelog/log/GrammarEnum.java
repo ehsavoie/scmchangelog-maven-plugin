@@ -23,6 +23,7 @@ SOFTWARE.
  */
 package org.codehaus.mojo.scmchangelog.changelog.log;
 
+import org.codehaus.mojo.scmchangelog.changelog.log.grammar.BugzillaScmGrammar;
 import org.codehaus.mojo.scmchangelog.changelog.log.grammar.ManuScmGrammar;
 import org.codehaus.mojo.scmchangelog.changelog.log.grammar.RemyScmGrammar;
 
@@ -43,6 +44,10 @@ public class GrammarEnum
    */
   public static final GrammarEnum REMY = new GrammarEnum( new RemyScmGrammar(),
       "REMY" );
+  /**
+   * The Bugzilla grammar.
+   */
+  public static final GrammarEnum BUGZILLA = new GrammarEnum( new BugzillaScmGrammar(), "BUGZILLA" );
   /**
    * The grammar of the enum element.
    */
@@ -104,6 +109,10 @@ public class GrammarEnum
     if ( REMY.name.equalsIgnoreCase( name ) )
     {
       return REMY;
+    }
+    else if( BUGZILLA.name.equalsIgnoreCase( name ) )
+    {
+      return BUGZILLA;
     }
 
     return MANU;

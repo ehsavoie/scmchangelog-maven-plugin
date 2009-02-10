@@ -11,12 +11,13 @@
     <section name="Commons">
       <subsection name="Operations">
         <p>
-         We support currently 2 grammars:
+         We support currently 3 grammars:
           <ul>
             <li>MANU</li>
             <li>REMY</li>
+            <li>Bugzilla</li>
           </ul>
-          both with the same operations. The operations are <b>NOT</b> case sensitive.
+          all with the same operations. The operations are <b>NOT</b> case sensitive.
           <br/>
           <ul>
             <li>
@@ -64,6 +65,15 @@
          If you don't have a issue id but still want to add an entry you could use the following comment:
           <source>[@fix:]The url to the JIRA tracker has been fixed.</source>
         </p>
+      </subsection>
+      <subsection name="Bugzilla">
+        <p>The <b>Bugzilla</b> grammar implements Bugzilla's <a href="http://www.bugzilla.org/docs/3.2/en/html/hintsandtips.html">autolinkification</a>
+        feature, automatically recognizing bug references of the form:</p>
+        <p>
+          <source>bug 42: The documentation has been updated.</source>
+        </p>
+        <p>This grammar does not allow the plugin to distinguish between the various operations,
+        so they will all be marked in the report as "fix".</p>
       </subsection>
     </section>
   </body>
