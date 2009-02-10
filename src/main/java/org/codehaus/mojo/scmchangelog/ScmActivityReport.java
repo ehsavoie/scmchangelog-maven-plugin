@@ -749,6 +749,7 @@ public class ScmActivityReport
             getPattern() );
     svnProvider.setLogger( getLog() );
     HgScmProvider hgProvider = new HgScmProvider( GrammarEnum.valueOf( grammar ) , getPattern() );
+    hgProvider.setLogger( getLog() );
     manager.setScmProvider( "svn", svnProvider );
     manager.setScmProvider( "hg", hgProvider );
     return manager;
