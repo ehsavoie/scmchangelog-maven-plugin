@@ -45,17 +45,14 @@ public class ScmAdapterFactory {
     {
       adapter = new SvnScmAdapter( currentManager, currentGrammar );
     }
-
-    if ( "hg".equals( repository.getProvider() ) )
+    else if ( "hg".equals( repository.getProvider() ) )
     {
       adapter = new HgScmAdapter( currentManager, currentGrammar );
     }
-
     else
     {
       adapter = new DefaultScmAdapter( currentManager, currentGrammar );
     }
-
     adapter.setLogger( logger );
     return adapter;
   }
