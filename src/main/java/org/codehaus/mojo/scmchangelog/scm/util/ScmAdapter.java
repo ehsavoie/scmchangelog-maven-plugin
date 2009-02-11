@@ -44,7 +44,7 @@ import org.codehaus.mojo.scmchangelog.scm.hg.command.changelog.BetterChangeSet;
 
 
 /**
- * Adapter to be used to wrap the scm implementation.
+ * Abstract Adapter to be used to wrap the scm implementation.
  * @author ehsavoie
  * @version $Id: ScmAdapter.java 8964 2009-01-31 22:26:07Z ehsavoie $
  */
