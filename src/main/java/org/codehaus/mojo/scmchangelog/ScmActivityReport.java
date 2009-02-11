@@ -64,7 +64,8 @@ import org.codehaus.mojo.scmchangelog.changelog.log.GrammarEnum;
 import org.codehaus.mojo.scmchangelog.changelog.log.Issue;
 import org.codehaus.mojo.scmchangelog.changelog.log.OperationTypeEnum;
 import org.codehaus.mojo.scmchangelog.changelog.log.SvnLogEntry;
-import org.codehaus.mojo.scmchangelog.scm.ScmAdapter;
+import org.codehaus.mojo.scmchangelog.scm.util.ScmAdapter;
+import org.codehaus.mojo.scmchangelog.scm.ScmAdapterFactory;
 import org.codehaus.mojo.scmchangelog.scm.hg.HgScmProvider;
 import org.codehaus.mojo.scmchangelog.scm.svn.SvnXmlExeScmProvider;
 import org.codehaus.mojo.scmchangelog.tracker.BugTrackLinker;
@@ -332,8 +333,7 @@ public class ScmActivityReport
 
       ScmFileSet fileSet = getFileSet( "" );
       getLog().debug( "FileSet : "  + fileSet );
-      ScmAdapter adapter = new ScmAdapter( getScmManager(), realGrammar );
-      adapter.setLogger( getLog() );
+      ScmAdapter adapter = ScmAdapterFactory.getInstance( getScmManager(), realGrammar, repository , getLog() );
       List releases = adapter.getListOfReleases( repository, fileSet );
       doGenerateReport( releases, getSink() );
     }
