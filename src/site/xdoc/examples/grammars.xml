@@ -63,7 +63,7 @@
         </p>
         <p>
          If you don't have a issue id but still want to add an entry you could use the following comment:
-          <source>[@fix:]The url to the JIRA tracker has been fixed.</source>
+          <source>[fix:]The url to the JIRA tracker has been fixed.</source>
         </p>
       </subsection>
       <subsection name="Bugzilla">
