@@ -39,7 +39,7 @@ import org.apache.maven.scm.manager.ScmManager;
 import org.apache.maven.scm.repository.ScmRepository;
 import org.codehaus.mojo.scmchangelog.SvnTargetEnum;
 import org.codehaus.mojo.scmchangelog.changelog.log.GrammarEnum;
-import org.codehaus.mojo.scmchangelog.changelog.log.SvnLogEntry;
+import org.codehaus.mojo.scmchangelog.changelog.log.ScmLogEntry;
 import org.codehaus.mojo.scmchangelog.scm.hg.command.changelog.BetterChangeSet;
 
 
@@ -48,7 +48,8 @@ import org.codehaus.mojo.scmchangelog.scm.hg.command.changelog.BetterChangeSet;
  * @author ehsavoie
  * @version $Id: ScmAdapter.java 8964 2009-01-31 22:26:07Z ehsavoie $
  */
-public abstract class ScmAdapter {
+public abstract class ScmAdapter
+{
  /**
   * The ScmManager to access SCM elements.
   */
@@ -120,7 +121,7 @@ public abstract class ScmAdapter {
     /**
    * Returns the list of log entries defined in the list of ChangeSet.
    * @param changeSets the list of ChangeSet.
-   * @return the list of log entries defined in the list of ChangeSet. <code>List&lt;SvnLogEntry&gt;</code>
+   * @return the list of log entries defined in the list of ChangeSet. <code>List&lt;ScmLogEntry&gt;</code>
    */
   protected List getEntries( List changeSets )
   {
@@ -129,7 +130,7 @@ public abstract class ScmAdapter {
     while ( iter.hasNext() )
     {
       BetterChangeSet changeSet = ( BetterChangeSet ) iter.next();
-      SvnLogEntry entry = new SvnLogEntry();
+      ScmLogEntry entry = new ScmLogEntry();
       entry.setAuthor( changeSet.getAuthor() );
       entry.setDate( changeSet.getDate() );
       getLogger().info( changeSet.getComment() );

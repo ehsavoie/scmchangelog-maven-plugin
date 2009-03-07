@@ -23,58 +23,28 @@ SOFTWARE.
  */
 package org.codehaus.mojo.scmchangelog.changelog;
 
-import java.util.List;
-
-import org.codehaus.mojo.scmchangelog.tags.Tag;
+import java.util.Comparator;
 
 /**
- * Represents a release of the product.
- * A release is a list of log entries for a tag.
+ * Comparator to order releases alphabetically.
  * @author ehsavoie
- * @version $Id$
+ * @version $Id: Release.java 7652 2008-09-11 07:58:40Z ehsavoie $
  *
- * @see org.codehaus.mojo.scmchangelog.changelog.log.ScmLogEntry
- * @see org.codehaus.mojo.scmchangelog.tags.Tag
+ * @see org.codehaus.mojo.scmchangelog.changelog.Release
  */
-public class Release
+public class ReleaseAlphabeticalComparator implements Comparator
 {
 
   /**
-   * Tag for this release.
+   * Compare two Release alphabetically.
+   * @param o1 the first release to be compared.
+   * @param o2 the second release to be compared.
+   * @return a positive int if o1 after o2 - negative otherwise.
    */
-  private Tag tag;
-  /**
-   * List of SvnLogEntry for this release.
-   * @see org.codehaus.mojo.scmchangelog.changelog.log.SvnLogEntry
-   */
-  private List entries;
-
-  /**
-   * Creates a new instance of Release
-   * @param releaseTag the tag corresponding to this release.
-   * @param logEntries the log entries for this release.
-   */
-  public Release( Tag releaseTag, List logEntries )
+  public int compare( Object o1, Object o2 )
   {
-    this.tag = releaseTag;
-    this.entries = logEntries;
-  }
-
-  /**
-   * Return the log entries for his release.
-   * @return a list of SvnLogEntry for this release.
-   */
-  public List getEntries()
-  {
-    return this.entries;
-  }
-
-  /**
-   * Return the tag for his release.
-   * @return the tag corresponding to this release.
-   */
-  public Tag getTag()
-  {
-    return this.tag;
+    Release release1 = ( Release ) o1;
+    Release release2 = ( Release ) o2;
+    return release2.getTag().getTitle().compareTo( release1.getTag().getTitle() );
   }
 }

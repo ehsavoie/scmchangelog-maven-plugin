@@ -63,7 +63,7 @@ import org.codehaus.mojo.scmchangelog.changelog.Release;
 import org.codehaus.mojo.scmchangelog.changelog.log.GrammarEnum;
 import org.codehaus.mojo.scmchangelog.changelog.log.Issue;
 import org.codehaus.mojo.scmchangelog.changelog.log.OperationTypeEnum;
-import org.codehaus.mojo.scmchangelog.changelog.log.SvnLogEntry;
+import org.codehaus.mojo.scmchangelog.changelog.log.ScmLogEntry;
 import org.codehaus.mojo.scmchangelog.scm.util.ScmAdapter;
 import org.codehaus.mojo.scmchangelog.scm.ScmAdapterFactory;
 import org.codehaus.mojo.scmchangelog.scm.hg.HgScmProvider;
@@ -518,7 +518,7 @@ public class ScmActivityReport
     Iterator iterEntry = entries.iterator();
     while ( iterEntry.hasNext() )
     {
-      SvnLogEntry entry = ( SvnLogEntry ) iterEntry.next();
+      ScmLogEntry entry = ( ScmLogEntry ) iterEntry.next();
       getLog().info( "Entry : "
           + entry.getRevision()
           + entry.getMessage().getComment() );

@@ -110,11 +110,10 @@ public class GrammarEnum
     {
       return REMY;
     }
-    else if( BUGZILLA.name.equalsIgnoreCase( name ) )
+    else if ( BUGZILLA.name.equalsIgnoreCase( name ) )
     {
       return BUGZILLA;
     }
-
     return MANU;
   }
 }

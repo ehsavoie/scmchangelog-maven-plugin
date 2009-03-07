@@ -25,7 +25,7 @@ package org.codehaus.mojo.scmchangelog.scm.svn;
 
 import org.codehaus.mojo.scmchangelog.AbstractBufferedConsumer;
 import org.codehaus.mojo.scmchangelog.changelog.log.GrammarEnum;
-import org.codehaus.mojo.scmchangelog.changelog.log.SvnLogEntry;
+import org.codehaus.mojo.scmchangelog.changelog.log.ScmLogEntry;
 import org.codehaus.mojo.scmchangelog.scm.svn.xml.LogDocument;
 import org.codehaus.mojo.scmchangelog.scm.svn.xml.LogDocument.Factory;
 import org.codehaus.mojo.scmchangelog.scm.svn.xml.LogentryDocument.Logentry;
@@ -72,7 +72,7 @@ public class SvnChangeLogConsumer
 
   /**
    * Parsing of the output.
-   * @return a List of SvnLogEntry.
+   * @return a List of ScmLogEntry.
    */
   public java.util.List analyse()
   {
@@ -86,7 +86,7 @@ public class SvnChangeLogConsumer
         getLogger().debug( "has message: " + grammar.hasMessage( logEntry.getMsg() ) );
         if ( grammar.hasMessage( logEntry.getMsg() ) )
         {
-          SvnLogEntry entry = new SvnLogEntry();
+          ScmLogEntry entry = new ScmLogEntry();
           entry.setRevision( logEntry.getRevision().toString() );
           entry.setAuthor( logEntry.getAuthor() );
           entry.setDate( logEntry.getDate().getTime() );

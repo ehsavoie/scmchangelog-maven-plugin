@@ -36,9 +36,19 @@ import org.codehaus.mojo.scmchangelog.scm.util.DefaultScmAdapter;
  *
  * @author ehsavoie
  */
-public class ScmAdapterFactory {
+public class ScmAdapterFactory
+{
 
-  public static final ScmAdapter getInstance( ScmManager currentManager, GrammarEnum currentGrammar , ScmRepository repository, Log logger )
+  /**
+   * Create the instance of ScmAdpater corresponding to the current Scm.
+   * @param currentManager the ScmManager
+   * @param currentGrammar the grammar.
+   * @param repository the ScmRepository.
+   * @param logger thelogger.
+   * @return a ScmAdapter for the current SCM.
+   */
+  public static final ScmAdapter getInstance( ScmManager currentManager,
+    GrammarEnum currentGrammar, ScmRepository repository, Log logger )
   {
     ScmAdapter adapter;
     if ( "svn".equals( repository.getProvider() ) )

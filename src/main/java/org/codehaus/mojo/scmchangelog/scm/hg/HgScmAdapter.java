@@ -47,6 +47,7 @@ import org.codehaus.mojo.scmchangelog.tags.Tag;
  */
 public class HgScmAdapter extends ScmAdapter
 {
+
   /**
    * Constructor of ScmAdapter.
    * @param currentManager the ScmManager to access SCM elements.
@@ -65,30 +66,33 @@ public class HgScmAdapter extends ScmAdapter
    * @throws org.apache.maven.scm.ScmException in case of an error with the SCM.
    * @throws org.apache.maven.plugin.MojoExecutionException in case of an error in executing the Mojo.
    */
-  public List getListOfReleases(ScmRepository repository, ScmFileSet fileSet) throws ScmException, MojoExecutionException {
-    ListScmResult result = this.manager.list(repository, fileSet, false,
-            getScmVersion(SvnTargetEnum.TAG, ""));
+  public List getListOfReleases( ScmRepository repository, ScmFileSet fileSet )
+    throws ScmException, MojoExecutionException
+  {
+    ListScmResult result = this.manager.list( repository, fileSet, false,
+      getScmVersion( SvnTargetEnum.TAG, "" ) );
     final List tags = result.getFiles();
-    final List releases = new ArrayList(10);
+    final List releases = new ArrayList( 10 );
     Iterator iter = tags.iterator();
     String startRevision = "0";
 
-    while (iter.hasNext()) {
-      Tag tag = (Tag) iter.next();
-      getLogger().info(tag.toString());
+    while ( iter.hasNext() )
+    {
+      Tag tag = ( Tag ) iter.next();
+      getLogger().info( tag.toString() );
 
-      final ChangeLogScmResult logs = this.manager.changeLog(repository,
-              fileSet, getScmVersion(SvnTargetEnum.TRUNK, startRevision),
-              getScmVersion(SvnTargetEnum.TRUNK, tag.getEndRevision()), "");
+      final ChangeLogScmResult logs = this.manager.changeLog( repository,
+        fileSet, getScmVersion( SvnTargetEnum.TRUNK, startRevision ),
+        getScmVersion( SvnTargetEnum.TRUNK, tag.getEndRevision() ), "" );
       startRevision = tag.getEndRevision();
-      getLogger().info(logs.getChangeLog().toString());
-      tag.setDate(logs.getChangeLog().getEndDate());
+      getLogger().info( logs.getChangeLog().toString() );
+      tag.setDate( logs.getChangeLog().getEndDate() );
 
-      Release release = new Release(tag,
-              getEntries(logs.getChangeLog().getChangeSets()));
-      releases.add(release);
+      Release release = new Release( tag,
+        getEntries( logs.getChangeLog().getChangeSets() ) );
+      releases.add( release );
     }
-    Collections.reverse(releases);
+    Collections.reverse( releases );
     return releases;
   }
 }

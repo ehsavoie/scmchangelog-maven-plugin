@@ -30,7 +30,7 @@ import java.util.Date;
  * @author ehsavoie
  * @version $Id$
  */
-public class SvnLogEntry
+public class ScmLogEntry
     implements Comparable
 {
 
@@ -51,8 +51,8 @@ public class SvnLogEntry
    */
   private String author;
 
-  /** Creates a new instance of SvnLogEntry */
-  public SvnLogEntry()
+  /** Creates a new instance of ScmLogEntry */
+  public ScmLogEntry()
   {
   }
 
@@ -138,7 +138,7 @@ public class SvnLogEntry
   {
     if ( object != null )
     {
-      SvnLogEntry entry = (SvnLogEntry) object;
+      ScmLogEntry entry = (ScmLogEntry) object;
 
       return this.revision.compareTo( entry.getRevision() );
     }

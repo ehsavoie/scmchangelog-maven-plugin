@@ -36,7 +36,8 @@ import org.codehaus.mojo.scmchangelog.changelog.log.GrammarEnum;
  * @author ehsavoie
  * @version $Id$
  */
-public class DefaultScmAdapter extends ScmAdapter {
+public class DefaultScmAdapter extends ScmAdapter
+{
   
 /**
    * Constructor of ScmAdapter.
@@ -45,7 +46,7 @@ public class DefaultScmAdapter extends ScmAdapter {
    */
   public DefaultScmAdapter( ScmManager currentManager, GrammarEnum currentGrammar )
   {
-    super( currentManager, currentGrammar);
+    super( currentManager, currentGrammar );
   }
 
    /**
