@@ -60,6 +60,7 @@ import org.apache.maven.scm.repository.ScmRepositoryException;
 import org.apache.maven.settings.Server;
 import org.apache.maven.settings.Settings;
 import org.codehaus.mojo.scmchangelog.changelog.Release;
+import org.codehaus.mojo.scmchangelog.changelog.ReleaseAlphabeticalComparator;
 import org.codehaus.mojo.scmchangelog.changelog.log.GrammarEnum;
 import org.codehaus.mojo.scmchangelog.changelog.log.Issue;
 import org.codehaus.mojo.scmchangelog.changelog.log.OperationTypeEnum;
@@ -139,6 +140,13 @@ public class ScmActivityReport
    * @required
    */
   private String grammar;
+  /**
+   * Used to specify if the releases should be ordered alphabetally or historically.
+   * Supported values are historic and alphabetic.
+   *
+   * @parameter expression="${changelog.releasesOrder}" default-value="historic"
+   */
+  private String releasesOrder;
   /**
    * The user name (used by svn and starteam protocol).
    *
@@ -335,6 +343,10 @@ public class ScmActivityReport
       getLog().debug( "FileSet : "  + fileSet );
       ScmAdapter adapter = ScmAdapterFactory.getInstance( getScmManager(), realGrammar, repository , getLog() );
       List releases = adapter.getListOfReleases( repository, fileSet );
+      if ( "alphabetic".equalsIgnoreCase( releasesOrder ) )
+      {
+        Collections.sort( releases, new ReleaseAlphabeticalComparator() );
+      }
       doGenerateReport( releases, getSink() );
     }
     catch ( MojoExecutionException ex )

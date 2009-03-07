@@ -42,6 +42,9 @@ import org.codehaus.mojo.scmchangelog.changelog.log.ScmGrammar;
 public class BugzillaScmGrammar implements ScmGrammar
 {
 
+  /**
+   * Bugzilla pattern.
+   */
   private static final Pattern BUGZILLA_PATTERN =
     Pattern.compile( "bug\\s+#?([1-9][0-9]*)", Pattern.CASE_INSENSITIVE );
 
