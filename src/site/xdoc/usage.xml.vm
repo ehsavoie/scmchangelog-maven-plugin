@@ -75,7 +75,7 @@
               <ul>
                 <li>"MANU" which uses <code>@operation:issue;comments</code></li>
                 <li>"REMY" which uses <code>[operation:issue]comments</code></li>
-                <li>"Bugzilla" which uses <code>bug ####: comments</code></li>
+                <li>"Bugzilla" which uses <code>bug issue: comments</code></li>
               </ul>
             </li>
             <li>connectionUrl: the same as the &lt;connectionUrl&gt; element in the&lt;scm&gt; element.</li>
