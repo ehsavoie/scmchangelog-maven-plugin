@@ -6,6 +6,9 @@
   </properties>
   <head>
     <meta/>
+      <style>
+        .img.jira { width: 50px;}
+      </style>
   </head>
   <body>
     <!-- The body of the document contains a number of sections -->
@@ -18,7 +21,13 @@
           <li><a href="http://subversion.tigris.org/"><img src="http://svn.collab.net/repos/svn/branches/scheme-bindings/notes/logo/256-colour/subversion_logo_hor-237x32.png" alt="Subversion" /></a></li>
         </ul>
       </p>
-
+      <p>Supported Tracker tools (cf. <a href="usage.html#Advanced_Configuration">usage</a>):
+        <ul>
+          <li><a href="http://www.atlassian.com/software/jira/">JIRA</a></li>
+          <li><a href="http://www.bugzilla.org/">BugZilla</a></li>
+          <li>sourceforge</li>
+        </ul>
+      </p>
       
       <!-- in addition to XHTML, any number of subsections can be within a section -->
       <subsection name="Goals Overview">
