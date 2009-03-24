@@ -29,7 +29,7 @@ import org.apache.maven.scm.log.ScmLogger;
 import org.codehaus.mojo.scmchangelog.MavenScmLogger;
 import org.apache.maven.scm.provider.svn.command.SvnCommand;
 import org.apache.maven.scm.provider.svn.svnexe.SvnExeScmProvider;
-import org.codehaus.mojo.scmchangelog.changelog.log.GrammarEnum;
+import org.codehaus.mojo.scmchangelog.changelog.log.grammar.GrammarEnum;
 
 /**
  * Wrapper over SvnExeScmProvider to use xml output from Subversion.

@@ -62,7 +62,7 @@ public class Release
 
   /**
    * Return the log entries for his release.
-   * @return a list of SvnLogEntry for this release.
+   * @return a list of ScmLogEntry for this release.
    */
   public List getEntries()
   {

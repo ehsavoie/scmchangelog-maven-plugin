@@ -23,24 +23,16 @@ SOFTWARE.
  */
 package org.codehaus.mojo.scmchangelog.scm.util;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.logging.Log;
-import org.apache.maven.scm.ScmBranch;
 import org.apache.maven.scm.ScmException;
 import org.apache.maven.scm.ScmFileSet;
-import org.apache.maven.scm.ScmRevision;
-import org.apache.maven.scm.ScmTag;
 import org.apache.maven.scm.ScmVersion;
 import org.apache.maven.scm.manager.ScmManager;
 import org.apache.maven.scm.repository.ScmRepository;
-import org.codehaus.mojo.scmchangelog.SvnTargetEnum;
-import org.codehaus.mojo.scmchangelog.changelog.log.GrammarEnum;
-import org.codehaus.mojo.scmchangelog.changelog.log.ScmLogEntry;
-import org.codehaus.mojo.scmchangelog.scm.hg.command.changelog.BetterChangeSet;
+import org.codehaus.mojo.scmchangelog.changelog.log.grammar.GrammarEnum;
 
 
 /**
@@ -92,54 +84,8 @@ public abstract class ScmAdapter
     this.logger = logger;
   }
 
-  /**
-   * Returns the Scm version.
-   * @param versionType the type of version (tag, trunk, branch).
-   * @param version the tag/branche name.
-   * @return the corresponding ScmVersion.
-   * @throws org.apache.maven.plugin.MojoExecutionException in case of an error in executing the Mojo.
-   */
-  public ScmVersion getScmVersion( SvnTargetEnum versionType, String version )
-      throws MojoExecutionException
-  {
-    if ( SvnTargetEnum.TAG.equals( versionType ) )
-    {
-      return new ScmTag( version );
-    }
-    else if ( SvnTargetEnum.BRANCH.equals( versionType ) )
-    {
-      return new ScmBranch( version );
-    }
-    else if ( SvnTargetEnum.TRUNK.equals( versionType ) )
-    {
-      return new ScmRevision( version );
-    }
-    throw new MojoExecutionException( "Unknown version type : "
-        + versionType );
-  }
-
-    /**
-   * Returns the list of log entries defined in the list of ChangeSet.
-   * @param changeSets the list of ChangeSet.
-   * @return the list of log entries defined in the list of ChangeSet. <code>List&lt;ScmLogEntry&gt;</code>
-   */
-  protected List getEntries( List changeSets )
-  {
-    List elements = new ArrayList( changeSets.size() );
-    Iterator iter = changeSets.iterator();
-    while ( iter.hasNext() )
-    {
-      BetterChangeSet changeSet = ( BetterChangeSet ) iter.next();
-      ScmLogEntry entry = new ScmLogEntry();
-      entry.setAuthor( changeSet.getAuthor() );
-      entry.setDate( changeSet.getDate() );
-      getLogger().info( changeSet.getComment() );
-      entry.setMessage( grammar.extractMessage( changeSet.getComment() ) );
-      entry.setRevision( changeSet.getRevision() );
-      elements.add( entry );
-    }
-    return elements;
-  }
+  
+    
 
   /**
    * Returns the list of releases defined in the SCM.
@@ -151,4 +97,14 @@ public abstract class ScmAdapter
    */
   public abstract List getListOfReleases( ScmRepository repository, ScmFileSet fileSet )
       throws ScmException, MojoExecutionException;
+
+    /**
+   * Returns the Scm version.
+   * @param versionType the type of version (tag, trunk, branch).
+   * @param version the tag/branche name.
+   * @return the corresponding ScmVersion.
+   * @throws org.apache.maven.plugin.MojoExecutionException in case of an error in executing the Mojo.
+   */
+  public abstract ScmVersion getScmVersion( ScmTarget versionType, String version )
+      throws MojoExecutionException;
 }

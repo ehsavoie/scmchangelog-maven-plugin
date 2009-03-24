@@ -24,7 +24,7 @@ SOFTWARE.
 package org.codehaus.mojo.scmchangelog.scm.svn;
 
 import org.codehaus.mojo.scmchangelog.AbstractBufferedConsumer;
-import org.codehaus.mojo.scmchangelog.changelog.log.GrammarEnum;
+import org.codehaus.mojo.scmchangelog.changelog.log.grammar.GrammarEnum;
 import org.codehaus.mojo.scmchangelog.changelog.log.ScmLogEntry;
 import org.codehaus.mojo.scmchangelog.scm.svn.xml.LogDocument;
 import org.codehaus.mojo.scmchangelog.scm.svn.xml.LogDocument.Factory;
@@ -37,6 +37,7 @@ import java.io.IOException;
 import java.io.StringReader;
 
 import java.util.ArrayList;
+import org.codehaus.mojo.scmchangelog.AbstractBufferedConsumer;
 
 /**
  * Command stream consumer that parses the xml output from a

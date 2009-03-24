@@ -90,7 +90,7 @@ public class BugzillaScmGrammar implements ScmGrammar
    */
   public String getIssueSeparator()
   {
-    return "\r\n";
+    return NEW_LINE;
   }
 
   /**

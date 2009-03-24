@@ -23,6 +23,7 @@ SOFTWARE.
  */
 package org.codehaus.mojo.scmchangelog;
 
+import org.codehaus.mojo.scmchangelog.scm.svn.SvnTargetEnum;
 import java.io.File;
 import java.io.IOException;
 import java.text.MessageFormat;
@@ -61,7 +62,7 @@ import org.apache.maven.settings.Server;
 import org.apache.maven.settings.Settings;
 import org.codehaus.mojo.scmchangelog.changelog.Release;
 import org.codehaus.mojo.scmchangelog.changelog.ReleaseAlphabeticalComparator;
-import org.codehaus.mojo.scmchangelog.changelog.log.GrammarEnum;
+import org.codehaus.mojo.scmchangelog.changelog.log.grammar.GrammarEnum;
 import org.codehaus.mojo.scmchangelog.changelog.log.Issue;
 import org.codehaus.mojo.scmchangelog.changelog.log.OperationTypeEnum;
 import org.codehaus.mojo.scmchangelog.changelog.log.ScmLogEntry;

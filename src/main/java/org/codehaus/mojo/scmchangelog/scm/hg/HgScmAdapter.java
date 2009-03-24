@@ -28,16 +28,22 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.scm.ScmBranch;
 import org.apache.maven.scm.ScmException;
 import org.apache.maven.scm.ScmFileSet;
+import org.apache.maven.scm.ScmRevision;
+import org.apache.maven.scm.ScmTag;
+import org.apache.maven.scm.ScmVersion;
 import org.apache.maven.scm.command.changelog.ChangeLogScmResult;
 import org.apache.maven.scm.command.list.ListScmResult;
 import org.apache.maven.scm.manager.ScmManager;
 import org.apache.maven.scm.repository.ScmRepository;
-import org.codehaus.mojo.scmchangelog.SvnTargetEnum;
 import org.codehaus.mojo.scmchangelog.changelog.Release;
-import org.codehaus.mojo.scmchangelog.changelog.log.GrammarEnum;
+import org.codehaus.mojo.scmchangelog.changelog.log.ScmLogEntry;
+import org.codehaus.mojo.scmchangelog.changelog.log.grammar.GrammarEnum;
+import org.codehaus.mojo.scmchangelog.scm.hg.command.changelog.BetterChangeSet;
 import org.codehaus.mojo.scmchangelog.scm.util.ScmAdapter;
+import org.codehaus.mojo.scmchangelog.scm.util.ScmTarget;
 import org.codehaus.mojo.scmchangelog.tags.Tag;
 
 /**
@@ -70,7 +76,7 @@ public class HgScmAdapter extends ScmAdapter
     throws ScmException, MojoExecutionException
   {
     ListScmResult result = this.manager.list( repository, fileSet, false,
-      getScmVersion( SvnTargetEnum.TAG, "" ) );
+      getScmVersion( HgTargetEnum.TAG, "" ) );
     final List tags = result.getFiles();
     final List releases = new ArrayList( 10 );
     Iterator iter = tags.iterator();
@@ -82,8 +88,8 @@ public class HgScmAdapter extends ScmAdapter
       getLogger().info( tag.toString() );
 
       final ChangeLogScmResult logs = this.manager.changeLog( repository,
-        fileSet, getScmVersion( SvnTargetEnum.TRUNK, startRevision ),
-        getScmVersion( SvnTargetEnum.TRUNK, tag.getEndRevision() ), "" );
+        fileSet, getScmVersion( HgTargetEnum.TRUNK, startRevision ),
+        getScmVersion( HgTargetEnum.TRUNK, tag.getEndRevision() ), "" );
       startRevision = tag.getEndRevision();
       getLogger().info( logs.getChangeLog().toString() );
       tag.setDate( logs.getChangeLog().getEndDate() );
@@ -95,4 +101,55 @@ public class HgScmAdapter extends ScmAdapter
     Collections.reverse( releases );
     return releases;
   }
+
+  /**
+   * Returns the list of log entries defined in the list of ChangeSet.
+   * @param changeSets the list of ChangeSet.
+   * @return the list of log entries defined in the list of ChangeSet. <code>List&lt;ScmLogEntry&gt;</code>
+   */
+  protected List getEntries( List changeSets )
+  {
+    List elements = new ArrayList( changeSets.size() );
+    Iterator iter = changeSets.iterator();
+    while ( iter.hasNext() )
+    {
+      BetterChangeSet changeSet = ( BetterChangeSet ) iter.next();
+      ScmLogEntry entry = new ScmLogEntry();
+      entry.setAuthor( changeSet.getAuthor() );
+      entry.setDate( changeSet.getDate() );
+      getLogger().info( changeSet.getComment() );
+      entry.setMessage( grammar.extractMessage( changeSet.getComment() ) );
+      entry.setRevision( changeSet.getRevision() );
+      elements.add( entry );
+    }
+    return elements;
+  }
+
+  /**
+   * Returns the Scm version.
+   * @param versionType the type of version (tag, trunk, branch).
+   * @param version the tag/branche name.
+   * @return the corresponding ScmVersion.
+   * @throws org.apache.maven.plugin.MojoExecutionException in case of an error in executing the Mojo.
+   */
+  public ScmVersion getScmVersion( ScmTarget versionType, String version )
+      throws MojoExecutionException
+  {
+    if ( HgTargetEnum.TAG.equals( versionType ) )
+    {
+      return new ScmTag( version );
+    }
+    else if ( HgTargetEnum.BRANCH.equals( versionType ) )
+    {
+      return new ScmBranch( version );
+    }
+    else if ( HgTargetEnum.TRUNK.equals( versionType ) )
+    {
+      return new ScmRevision( version );
+    }
+    throw new MojoExecutionException( "Unknown version type : "
+        + versionType );
+  }
+
 }
+

@@ -27,7 +27,7 @@ import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.scm.manager.ScmManager;
 import org.codehaus.mojo.scmchangelog.scm.util.ScmAdapter;
 import org.apache.maven.scm.repository.ScmRepository;
-import org.codehaus.mojo.scmchangelog.changelog.log.GrammarEnum;
+import org.codehaus.mojo.scmchangelog.changelog.log.grammar.GrammarEnum;
 import org.codehaus.mojo.scmchangelog.scm.hg.HgScmAdapter;
 import org.codehaus.mojo.scmchangelog.scm.svn.SvnScmAdapter;
 import org.codehaus.mojo.scmchangelog.scm.util.DefaultScmAdapter;

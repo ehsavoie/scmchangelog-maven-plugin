@@ -27,9 +27,10 @@ import java.util.List;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.scm.ScmException;
 import org.apache.maven.scm.ScmFileSet;
+import org.apache.maven.scm.ScmVersion;
 import org.apache.maven.scm.manager.ScmManager;
 import org.apache.maven.scm.repository.ScmRepository;
-import org.codehaus.mojo.scmchangelog.changelog.log.GrammarEnum;
+import org.codehaus.mojo.scmchangelog.changelog.log.grammar.GrammarEnum;
 
 /**
  * Empty Adapter to be used as a defaut scm adapter throwing UnsupportedOperationException.
@@ -62,5 +63,18 @@ public class DefaultScmAdapter extends ScmAdapter
       throws MojoExecutionException, ScmException
   {
     throw new MojoExecutionException( "Unsupported SCM" );
+  }
+
+  /**
+   * Returns the Scm version.
+   * @param versionType the type of version (tag, trunk, branch).
+   * @param version the tag/branche name.
+   * @return the corresponding ScmVersion.
+   * @throws org.apache.maven.plugin.MojoExecutionException in case of an error in executing the Mojo.
+   */
+  public ScmVersion getScmVersion( ScmTarget versionType, String version )
+      throws MojoExecutionException
+  {
+      throw new MojoExecutionException( "Unsupported SCM" );
   }
 }

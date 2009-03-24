@@ -41,7 +41,7 @@ import org.apache.maven.scm.provider.svn.SvnTagBranchUtils;
 import org.apache.maven.scm.provider.svn.command.SvnCommand;
 import org.apache.maven.scm.provider.svn.repository.SvnScmProviderRepository;
 import org.apache.maven.scm.provider.svn.svnexe.command.SvnCommandLineUtils;
-import org.codehaus.mojo.scmchangelog.changelog.log.GrammarEnum;
+import org.codehaus.mojo.scmchangelog.changelog.log.grammar.GrammarEnum;
 import org.codehaus.plexus.util.StringUtils;
 import org.codehaus.plexus.util.cli.CommandLineException;
 import org.codehaus.plexus.util.cli.CommandLineUtils;

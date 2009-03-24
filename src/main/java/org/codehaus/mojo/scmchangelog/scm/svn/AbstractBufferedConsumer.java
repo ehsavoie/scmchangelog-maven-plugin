@@ -31,7 +31,7 @@ import org.codehaus.plexus.util.cli.StreamConsumer;
 /**
  * Abstract consumer for the return stream from the svn commands.
  * @author ehsavoie
- * @version $Id$
+ * @version $Id: AbstractBufferedConsumer.java 7623 2008-09-09 08:46:14Z ehsavoie $
  */
 public abstract class AbstractBufferedConsumer
     implements StreamConsumer

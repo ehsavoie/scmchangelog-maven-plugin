@@ -29,16 +29,20 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.scm.ScmBranch;
 import org.apache.maven.scm.ScmException;
 import org.apache.maven.scm.ScmFileSet;
+import org.apache.maven.scm.ScmRevision;
+import org.apache.maven.scm.ScmTag;
+import org.apache.maven.scm.ScmVersion;
 import org.apache.maven.scm.command.changelog.ChangeLogScmResult;
 import org.apache.maven.scm.command.list.ListScmResult;
 import org.apache.maven.scm.manager.ScmManager;
 import org.apache.maven.scm.repository.ScmRepository;
-import org.codehaus.mojo.scmchangelog.SvnTargetEnum;
 import org.codehaus.mojo.scmchangelog.changelog.Release;
-import org.codehaus.mojo.scmchangelog.changelog.log.GrammarEnum;
+import org.codehaus.mojo.scmchangelog.changelog.log.grammar.GrammarEnum;
 import org.codehaus.mojo.scmchangelog.scm.util.ScmAdapter;
+import org.codehaus.mojo.scmchangelog.scm.util.ScmTarget;
 import org.codehaus.mojo.scmchangelog.tags.Tag;
 
 /**
@@ -112,4 +116,31 @@ public class SvnScmAdapter extends ScmAdapter
     Collections.reverse( releases );
     return releases;
   }
+
+  /**
+   * Returns the Scm version.
+   * @param versionType the type of version (tag, trunk, branch).
+   * @param version the tag/branche name.
+   * @return the corresponding ScmVersion.
+   * @throws org.apache.maven.plugin.MojoExecutionException in case of an error in executing the Mojo.
+   */
+  public ScmVersion getScmVersion( ScmTarget versionType, String version )
+      throws MojoExecutionException
+  {
+    if ( SvnTargetEnum.TAG.equals( versionType ) )
+    {
+      return new ScmTag( version );
+    }
+    else if ( SvnTargetEnum.BRANCH.equals( versionType ) )
+    {
+      return new ScmBranch( version );
+    }
+    else if ( SvnTargetEnum.TRUNK.equals( versionType ) )
+    {
+      return new ScmRevision( version );
+    }
+    throw new MojoExecutionException( "Unknown version type : "
+        + versionType );
+  }
+
 }
