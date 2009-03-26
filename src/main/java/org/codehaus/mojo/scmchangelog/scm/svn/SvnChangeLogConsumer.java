@@ -23,7 +23,6 @@ SOFTWARE.
  */
 package org.codehaus.mojo.scmchangelog.scm.svn;
 
-import org.codehaus.mojo.scmchangelog.AbstractBufferedConsumer;
 import org.codehaus.mojo.scmchangelog.changelog.log.grammar.GrammarEnum;
 import org.codehaus.mojo.scmchangelog.changelog.log.ScmLogEntry;
 import org.codehaus.mojo.scmchangelog.scm.svn.xml.LogDocument;

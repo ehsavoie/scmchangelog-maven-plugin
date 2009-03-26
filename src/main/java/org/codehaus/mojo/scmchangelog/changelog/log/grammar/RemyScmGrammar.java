@@ -84,9 +84,4 @@ public class RemyScmGrammar
   {
     return UPDATE_PATTERN.matcher( expression );
   }
-
-  public String getIssueSeparator()
-  {
-    return NEW_LINE;
-  }
 }

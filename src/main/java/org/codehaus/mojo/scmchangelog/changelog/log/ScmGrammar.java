@@ -34,7 +34,7 @@ public interface ScmGrammar
   /**
    * Default separator for issues.
    */
-    public static final String NEW_LINE = "\r\n";
+  String NEW_LINE = "\r\n";
 
   /**
    * Extract a Message from a comment.

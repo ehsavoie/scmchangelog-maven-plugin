@@ -749,7 +749,7 @@ public class ScmActivityReport
    */
   public ScmManager getScmManager()
   {
-    ScmAdapterFactory.registerProviders(manager, GrammarEnum.valueOf( grammar ),
+    ScmAdapterFactory.registerProviders( manager, GrammarEnum.valueOf( grammar ),
             getLog() , getPattern() );
     return manager;
   }

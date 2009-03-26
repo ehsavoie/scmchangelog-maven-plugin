@@ -38,8 +38,10 @@ import org.codehaus.mojo.scmchangelog.scm.util.DefaultScmAdapter;
 import org.codehaus.plexus.util.StringUtils;
 
 /**
- *
+ * The utility class to separate the report from the scm secific implementations.
+ * 
  * @author ehsavoie
+ * @version $Id$
  */
 public class ScmAdapterFactory
 {
@@ -72,9 +74,15 @@ public class ScmAdapterFactory
     return adapter;
   }
 
-
-  public static final void registerProviders(ScmManager manager, 
-          GrammarEnum grammar, Log logger, Pattern pattern)
+  /**
+   * Register the scm providers supported by this plugin.
+   * @param manager the Scm manager.
+   * @param grammar the selected grammar for extracting comments.
+   * @param logger the current logger.
+   * @param pattern the regexp pattern to filter tags and branches names.
+   */
+  public static final void registerProviders( ScmManager manager,
+          GrammarEnum grammar, Log logger, Pattern pattern )
   {
     SvnXmlExeScmProvider svnProvider = new SvnXmlExeScmProvider( grammar ,
             pattern );
@@ -85,7 +93,13 @@ public class ScmAdapterFactory
     manager.setScmProvider( "hg", hgProvider );
   }
 
-  public static final void setTagBase(ScmRepository repository, String tagBase)
+  /**
+   * Defines the base url to access tags.
+   * This is used only in the case of a svn repository.
+   * @param repository the scm repository.
+   * @param tagBase the url to the tags.
+   */
+  public static final void setTagBase( ScmRepository repository, String tagBase )
   {
     if ( !StringUtils.isEmpty( tagBase )
           && "svn".equals( repository.getProvider() ) )

@@ -164,6 +164,16 @@ public abstract class AbstractScmGrammar
   }
 
   /**
+   * Returns the String to be inserted between each issue comment. It may be replaced
+   * when generating the report.
+   * @return the String to be inserted between each issue comment.
+   */
+  public String getIssueSeparator()
+  {
+    return NEW_LINE;
+  }
+
+  /**
    * Getter for the regexp matcher to clean the comments of the FIX issues.
    * @param expression the regexp for cleaning the comments of the FIX issues.
    * @return a Matcher to clean the comments of FIX issues.
