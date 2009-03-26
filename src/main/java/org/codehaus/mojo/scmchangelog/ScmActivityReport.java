@@ -23,10 +23,8 @@ SOFTWARE.
  */
 package org.codehaus.mojo.scmchangelog;
 
-import org.codehaus.mojo.scmchangelog.scm.svn.SvnTargetEnum;
 import java.io.File;
 import java.io.IOException;
-import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
@@ -45,17 +43,12 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.project.MavenProject;
 import org.apache.maven.reporting.AbstractMavenReport;
 import org.apache.maven.reporting.MavenReportException;
-import org.apache.maven.scm.ScmBranch;
 import org.apache.maven.scm.ScmException;
 import org.apache.maven.scm.ScmFileSet;
 import org.apache.maven.scm.ScmResult;
-import org.apache.maven.scm.ScmRevision;
-import org.apache.maven.scm.ScmTag;
-import org.apache.maven.scm.ScmVersion;
 import org.apache.maven.scm.manager.ScmManager;
 import org.apache.maven.scm.provider.ScmProviderRepository;
 import org.apache.maven.scm.provider.ScmProviderRepositoryWithHost;
-import org.apache.maven.scm.provider.svn.repository.SvnScmProviderRepository;
 import org.apache.maven.scm.repository.ScmRepository;
 import org.apache.maven.scm.repository.ScmRepositoryException;
 import org.apache.maven.settings.Server;
@@ -68,8 +61,6 @@ import org.codehaus.mojo.scmchangelog.changelog.log.OperationTypeEnum;
 import org.codehaus.mojo.scmchangelog.changelog.log.ScmLogEntry;
 import org.codehaus.mojo.scmchangelog.scm.util.ScmAdapter;
 import org.codehaus.mojo.scmchangelog.scm.ScmAdapterFactory;
-import org.codehaus.mojo.scmchangelog.scm.hg.HgScmProvider;
-import org.codehaus.mojo.scmchangelog.scm.svn.SvnXmlExeScmProvider;
 import org.codehaus.mojo.scmchangelog.tracker.BugTrackLinker;
 import org.codehaus.mojo.scmchangelog.tracker.BugTrackers;
 import org.codehaus.mojo.scmchangelog.tracker.BugzillaBugTrackLinker;
@@ -758,13 +749,8 @@ public class ScmActivityReport
    */
   public ScmManager getScmManager()
   {
-    SvnXmlExeScmProvider svnProvider = new SvnXmlExeScmProvider( GrammarEnum.valueOf( grammar ),
-            getPattern() );
-    svnProvider.setLogger( getLog() );
-    HgScmProvider hgProvider = new HgScmProvider( GrammarEnum.valueOf( grammar ) , getPattern() );
-    hgProvider.setLogger( getLog() );
-    manager.setScmProvider( "svn", svnProvider );
-    manager.setScmProvider( "hg", hgProvider );
+    ScmAdapterFactory.registerProviders(manager, GrammarEnum.valueOf( grammar ),
+            getLog() , getPattern() );
     return manager;
   }
 
@@ -864,13 +850,7 @@ public class ScmActivityReport
           repo.setPassphrase( passphrase );
         }
       }
-
-      if ( !StringUtils.isEmpty( tagBase ) 
-          && "svn".equals( repository.getProvider() ) )
-      {
-        SvnScmProviderRepository svnRepo = ( SvnScmProviderRepository ) repository.getProviderRepository();
-        svnRepo.setTagBase( tagBase );
-      }
+      ScmAdapterFactory.setTagBase( repository , tagBase );
     }
     catch ( ScmRepositoryException e )
     {
@@ -955,33 +935,5 @@ public class ScmActivityReport
     }
   }
 
-  /**
-   * Return the corresponding SCM version
-   * @param versionType type of version.
-   * @param version the revision number or tag/branchname.
-   * @return the SCM version.
-   * @throws org.apache.maven.plugin.MojoExecutionException in case of error executing the Mojo.
-   */
-  public ScmVersion getScmVersion( SvnTargetEnum versionType, String version )
-      throws MojoExecutionException
-  {
-    if ( SvnTargetEnum.TAG.equals( versionType ) )
-    {
-      return new ScmTag( version );
-    } 
-    else if ( SvnTargetEnum.BRANCH.equals( versionType ) )
-    {
-      return new ScmBranch( version );
-    } 
-    else if ( SvnTargetEnum.TRUNK.equals( versionType ) )
-    {
-      return new ScmRevision( version );
-    }
-
-    throw new MojoExecutionException( MessageFormat.format( this.bundle.getString( "error.unknown.version.type" ),
-        new Object[]
-        {
-          versionType
-        } ) );
-  }
+ 
 }

@@ -26,7 +26,7 @@ package org.codehaus.mojo.scmchangelog.scm.svn;
 import java.util.regex.Pattern;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.scm.log.ScmLogger;
-import org.codehaus.mojo.scmchangelog.MavenScmLogger;
+import org.codehaus.mojo.scmchangelog.scm.util.MavenScmLogger;
 import org.apache.maven.scm.provider.svn.command.SvnCommand;
 import org.apache.maven.scm.provider.svn.svnexe.SvnExeScmProvider;
 import org.codehaus.mojo.scmchangelog.changelog.log.grammar.GrammarEnum;

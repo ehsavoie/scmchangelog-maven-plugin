@@ -23,14 +23,19 @@ SOFTWARE.
  */
 package org.codehaus.mojo.scmchangelog.scm;
 
+import java.util.regex.Pattern;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.scm.manager.ScmManager;
+import org.apache.maven.scm.provider.svn.repository.SvnScmProviderRepository;
 import org.codehaus.mojo.scmchangelog.scm.util.ScmAdapter;
 import org.apache.maven.scm.repository.ScmRepository;
 import org.codehaus.mojo.scmchangelog.changelog.log.grammar.GrammarEnum;
 import org.codehaus.mojo.scmchangelog.scm.hg.HgScmAdapter;
+import org.codehaus.mojo.scmchangelog.scm.hg.HgScmProvider;
 import org.codehaus.mojo.scmchangelog.scm.svn.SvnScmAdapter;
+import org.codehaus.mojo.scmchangelog.scm.svn.SvnXmlExeScmProvider;
 import org.codehaus.mojo.scmchangelog.scm.util.DefaultScmAdapter;
+import org.codehaus.plexus.util.StringUtils;
 
 /**
  *
@@ -65,5 +70,28 @@ public class ScmAdapterFactory
     }
     adapter.setLogger( logger );
     return adapter;
+  }
+
+
+  public static final void registerProviders(ScmManager manager, 
+          GrammarEnum grammar, Log logger, Pattern pattern)
+  {
+    SvnXmlExeScmProvider svnProvider = new SvnXmlExeScmProvider( grammar ,
+            pattern );
+    svnProvider.setLogger( logger );
+    HgScmProvider hgProvider = new HgScmProvider( grammar , pattern );
+    hgProvider.setLogger( logger );
+    manager.setScmProvider( "svn", svnProvider );
+    manager.setScmProvider( "hg", hgProvider );
+  }
+
+  public static final void setTagBase(ScmRepository repository, String tagBase)
+  {
+    if ( !StringUtils.isEmpty( tagBase )
+          && "svn".equals( repository.getProvider() ) )
+      {
+        SvnScmProviderRepository svnRepo = ( SvnScmProviderRepository ) repository.getProviderRepository();
+        svnRepo.setTagBase( tagBase );
+      }
   }
 }

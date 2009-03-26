@@ -33,7 +33,7 @@ import org.apache.maven.scm.command.changelog.ChangeLogScmResult;
 import org.apache.maven.scm.command.list.ListScmResult;
 import org.apache.maven.scm.log.ScmLogger;
 import org.apache.maven.scm.provider.ScmProviderRepository;
-import org.codehaus.mojo.scmchangelog.MavenScmLogger;
+import org.codehaus.mojo.scmchangelog.scm.util.MavenScmLogger;
 import org.codehaus.mojo.scmchangelog.changelog.log.grammar.GrammarEnum;
 import org.codehaus.mojo.scmchangelog.scm.hg.command.changelog.HgChangeLogCommand;
 import org.codehaus.mojo.scmchangelog.scm.hg.command.list.HgListCommand;
