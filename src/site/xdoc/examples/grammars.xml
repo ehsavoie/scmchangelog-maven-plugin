@@ -11,11 +11,12 @@
     <section name="Commons">
       <subsection name="Operations">
         <p>
-         We support currently 3 grammars:
+         We support currently 4 grammars:
           <ul>
             <li>MANU</li>
             <li>REMY</li>
-            <li>Bugzilla</li>
+            <li>BUGZILLA</li>
+            <li>ALL</li>
           </ul>
           all with the same operations. The operations are <b>NOT</b> case sensitive.
           <br/>
@@ -80,11 +81,19 @@
 </source>
         </p>
       </subsection>
-      <subsection name="Bugzilla">
-        <p>The <b>Bugzilla</b> grammar implements Bugzilla's <a href="http://www.bugzilla.org/docs/3.2/en/html/hintsandtips.html">autolinkification</a>
+      <subsection name="BUGZILLA">
+        <p>The <b>BUGZILLA</b> grammar implements Bugzilla's <a href="http://www.bugzilla.org/docs/3.2/en/html/hintsandtips.html">autolinkification</a>
         feature, automatically recognizing bug references of the form:</p>
         <p>
           <source>bug 42: The documentation has been updated.</source>
+        </p>
+        <p>This grammar does not allow the plugin to distinguish between the various operations,
+        so they will all be marked in the report as "fix".</p>
+      </subsection>
+      <subsection name="ALL">
+        <p>The <b>ALL</b> grammar implements accept all comments and doesn't recognize bug references of the form:</p>
+        <p>
+          <source>The documentation has been updated.</source>
         </p>
         <p>This grammar does not allow the plugin to distinguish between the various operations,
         so they will all be marked in the report as "fix".</p>

@@ -45,7 +45,7 @@ import org.codehaus.mojo.scmchangelog.AbstractBufferedConsumer;
  * @author ehsavoie
  * @version $Id$
  *
- * @see org.apache.maven.scm.provider.svn.svnexe.command.SvnChangeLogCoonsumer
+ * @see org.apache.maven.scm.provider.svn.svnexe.command.SvnChangeLogConsumer
  * @see org.codehaus.mojo.scmchangelog.changelog.SvnChangeLogCommand
  */
 public class SvnChangeLogConsumer

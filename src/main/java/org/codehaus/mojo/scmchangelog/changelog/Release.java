@@ -45,7 +45,7 @@ public class Release
   private Tag tag;
   /**
    * List of SvnLogEntry for this release.
-   * @see org.codehaus.mojo.scmchangelog.changelog.log.SvnLogEntry
+   * @see org.codehaus.mojo.scmchangelog.changelog.log.ScmLogEntry
    */
   private List entries;
 

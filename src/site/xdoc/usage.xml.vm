@@ -75,12 +75,14 @@
               <ul>
                 <li>"MANU" which uses <code>@operation:issue;comments</code></li>
                 <li>"REMY" which uses <code>[operation:issue]comments</code></li>
-                <li>"Bugzilla" which uses <code>bug issue: comments</code></li>
+                <li>"BUGZILLA" which uses <code>bug issue: comments</code></li>
+                <li>"ALL" which uses <code>comments</code></li>
               </ul>
             </li>
             <li>connectionUrl: the same as the &lt;connectionUrl&gt; element in the&lt;scm&gt; element.</li>
             <li>tagBase: the url to the tags directory.</li>
             <li>filter: a regexp used to filter tags by their name. Only tags matching the specified regexp are used to produce the report</li>
+            <li>releasesOrder: to order releases historically or alphabetically.</li>
         </ul>
       </p>
       <p>

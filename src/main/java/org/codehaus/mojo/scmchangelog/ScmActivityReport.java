@@ -134,7 +134,7 @@ public class ScmActivityReport
   private String grammar;
   /**
    * Used to specify if the releases should be ordered alphabetally or historically.
-   * Supported values are historic and alphabetic.
+   * Supported values are <code>historic</code> and <code>alphabetic</code>.
    *
    * @parameter expression="${changelog.releasesOrder}" default-value="historic"
    */

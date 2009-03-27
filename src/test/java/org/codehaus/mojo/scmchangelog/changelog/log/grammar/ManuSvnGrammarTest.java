@@ -51,7 +51,7 @@ public class ManuSvnGrammarTest extends TestCase {
     }
 
     /**
-     * Test of extractMessage method, of class org.codehaus.mojo.scmchangelog.scm.svn.log.grammar.RemySvnGrammar.
+     * Test of extractMessage method, of class org.codehaus.mojo.scmchangelog.scm.svn.log.grammar.ManuSvnGrammar.
      */
     public void testExtractFixMessage() {
         String content = "@fix:MVN-512;Hello World";

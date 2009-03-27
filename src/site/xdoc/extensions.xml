@@ -51,7 +51,7 @@
             <li><code>String getIssueSeparator()</code>: which returns the separator of issue comment, if the comment is about several issues.</li>
           </ul>
           We provide two examples of grammar: <code>org.codehaus.mojo.scmchangelog.changelog.log.grammar.ManuSvnGrammar</code> and <code>org.codehaus.mojo.scmchangelog.changelog.log.grammar.RemySvnGrammar</code>.
-          They are extensions of <code>org.codehaus.mojo.scmchangelog.changelog.log.grammar.common.AbstractSvnGrammar</code>, a helper class for regexp based grammars.
+          They are extensions of <code>org.codehaus.mojo.scmchangelog.changelog.log.grammar.AbstractSvnGrammar</code>, a helper class for regexp based grammars.
         </p>
       </subsection>
       <subsection name="SCM">

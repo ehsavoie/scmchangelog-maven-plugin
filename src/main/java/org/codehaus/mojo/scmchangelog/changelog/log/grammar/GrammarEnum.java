@@ -45,9 +45,16 @@ public class GrammarEnum
   public static final GrammarEnum REMY = new GrammarEnum( new RemyScmGrammar(),
       "REMY" );
   /**
-   * The Bugzilla grammar.
+   * The BUGZILLA grammar.
    */
-  public static final GrammarEnum BUGZILLA = new GrammarEnum( new BugzillaScmGrammar(), "BUGZILLA" );
+  public static final GrammarEnum BUGZILLA = new GrammarEnum(
+          new BugzillaScmGrammar(), "BUGZILLA" );
+  /**
+   * The ALL grammar.
+   */
+  public static final GrammarEnum ALL = new GrammarEnum(
+          new AcceptAllScmGrammar(), "ALL" );
+
   /**
    * The grammar of the enum element.
    */
@@ -113,6 +120,10 @@ public class GrammarEnum
     else if ( BUGZILLA.name.equalsIgnoreCase( name ) )
     {
       return BUGZILLA;
+    }
+    else if ( ALL.name.equalsIgnoreCase( name ) )
+    {
+      return ALL;
     }
     return MANU;
   }

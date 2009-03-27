@@ -24,7 +24,10 @@ SOFTWARE.
 package org.codehaus.mojo.scmchangelog.changelog.log.grammar;
 
 import java.util.ArrayList;
+import java.util.List;
+import org.codehaus.mojo.scmchangelog.changelog.log.Issue;
 import org.codehaus.mojo.scmchangelog.changelog.log.Message;
+import org.codehaus.mojo.scmchangelog.changelog.log.OperationTypeEnum;
 import org.codehaus.mojo.scmchangelog.changelog.log.ScmGrammar;
 
 /**
@@ -32,7 +35,7 @@ import org.codehaus.mojo.scmchangelog.changelog.log.ScmGrammar;
  * @author ehsavoie
  * @version $Id$
  */
-public class AcceptAllGrammar implements ScmGrammar
+public class AcceptAllScmGrammar implements ScmGrammar
 {
 
     /**
@@ -43,7 +46,9 @@ public class AcceptAllGrammar implements ScmGrammar
      */
     public Message extractMessage( String content )
     {
-        return new Message( content, new ArrayList() );
+        List issues = new ArrayList();
+        issues.add( new Issue( "", OperationTypeEnum.FIX ) );
+        return new Message( content, issues );
     }
 
     /**
