@@ -33,6 +33,10 @@
         <system>JIRA</system>
         <url>http://jira.codehaus.org/browse/MSCMCHGLOG</url>
     </issueManagement>
+    <ciManagement>
+      <system>Bamboo</system>
+      <url>http://bamboo.ci.codehaus.org/browse/MOJO-CISCMCHANGELOG</url>
+    </ciManagement>
     <developers>
         <developer>
             <name>Remy Sanlaville</name>
