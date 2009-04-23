@@ -24,6 +24,7 @@ SOFTWARE.
 package org.codehaus.mojo.scmchangelog.changelog.log;
 
 import java.util.Date;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * Represents a log entry from the subversion repository.
@@ -139,7 +140,16 @@ public class ScmLogEntry
     if ( object != null )
     {
       ScmLogEntry entry = (ScmLogEntry) object;
-
+      try
+      {
+        int currentRevision = Integer.parseInt( revision );
+        int otherRevision = Integer.parseInt( entry.getRevision() );
+        return currentRevision - otherRevision;
+      }
+      catch( NumberFormatException nfex)
+      {
+        
+      }
       return this.revision.compareTo( entry.getRevision() );
     }
     return -1;
