@@ -24,6 +24,7 @@ SOFTWARE.
 package org.codehaus.mojo.scmchangelog.tags;
 
 import java.util.Date;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * Represents a tag in the subversion repository.
@@ -155,8 +156,12 @@ public class Tag
   {
     if ( object != null )
     {
-      Tag tag = (Tag) object;
-
+      Tag tag = ( Tag ) object;
+      if (StringUtils.isNumeric( this.endRevision ) && StringUtils.isNumeric(
+          tag.getEndRevision() ) )
+      {
+          return Integer.parseInt( this.endRevision ) - Integer.parseInt( tag.getEndRevision() );
+      }
       return this.endRevision.compareTo( tag.getEndRevision() );
     }
     return -1;
