@@ -46,7 +46,14 @@ public class MavenScmLogger
      */
     public MavenScmLogger( Log logger )
     {
-        this.logger = logger;
+        if( isColorized() )
+        {
+            this.logger = new ColorConsoleLogger( logger );
+        }
+        else
+        {
+            this.logger = logger;
+        }        
     }
 
     /** {@inheritDoc} */
@@ -143,5 +150,10 @@ public class MavenScmLogger
     public void error( Throwable error )
     {
         logger.error( error );
+    }
+
+    private boolean isColorized()
+    {
+        return System.getProperty("colorized.console") != null;
     }
 }

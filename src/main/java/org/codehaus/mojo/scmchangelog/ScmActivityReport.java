@@ -23,6 +23,7 @@ SOFTWARE.
  */
 package org.codehaus.mojo.scmchangelog;
 
+import org.codehaus.mojo.scmchangelog.scm.util.ColorConsoleLogger;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -67,7 +68,7 @@ import org.codehaus.mojo.scmchangelog.tracker.BugzillaBugTrackLinker;
 import org.codehaus.mojo.scmchangelog.tracker.JiraBugTrackLinker;
 import org.codehaus.mojo.scmchangelog.tracker.SourceforgeBugTrackLinker;
 import org.codehaus.plexus.util.StringUtils;
-
+import org.apache.maven.plugin.logging.Log;
 /**
  * Goal which produces a changelog report based on the Subversion logs.
  * @author ehsavoie
@@ -77,7 +78,7 @@ import org.codehaus.plexus.util.StringUtils;
 public class ScmActivityReport
     extends AbstractMavenReport
 {
-
+  private boolean logHasBeenColorized = false;
   /**
    * Used to specify the date format of the log entries that are retrieved from your SCM system.
    */
@@ -935,5 +936,48 @@ public class ScmActivityReport
     }
   }
 
- 
+ /**
+     * @see org.apache.maven.plugin.Mojo#setLog(org.apache.maven.plugin.logging.Log)
+     */
+    public void setLog( Log log )
+    {
+      if( isColorized() )
+      {
+        super.setLog( new ColorConsoleLogger( log ) );
+        logHasBeenColorized = true;
+      }
+      else
+      {
+        super.setLog( log );
+      }
+    }
+
+    /**
+     * Returns the logger that has been injected into this mojo. If no logger has been setup yet, a <code>SystemStreamLog</code>
+     * logger will be created and returned.
+     * <br/><br/>
+     * <strong>Note:</strong>
+     * The logger returned by this method must not be cached in an instance field during the construction of the mojo.
+     * This would cause the mojo to use a wrongly configured default logger when being run by Maven. The proper logger
+     * gets injected by the Plexus container <em>after</em> the mojo has been constructed. Therefore, simply call this
+     * method directly whenever you need the logger, it is fast enough and needs no caching.
+     *
+     * @see org.apache.maven.plugin.Mojo#getLog()
+     */
+    public Log getLog()
+    {
+      Log log = super.getLog();
+      if ( ! logHasBeenColorized && isColorized() )
+      {
+        log = new ColorConsoleLogger( log );
+        super.setLog( log );
+        logHasBeenColorized = true;
+      }
+      return log;
+    }
+
+    private boolean isColorized()
+    {
+      return System.getProperty("colorized.console") != null;
+    }
 }
