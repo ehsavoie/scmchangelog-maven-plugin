@@ -43,6 +43,10 @@ public class BugTrackers
    */
   public static final BugTrackers BUGZILLA = new BugTrackers( "bugzilla" );
   /**
+   * XPlanner bug tracker.
+   */
+  public static final BugTrackers XPLANNER = new BugTrackers( "xplanner" );
+  /**
    * Name of the bug tracker.
    */
   private String name;
@@ -96,6 +100,10 @@ public class BugTrackers
     else if ( BUGZILLA.name.equalsIgnoreCase( name ) )
     {
       return BUGZILLA;
+    }
+    else if ( XPLANNER.name.equalsIgnoreCase( name ) )
+    {
+      return XPLANNER;
     }
 
     return SOURCEFORGE;

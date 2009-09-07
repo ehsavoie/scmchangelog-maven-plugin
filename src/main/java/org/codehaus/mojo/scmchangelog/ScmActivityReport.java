@@ -67,6 +67,7 @@ import org.codehaus.mojo.scmchangelog.tracker.BugTrackers;
 import org.codehaus.mojo.scmchangelog.tracker.BugzillaBugTrackLinker;
 import org.codehaus.mojo.scmchangelog.tracker.JiraBugTrackLinker;
 import org.codehaus.mojo.scmchangelog.tracker.SourceforgeBugTrackLinker;
+import org.codehaus.mojo.scmchangelog.tracker.XPlannerBugTrackLinker;
 import org.codehaus.plexus.util.StringUtils;
 import org.apache.maven.plugin.logging.Log;
 /**
@@ -676,6 +677,10 @@ public class ScmActivityReport
       else if ( BugTrackers.BUGZILLA.equals( BugTrackers.valueOf( getTrackerType() ) ) )
       {
         this.bugLinker = new BugzillaBugTrackLinker( this.trackerUrlPattern );
+      }
+      else if ( BugTrackers.XPLANNER.equals( BugTrackers.valueOf( getTrackerType() ) ) )
+      {
+        this.bugLinker = new XPlannerBugTrackLinker( this.trackerUrlPattern );
       }
       else
       {
