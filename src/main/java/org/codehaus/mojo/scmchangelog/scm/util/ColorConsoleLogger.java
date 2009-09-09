@@ -1,20 +1,36 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+The MIT License
+
+Copyright (c) 2004, The Codehaus
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
  */
 package org.codehaus.mojo.scmchangelog.scm.util;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.Properties;
 import org.apache.maven.plugin.logging.Log;
 
 /**
- *
- * @author ehugonnet
+ * Logger Wrapper that uses the ANSI Console Commands to add some colors.
+ * @author ehsavoie
+ * @version $Id$
  */
 public class ColorConsoleLogger implements Log {
 
@@ -31,149 +47,122 @@ public class ColorConsoleLogger implements Log {
   private String errColor = PREFIX + ATTR_DIM + SEPARATOR + FG_RED + SUFFIX;
   private String warnColor = PREFIX + ATTR_DIM + SEPARATOR + FG_MAGENTA + SUFFIX;
   private String infoColor = PREFIX + ATTR_DIM + SEPARATOR + FG_CYAN + SUFFIX;
-  private String verboseColor = PREFIX + ATTR_DIM + SEPARATOR + FG_GREEN + SUFFIX;
-  private String debugColor = PREFIX + ATTR_DIM + SEPARATOR + FG_BLUE + SUFFIX;
-  private Log realLogger;
-  private boolean colorsSet = false;
-
+  private String debugColor = PREFIX + ATTR_DIM + SEPARATOR + FG_GREEN + SUFFIX;
   /**
-   * Set the colors to use from a property file specified by the
-   * special ant property ant.logger.defaults
+   * The 'real' logger implementation.s
    */
-  private void setColors() {
-    String userColorFile = System.getProperty("ant.logger.defaults");
-    String systemColorFile =
-        "/org/codehaus/mojo/defaults.properties";
+  private Log realLogger;
 
-    InputStream in = null;
-
-    try {
-      Properties prop = new Properties();
-
-      if (userColorFile != null) {
-        in = new FileInputStream(userColorFile);
-      } else {
-        in = getClass().getResourceAsStream(systemColorFile);
-      }
-
-      if (in != null) {
-        prop.load(in);
-      }
-
-      String errC = prop.getProperty("AnsiColorLogger.ERROR_COLOR");
-      String warn = prop.getProperty("AnsiColorLogger.WARNING_COLOR");
-      String info = prop.getProperty("AnsiColorLogger.INFO_COLOR");
-      String verbose = prop.getProperty("AnsiColorLogger.VERBOSE_COLOR");
-      String debug = prop.getProperty("AnsiColorLogger.DEBUG_COLOR");
-      if (errC != null) {
-        errColor = PREFIX + errC + SUFFIX;
-      }
-      if (warn != null) {
-        warnColor = PREFIX + warn + SUFFIX;
-      }
-      if (info != null) {
-        infoColor = PREFIX + info + SUFFIX;
-      }
-      if (verbose != null) {
-        verboseColor = PREFIX + verbose + SUFFIX;
-      }
-      if (debug != null) {
-        debugColor = PREFIX + debug + SUFFIX;
-      }
-    } catch (IOException ioe) {
-      //Ignore - we will use the defaults.
-    } finally {
-      if (in != null) {
-        try {
-          in.close();
-        } catch (IOException e) {
-          //Ignore - We do not want this to stop the build.
-        }
-      }
-    }
-  }
-
-  public ColorConsoleLogger(Log realLogger) {
+ /**
+  * Create a new ColorConsoleLogger that wraps a maven Log.
+  * @param logger the 'real' logger to be wrapped.
+  **/
+  public ColorConsoleLogger( Log realLogger )
+  {
     this.realLogger = realLogger;
   }
 
-  public boolean isDebugEnabled() {
+  /** {@inheritDoc} */
+  public boolean isDebugEnabled()
+  {
     return this.realLogger.isDebugEnabled();
   }
 
-  public void debug(CharSequence content) {
-    this.realLogger.debug( debugColor + content + END_COLOR);
+  /** {@inheritDoc} */
+  public void debug( CharSequence content )
+  {
+    this.realLogger.debug( debugColor + content + END_COLOR );
   }
 
-  public void debug(CharSequence content, Throwable error) {
-    this.debug( content  + "\n\n" + formatError( error) );
+  /** {@inheritDoc} */
+  public void debug( CharSequence content, Throwable error )
+  {
+    this.debug( content + "\n\n" + formatError( error ) );
   }
 
+  /** {@inheritDoc} */
   public void debug( Throwable error )
   {
     this.debug( formatError( error ) );
   }
 
+  /** {@inheritDoc} */
   public boolean isInfoEnabled()
   {
     return this.realLogger.isInfoEnabled();
   }
 
-  public void info(CharSequence content)
+  /** {@inheritDoc} */
+  public void info( CharSequence content )
   {
-    this.realLogger.info( infoColor + content + END_COLOR);
+    this.realLogger.info( infoColor + content + END_COLOR );
   }
 
-  public void info(CharSequence content, Throwable error)
+  /** {@inheritDoc} */
+  public void info( CharSequence content, Throwable error )
   {
-    this.info( content  + "\n\n" + formatError( error) );
+    this.info( content + "\n\n" + formatError( error ) );
   }
 
-  public void info(Throwable error)
+  /** {@inheritDoc} */
+  public void info( Throwable error )
   {
-    this.info( formatError( error) );
+    this.info( formatError( error ) );
   }
 
+  /** {@inheritDoc} */
   public boolean isWarnEnabled()
   {
     return this.realLogger.isWarnEnabled();
   }
 
-  public void warn(CharSequence content)
+  /** {@inheritDoc} */
+  public void warn( CharSequence content )
   {
-    this.realLogger.warn( warnColor + content + END_COLOR);
+    this.realLogger.warn( warnColor + content + END_COLOR );
   }
 
-  public void warn(CharSequence content, Throwable error)
+  /** {@inheritDoc} */
+  public void warn( CharSequence content, Throwable error )
   {
-    this.warn( content + "\n\n" + formatError(error) );
+    this.warn( content + "\n\n" + formatError( error ) );
   }
 
-  public void warn(Throwable error)
+  /** {@inheritDoc} */
+  public void warn( Throwable error )
   {
-    this.warn( formatError(error) );
+    this.warn( formatError( error ) );
   }
 
+  /** {@inheritDoc} */
   public boolean isErrorEnabled()
   {
     return this.realLogger.isErrorEnabled();
   }
 
-  public void error(CharSequence content)
+  /** {@inheritDoc} */
+  public void error( CharSequence content )
   {
-    this.realLogger.error( errColor +  content + END_COLOR );
+    this.realLogger.error( errColor + content + END_COLOR );
   }
 
-  public void error(CharSequence content, Throwable error)
+  /** {@inheritDoc} */
+  public void error( CharSequence content, Throwable error )
   {
     this.error( content + "\n\n" + formatError( error ) );
   }
 
-  public void error(Throwable error)
+  /** {@inheritDoc} */
+  public void error( Throwable error )
   {
     this.error( formatError( error ) );
   }
 
+  /**
+   * Format the exception to a readable message.
+   * @param error the exception to be formatted.
+   * @return a readable message for the specified exception.
+   */
   private String formatError( Throwable error )
   {
     StringWriter sWriter = new StringWriter();
