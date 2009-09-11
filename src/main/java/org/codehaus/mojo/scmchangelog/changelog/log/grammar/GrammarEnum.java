@@ -83,7 +83,8 @@ public class GrammarEnum
    */
   public Message extractMessage( final String content )
   {
-    return this.grammar.extractMessage( content );
+    String realContent = this.grammar.removeComments( content );
+    return this.grammar.extractMessage( realContent );
   }
 
   /**

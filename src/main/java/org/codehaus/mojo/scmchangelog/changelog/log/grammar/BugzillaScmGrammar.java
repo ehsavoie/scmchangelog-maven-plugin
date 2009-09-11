@@ -30,7 +30,6 @@ import java.util.regex.Pattern;
 import org.codehaus.mojo.scmchangelog.changelog.log.Issue;
 import org.codehaus.mojo.scmchangelog.changelog.log.Message;
 import org.codehaus.mojo.scmchangelog.changelog.log.OperationTypeEnum;
-import org.codehaus.mojo.scmchangelog.changelog.log.ScmGrammar;
 
 /**
  * Simple grammar which recognizes bug references in the format: bug ####.
@@ -39,7 +38,7 @@ import org.codehaus.mojo.scmchangelog.changelog.log.ScmGrammar;
  *
  * @author Matthew Beermann <matthew.beermann@cerner.com>
  */
-public class BugzillaScmGrammar implements ScmGrammar
+public class BugzillaScmGrammar extends AbstractScmGrammar
 {
 
   /**

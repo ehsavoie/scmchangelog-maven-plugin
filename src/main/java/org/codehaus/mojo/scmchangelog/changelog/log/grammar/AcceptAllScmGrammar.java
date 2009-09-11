@@ -28,14 +28,13 @@ import java.util.List;
 import org.codehaus.mojo.scmchangelog.changelog.log.Issue;
 import org.codehaus.mojo.scmchangelog.changelog.log.Message;
 import org.codehaus.mojo.scmchangelog.changelog.log.OperationTypeEnum;
-import org.codehaus.mojo.scmchangelog.changelog.log.ScmGrammar;
 
 /**
  * Grammar to accept all comments.
  * @author ehsavoie
  * @version $Id$
  */
-public class AcceptAllScmGrammar implements ScmGrammar
+public class AcceptAllScmGrammar extends AbstractScmGrammar
 {
 
     /**
@@ -70,5 +69,4 @@ public class AcceptAllScmGrammar implements ScmGrammar
     {
         return NEW_LINE;
     }
-
 }

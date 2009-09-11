@@ -94,4 +94,12 @@ public interface ScmGrammar
    * @return the String to be inserted between each issue comment.
    */
   String getIssueSeparator();
+
+  /**
+   * Removes the comments from the SCM comments. Comments are marked by being
+   * surrounded by &qutote;---&quote;.
+   * @return the content without the elemets commented.
+   */
+  String removeComments(String content);
+
 }

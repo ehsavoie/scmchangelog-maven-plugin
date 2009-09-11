@@ -32,7 +32,7 @@ import java.util.regex.Pattern;
  * @version $Id$
  */
 public class ManuScmGrammar
-    extends AbstractScmGrammar
+    extends AbstractRegexpScmGrammar
 {
 
   protected static final Pattern FIX_PATTERN = Pattern.compile( "@[fF][iI][xX][\\s]*:[^;]*[;]" );
