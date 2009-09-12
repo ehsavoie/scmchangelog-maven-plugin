@@ -46,7 +46,7 @@ public class MavenScmLogger
      */
     public MavenScmLogger( Log logger )
     {
-        if( isColorized() )
+        if ( isColorized() )
         {
             this.logger = new ColorConsoleLogger( logger );
         }
@@ -152,8 +152,12 @@ public class MavenScmLogger
         logger.error( error );
     }
 
+    /**
+     * Indicates if th logs will be ANSI colorized.
+     * @return true if there will be colors - false otherwise.
+     */
     private boolean isColorized()
     {
-        return System.getProperty("colorized.console") != null;
+        return System.getProperty( "colorized.console" ) != null;
     }
 }

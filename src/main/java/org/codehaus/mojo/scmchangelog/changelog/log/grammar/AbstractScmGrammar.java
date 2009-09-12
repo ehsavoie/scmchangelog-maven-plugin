@@ -36,10 +36,17 @@ import org.codehaus.mojo.scmchangelog.changelog.log.ScmGrammar;
 public abstract class AbstractScmGrammar
     implements ScmGrammar
 {
-
+   /**
+    * The Regexp Pattern for finding comments.
+    */
    private static final Pattern COMMENT_PATTERN = Pattern.compile( "/\\*([^*]|(\\*+([^*/])))*\\*+/",
            Pattern.CASE_INSENSITIVE );
 
+   /**
+    * Removes the comments from the content.
+    * @param content which comments will be removed.
+    * @return the content without the comments.
+    */
    public String removeComments( String content )
    {
        Matcher matcher = COMMENT_PATTERN.matcher( content );

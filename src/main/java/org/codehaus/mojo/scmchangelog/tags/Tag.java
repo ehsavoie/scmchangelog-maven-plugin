@@ -157,7 +157,7 @@ public class Tag
     if ( object != null )
     {
       Tag tag = ( Tag ) object;
-      if (StringUtils.isNumeric( this.endRevision ) && StringUtils.isNumeric(
+      if ( StringUtils.isNumeric( this.endRevision ) && StringUtils.isNumeric(
           tag.getEndRevision() ) )
       {
           return Integer.parseInt( this.endRevision ) - Integer.parseInt( tag.getEndRevision() );

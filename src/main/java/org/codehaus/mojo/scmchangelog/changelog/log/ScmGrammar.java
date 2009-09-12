@@ -98,8 +98,9 @@ public interface ScmGrammar
   /**
    * Removes the comments from the SCM comments. Comments are marked by being
    * surrounded by &qutote;---&quote;.
+   * @param content - the content from which comments will be removed.
    * @return the content without the elemets commented.
    */
-  String removeComments(String content);
+  String removeComments( String content );
 
 }

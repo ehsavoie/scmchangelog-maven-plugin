@@ -32,12 +32,12 @@ import org.apache.maven.plugin.logging.Log;
  * @author ehsavoie
  * @version $Id$
  */
-public class ColorConsoleLogger implements Log {
-
+public class ColorConsoleLogger implements Log
+{
   private static final int ATTR_DIM = 2;
   private static final int FG_RED = 31;
   private static final int FG_GREEN = 32;
-  private static final int FG_BLUE = 34;
+  //private static final int FG_BLUE = 34;
   private static final int FG_MAGENTA = 35;
   private static final int FG_CYAN = 36;
   private static final String PREFIX = "\u001b[";

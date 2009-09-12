@@ -941,12 +941,12 @@ public class ScmActivityReport
     }
   }
 
- /**
+    /**
      * @see org.apache.maven.plugin.Mojo#setLog(org.apache.maven.plugin.logging.Log)
      */
     public void setLog( Log log )
     {
-      if( isColorized() )
+      if ( isColorized() )
       {
         super.setLog( new ColorConsoleLogger( log ) );
         logHasBeenColorized = true;
@@ -958,7 +958,8 @@ public class ScmActivityReport
     }
 
     /**
-     * Returns the logger that has been injected into this mojo. If no logger has been setup yet, a <code>SystemStreamLog</code>
+     * Returns the logger that has been injected into this mojo. If no logger has
+     * been setup yet, a <code>SystemStreamLog</code>
      * logger will be created and returned.
      * <br/><br/>
      * <strong>Note:</strong>
@@ -981,8 +982,12 @@ public class ScmActivityReport
       return log;
     }
 
+    /**
+     * Indicates if the logs will be in ANSI color.
+     * @return true if System property <i>colorized.cosole</i> is set - false otherwise.
+     */
     private boolean isColorized()
     {
-      return System.getProperty("colorized.console") != null;
+      return System.getProperty( "colorized.console" ) != null;
     }
 }
