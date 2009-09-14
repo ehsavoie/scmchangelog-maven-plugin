@@ -37,6 +37,11 @@ public class RemoveCommentsTest extends TestCase {
         String content = "Hello World /* Bonjour le Monde */ my friend";
         String result = grammar.removeComments( content );
         assertEquals( "Hello World  my friend", result );
+      
+        content = "Hello World /**/ my friend";
+        result = grammar.removeComments( content );
+        assertEquals( "Hello World  my friend", result );
+
     }
 
      public void testRemoveMultistarsComment()
@@ -59,6 +64,14 @@ public class RemoveCommentsTest extends TestCase {
         String content = "Hello World my friend";
         String result = grammar.removeComments( content );
         assertEquals( "Hello World my friend", result );
+      
+        content = "Hello World my friend*/";
+        result = grammar.removeComments( content );
+        assertEquals( "Hello World my friend*/", result );
+
+        content = "/*Hello World my friend";
+        result = grammar.removeComments( content );
+        assertEquals( "/*Hello World my friend", result );
     }
 
     public void testRemoveIncludedComments()
