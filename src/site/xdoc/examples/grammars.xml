@@ -20,6 +20,8 @@
           </ul>
           all with the same operations. The operations are <b>NOT</b> case sensitive.
           <br/>
+          You can comment part of the SCM messages using /* ... */. Comments are not inclusive so
+          for /* aaaa /* bbb */ cccc */ only /* aaaa /* bbb */ will be treated as comment.
           <ul>
             <li>
               <b>add</b>: when you add a new feature or some code to your projet.

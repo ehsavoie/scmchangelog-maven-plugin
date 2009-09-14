@@ -67,11 +67,12 @@
               <ul>
                 <li>sourceforge</li>
                 <li>jira</li>
+                <li>xplanner</li>
                 <li>bugzilla</li>
               </ul>
             </li>
             <li>grammar: this allows you to specify the grammar used to parse the svn logs. <br/>
-              Currently it supports <a href="examples/grammars.html">three grammars</a>: <br/>
+              Currently it supports <a href="examples/grammars.html">four grammars</a>: <br/>
               <ul>
                 <li>"MANU" which uses <code>@operation:issue;comments</code></li>
                 <li>"REMY" which uses <code>[operation:issue]comments</code></li>
