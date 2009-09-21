@@ -145,7 +145,7 @@ public class ScmLogEntry
         int otherRevision = Integer.parseInt( entry.getRevision() );
         return currentRevision - otherRevision;
       }
-      catch( NumberFormatException nfex )
+      catch ( NumberFormatException nfex )
       {
         //Do nothing revisions are not numbers.
       }
