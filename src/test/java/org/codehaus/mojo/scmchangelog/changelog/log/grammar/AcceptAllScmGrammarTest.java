@@ -23,7 +23,6 @@ SOFTWARE.
  */
 package org.codehaus.mojo.scmchangelog.changelog.log.grammar;
 
-import java.util.Iterator;
 import junit.framework.TestCase;
 import org.codehaus.mojo.scmchangelog.changelog.log.Issue;
 import org.codehaus.mojo.scmchangelog.changelog.log.Message;
