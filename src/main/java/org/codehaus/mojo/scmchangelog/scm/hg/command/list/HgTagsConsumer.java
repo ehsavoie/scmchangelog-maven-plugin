@@ -82,11 +82,19 @@ class HgTagsConsumer
       Tag tag = new Tag( title );
       tag.setStartRevision( "0" );
       tag.setEndRevision( revisionId );
+      updateLastTagStartRevision(revisionId);
       repositoryStatus.add( tag );
     }
   }
 
-  /**
+  private void updateLastTagStartRevision(String revisionId) {
+	  if (!repositoryStatus.isEmpty()) {
+		  Tag lastTag = (Tag) repositoryStatus.get(repositoryStatus.size()-1);
+		  lastTag.setStartRevision(revisionId);
+	  }
+  }
+
+/**
    * Return the list of Tag.
    * @return List&lt;Tag&gt;
    * @see org.codehaus.mojo.scmchangelog.tags.Tag
