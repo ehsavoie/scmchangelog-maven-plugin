@@ -17,7 +17,7 @@
     <url>http://svn.codehaus.org/mojo/trunk/mojo/scmchangelog-maven-plugin/</url>
   </scm>
   <prerequisites>
-    <maven>2.0.9</maven>
+    <maven>2.1.0</maven>
   </prerequisites>
   <inceptionYear>2008</inceptionYear>
   <description>Simple Reporter that creates a changelog report using comments
