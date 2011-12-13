@@ -232,7 +232,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>scmchangelog-maven-plugin</artifactId>
-        <version>${pom.version}</version>
+        <version>${project.version}</version>
         <configuration>
           <trackerType>jira</trackerType>
           <grammar>MANU</grammar>
